@@ -1,6 +1,6 @@
 {
   "retention_days": 180,
-  "max_items": 500,
+  "max_items": 300,
   "google_news_fallback": false,
   "sources": [
     {
@@ -47,19 +47,6 @@
         "https://www.cossa.ru/special/realty/"
       ],
       "article_pattern": "/(news|trends|cases|special|articles)/",
-      "kind": "marketing"
-    },
-    {
-      "name": "AdPass",
-      "homepage": "https://adpass.ru/",
-      "feed_candidates": [
-        "https://adpass.ru/feed/",
-        "https://adpass.ru/rss/"
-      ],
-      "listing_pages": [
-        "https://adpass.ru/"
-      ],
-      "article_pattern": "/[^/]+/$",
       "kind": "marketing"
     },
     {
@@ -127,59 +114,6 @@
         "https://www.cian.ru/stati/"
       ],
       "article_pattern": "/stati-",
-      "kind": "realty"
-    },
-    {
-      "name": "IRN",
-      "homepage": "https://www.irn.ru/",
-      "feed_candidates": [
-        "https://www.irn.ru/rss/",
-        "https://www.irn.ru/rss.xml"
-      ],
-      "listing_pages": [
-        "https://www.irn.ru/news/"
-      ],
-      "article_pattern": "/news/",
-      "kind": "realty"
-    },
-    {
-      "name": "Новострой-М",
-      "homepage": "https://www.novostroy-m.ru/",
-      "feed_candidates": [
-        "https://www.novostroy-m.ru/rss",
-        "https://www.novostroy-m.ru/rss.xml"
-      ],
-      "listing_pages": [
-        "https://www.novostroy-m.ru/novosti",
-        "https://www.novostroy-m.ru/analitika"
-      ],
-      "article_pattern": "/(novosti|analitika)/",
-      "kind": "realty"
-    },
-    {
-      "name": "Арендатор.ру",
-      "homepage": "https://www.arendator.ru/",
-      "feed_candidates": [
-        "https://www.arendator.ru/rss/",
-        "https://www.arendator.ru/rss.xml"
-      ],
-      "listing_pages": [
-        "https://www.arendator.ru/news/"
-      ],
-      "article_pattern": "/news/",
-      "kind": "realty"
-    },
-    {
-      "name": "Строительная газета",
-      "homepage": "https://stroygaz.ru/",
-      "feed_candidates": [
-        "https://stroygaz.ru/rss/",
-        "https://stroygaz.ru/rss.xml"
-      ],
-      "listing_pages": [
-        "https://stroygaz.ru/news/"
-      ],
-      "article_pattern": "/news/",
       "kind": "realty"
     }
   ]
