@@ -1,0 +1,55 @@
+{
+  "updated_at": null,
+  "stats": {
+    "queries_ok": 0,
+    "queries_failed": 0
+  },
+  "items": [
+    {
+      "id": "seed-1",
+      "date": "2026-07-14",
+      "source": "AdIndex",
+      "title": "Девелоперы впервые с 2023 года уменьшили траты на офлайн-рекламу",
+      "url": "https://adindex.ru/news/tendencies/2026/07/14/347164.phtml",
+      "summary": "Материал о динамике рекламных бюджетов девелоперов и агрегаторов недвижимости.",
+      "topic": "Медиарынок",
+      "competitors": [],
+      "importance": 95
+    },
+    {
+      "id": "seed-2",
+      "date": "2026-07-14",
+      "source": "Sostav",
+      "title": "Девелоперы урезают рекламные бюджеты",
+      "url": "https://www.sostav.ru/publication/developery-urezayut-reklamnye-byudzhety-85239.html",
+      "summary": "Материал о сокращении рекламных инвестиций девелоперов на фоне изменения рынка.",
+      "topic": "Медиарынок",
+      "competitors": [],
+      "importance": 93
+    },
+    {
+      "id": "seed-3",
+      "date": "2026-06-11",
+      "source": "Sostav",
+      "title": "Запоминающаяся наружная реклама повышает интерес к девелоперу",
+      "url": "https://www.sostav.ru/publication/zapominayushchayasya-naruzhnaya-reklama-povyshaet-interes-k-developeru-pri-vybore-kvartiry-84485.html",
+      "summary": "Исследование связи между запоминаемостью наружной рекламы и интересом к бренду девелопера.",
+      "topic": "Наружная реклама",
+      "competitors": [],
+      "importance": 94
+    },
+    {
+      "id": "seed-4",
+      "date": "2026-04-14",
+      "source": "РБК Недвижимость",
+      "title": "Стрим вместо шоурума: девелоперы стали продавать квартиры в прямом эфире",
+      "url": "https://realty.rbc.ru/news/69dca19c9a79478a11a4f17e",
+      "summary": "Пример применения прямых эфиров как цифрового аналога шоурума.",
+      "topic": "Контент",
+      "competitors": [
+        "ПИК"
+      ],
+      "importance": 92
+    }
+  ]
+}
