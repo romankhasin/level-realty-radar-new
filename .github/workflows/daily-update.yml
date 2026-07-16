@@ -1,4 +1,4 @@
-name: Daily Realty News Update
+name: Daily Realty Radar Update
 
 on:
   schedule:
@@ -9,13 +9,13 @@ permissions:
   contents: write
 
 concurrency:
-  group: daily-realty-news
+  group: daily-realty-radar
   cancel-in-progress: true
 
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 15
 
     steps:
       - name: Checkout repository
@@ -30,14 +30,14 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Collect news
+      - name: Collect and analyse news
         run: python collector.py
-        timeout-minutes: 5
+        timeout-minutes: 12
 
       - name: Commit news.json
         run: |
           git config user.name "Level Realty Radar"
           git config user.email "actions@users.noreply.github.com"
           git add news.json
-          git diff --cached --quiet || git commit -m "Update realty news"
+          git diff --cached --quiet || git commit -m "Update and analyse realty news"
           git push
