@@ -1,0 +1,43 @@
+name: Daily Realty News Update
+
+on:
+  schedule:
+    - cron: "30 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-realty-news
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Collect news
+        run: python collector.py
+        timeout-minutes: 5
+
+      - name: Commit news.json
+        run: |
+          git config user.name "Level Realty Radar"
+          git config user.email "actions@users.noreply.github.com"
+          git add news.json
+          git diff --cached --quiet || git commit -m "Update realty news"
+          git push
