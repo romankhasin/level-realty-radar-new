@@ -237,12 +237,40 @@ def make_item(row: dict, source: dict):
     marketing_hits = sum(1 for word in MARKETING_WORDS if word in lowered)
     competitors = find_competitors(combined)
 
-    if source["kind"] == "marketing" and realty_hits < 1:
-        return None
-    if source["kind"] == "realty" and realty_hits < 1 and not competitors:
+    strong_marketing_actions = [
+        "рекламная кампания", "маркетинговая кампания", "продвижение",
+        "лидогенерация", "медиаплан", "медиамикс", "брендинг",
+        "ребрендинг", "креатив", "наружная реклама", "digital",
+        "диджитал", "performance", "таргетированная реклама",
+        "контекстная реклама", "telegram ads", "спецпроект",
+        "бренд-платформа", "позиционирование", "рекламный бюджет",
+        "маркетинговый бюджет", "cpl", "cpm", "ctr", "охватная кампания",
+        "видеореклама", "olv", "dooh", "ooh", "ретаргетинг",
+        "классифайд", "авито реклама", "яндекс реклама"
+    ]
+    has_strong_marketing_action = any(phrase in lowered for phrase in strong_marketing_actions)
+
+    # Строгое пересечение:
+    # 1) недвижимость + минимум два маркетинговых сигнала;
+    # 2) или недвижимость + явное маркетинговое действие;
+    # 3) или упомянут девелопер-конкурент + явное маркетинговое действие.
+    is_intersection = (
+        (realty_hits >= 1 and marketing_hits >= 2)
+        or (realty_hits >= 1 and has_strong_marketing_action)
+        or (bool(competitors) and has_strong_marketing_action)
+    )
+
+    if not is_intersection:
         return None
 
-    importance = min(100, 42 + realty_hits * 8 + marketing_hits * 4 + len(competitors) * 12)
+    importance = min(
+        100,
+        48
+        + realty_hits * 8
+        + marketing_hits * 5
+        + len(competitors) * 12
+        + (10 if has_strong_marketing_action else 0)
+    )
     topic = detect_topic(combined)
     signal, priority, value, recs = analysis_for(topic, competitors, importance)
 
@@ -259,7 +287,10 @@ def make_item(row: dict, source: dict):
         "signal_type": signal,
         "priority": priority,
         "level_value": value,
-        "recommendations": recs
+        "recommendations": recs,
+        "realty_score": realty_hits,
+        "marketing_score": marketing_hits,
+        "intersection": True
     }
 
 
@@ -309,7 +340,17 @@ def main():
                 print(f"error · {error}", flush=True)
 
     cutoff = (datetime.now(MOSCOW) - timedelta(days=CONFIG.get("retention_days", 180))).date().isoformat()
-    rows = [item for item in by_url.values() if item.get("date", "") >= cutoff]
+    rows = [
+        item for item in by_url.values()
+        if item.get("date", "") >= cutoff
+        and (
+            item.get("intersection") is True
+            or (
+                item.get("realty_score", 0) >= 1
+                and item.get("marketing_score", 0) >= 2
+            )
+        )
+    ]
 
     seen = set()
     dedup = []
