@@ -1,153 +1,74 @@
 <!doctype html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#111b24">
-<title>LEVEL / Realty Radar</title>
-<style>
-:root{
-  --bg:#f4f3ee;--ink:#15202a;--muted:#6d7880;--line:#dce1e1;
-  --white:#fff;--sky:#c9e9f5;--sky-dark:#4f829a;--gold:#a8814c
-}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
-header{background:#111b24;color:#fff;padding:25px 5vw}
-.brand{font-weight:800;letter-spacing:.13em}.brand b{color:#bce2f1}
-.sub{margin-top:7px;color:#a8b4bc;font-size:12px}
-main{max-width:1440px;margin:auto;padding:34px 5vw 60px}
-h1{font-size:36px;letter-spacing:-.04em;margin:0 0 8px}
-.lead{color:var(--muted);font-size:14px;line-height:1.55}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:25px 0}
-.stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:17px}
-.stat:first-child{background:linear-gradient(135deg,var(--sky),#f2f6ef)}
-.stat b{display:block;font-size:27px}.stat span{font-size:11px;color:var(--muted)}
-.toolbar{position:sticky;top:8px;z-index:3;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);display:flex;gap:8px;padding:11px;border:1px solid var(--line);border-radius:15px}
-input,select{border:0;background:#f0f2ef;border-radius:10px;padding:11px;color:var(--ink)}
-input{flex:1;min-width:170px}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:15px}
-.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;min-height:285px}
-.meta{display:flex;justify-content:space-between;gap:8px;font-size:10px;color:var(--muted)}
-.source{font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--sky-dark)}
-.card h2{font-size:17px;line-height:1.4;margin:14px 0 9px}
-.summary{font-size:12px;line-height:1.55;color:#59656d}
-.tags{display:flex;flex-wrap:wrap;gap:5px;margin:13px 0}
-.tag{font-size:9px;border-radius:99px;padding:6px 8px;background:#edf2f2}
-.foot{margin-top:auto;border-top:1px solid var(--line);padding-top:12px;display:flex;justify-content:space-between;font-size:11px}
-.foot a{font-weight:750;color:var(--ink);text-decoration:none}
-.empty{padding:60px;text-align:center;color:var(--muted)}
-.status{font-size:11px;color:var(--muted);margin-top:14px}
-.error{background:#fff2ec;border:1px solid #e3b9a6;padding:16px;border-radius:14px}
-@media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:700px){
-  .stats{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}
-  .toolbar{flex-wrap:wrap}input{width:100%}h1{font-size:30px}
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#111b24">
+
+  <title>LEVEL / Realty Radar</title>
+
+  <link rel="stylesheet" href="./assets/styles.css">
 </head>
 <body>
-<header>
-  <div class="brand">LEVEL<b>/</b>REALTY RADAR</div>
-  <div class="sub">Ежедневный агрегатор рынка недвижимости и рекламы</div>
-</header>
-<main>
-  <h1>Новости рынка недвижимости</h1>
-  <div class="lead">Актуальные материалы о девелоперах, маркетинге, спросе, digital, наружной рекламе и действиях конкурентов.</div>
+  <header>
+    <div class="brand">LEVEL<b>/</b>REALTY RADAR</div>
+    <div class="sub">Ежедневный агрегатор рынка недвижимости и рекламы</div>
+  </header>
 
-  <div class="stats">
-    <div class="stat"><b id="total">—</b><span>материалов</span></div>
-    <div class="stat"><b id="week">—</b><span>за последние 7 дней</span></div>
-    <div class="stat"><b id="sourcesCount">—</b><span>источников</span></div>
-    <div class="stat"><b id="competitorsCount">—</b><span>с конкурентами</span></div>
-  </div>
+  <main>
+    <h1>Новости рынка недвижимости</h1>
 
-  <div class="toolbar">
-    <input id="searchInput" placeholder="Поиск по заголовкам и описаниям…" oninput="render()">
-    <select id="sourceFilter" onchange="render()"><option value="">Все источники</option></select>
-    <select id="topicFilter" onchange="render()"><option value="">Все темы</option></select>
-    <select id="competitorFilter" onchange="render()"><option value="">Все конкуренты</option></select>
-  </div>
+    <div class="lead">
+      Актуальные материалы о девелоперах, маркетинге, спросе,
+      digital, наружной рекламе и действиях конкурентов.
+    </div>
 
-  <div id="status" class="status">Загрузка news.json…</div>
-  <div id="grid" class="grid"></div>
-</main>
+    <div class="stats">
+      <div class="stat">
+        <b id="total">—</b>
+        <span>материалов</span>
+      </div>
 
-<script>
-let database={items:[]};
-const normalize=value=>(value||'').toString().toLowerCase();
-const escapeHtml=value=>(value||'').toString().replace(/[&<>"']/g,char=>({
-  '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'
-}[char]));
+      <div class="stat">
+        <b id="week">—</b>
+        <span>за последние 7 дней</span>
+      </div>
 
-function renderCard(item){
-  const date=new Date(item.date+'T12:00:00').toLocaleDateString('ru-RU');
-  const competitorTags=(item.competitors||[]).map(value=>`<span class="tag">${escapeHtml(value)}</span>`).join('');
-  return `<article class="card">
-    <div class="meta"><span class="source">${escapeHtml(item.source)}</span><span>${date}</span></div>
-    <h2>${escapeHtml(item.title)}</h2>
-    <div class="summary">${escapeHtml(item.summary||'')}</div>
-    <div class="tags"><span class="tag">${escapeHtml(item.topic||'Новости')}</span>${competitorTags}</div>
-    <div class="foot"><span>Важность ${Number(item.importance||0)}%</span><a href="${escapeHtml(item.url)}" target="_blank" rel="noopener">Открыть →</a></div>
-  </article>`;
-}
+      <div class="stat">
+        <b id="sourcesCount">—</b>
+        <span>источников</span>
+      </div>
 
-function fillSelect(id, values){
-  const element=document.getElementById(id);
-  values.sort().forEach(value=>element.insertAdjacentHTML('beforeend',`<option>${escapeHtml(value)}</option>`));
-}
+      <div class="stat">
+        <b id="competitorsCount">—</b>
+        <span>с конкурентами</span>
+      </div>
+    </div>
 
-function render(){
-  const text=normalize(document.getElementById('searchInput').value);
-  const source=document.getElementById('sourceFilter').value;
-  const topic=document.getElementById('topicFilter').value;
-  const competitor=document.getElementById('competitorFilter').value;
+    <div class="toolbar">
+      <input
+        id="searchInput"
+        placeholder="Поиск по заголовкам и описаниям…"
+        oninput="render()"
+      >
 
-  const rows=database.items
-    .filter(item=>{
-      const haystack=normalize([item.title,item.summary,item.source,item.topic,...(item.competitors||[])].join(' '));
-      return (!text||haystack.includes(text))
-        &&(!source||item.source===source)
-        &&(!topic||item.topic===topic)
-        &&(!competitor||(item.competitors||[]).includes(competitor));
-    })
-    .sort((a,b)=>(b.date||'').localeCompare(a.date||'')||(b.importance||0)-(a.importance||0));
+      <select id="sourceFilter" onchange="render()">
+        <option value="">Все источники</option>
+      </select>
 
-  document.getElementById('grid').innerHTML=rows.length
-    ?rows.map(renderCard).join('')
-    :'<div class="empty">По выбранным фильтрам новостей нет.</div>';
-}
+      <select id="topicFilter" onchange="render()">
+        <option value="">Все темы</option>
+      </select>
 
-fetch('./news.json?v='+Date.now())
-  .then(response=>{
-    if(!response.ok)throw new Error('HTTP '+response.status);
-    return response.json();
-  })
-  .then(data=>{
-    database=Array.isArray(data)?{items:data}:data;
-    database.items=database.items||[];
+      <select id="competitorFilter" onchange="render()">
+        <option value="">Все конкуренты</option>
+      </select>
+    </div>
 
-    const sources=[...new Set(database.items.map(item=>item.source).filter(Boolean))];
-    const topics=[...new Set(database.items.map(item=>item.topic).filter(Boolean))];
-    const competitors=[...new Set(database.items.flatMap(item=>item.competitors||[]))];
+    <div id="status" class="status">Загрузка news.json…</div>
+    <div id="grid" class="grid"></div>
+  </main>
 
-    fillSelect('sourceFilter',sources);
-    fillSelect('topicFilter',topics);
-    fillSelect('competitorFilter',competitors);
-
-    document.getElementById('total').textContent=database.items.length;
-    document.getElementById('week').textContent=database.items.filter(item=>new Date(item.date)>=Date.now()-7*864e5).length;
-    document.getElementById('sourcesCount').textContent=sources.length;
-    document.getElementById('competitorsCount').textContent=database.items.filter(item=>(item.competitors||[]).length).length;
-
-    const updated=database.updated_at?new Date(database.updated_at).toLocaleString('ru-RU'):'ещё не запускался';
-    const stats=database.stats?` · запросов успешно: ${database.stats.queries_ok}, ошибок: ${database.stats.queries_failed}`:'';
-    document.getElementById('status').textContent='Обновлено: '+updated+stats;
-    render();
-  })
-  .catch(error=>{
-    document.getElementById('status').innerHTML=`<div class="error">Не удалось загрузить news.json: ${escapeHtml(error.message)}.</div>`;
-    console.error(error);
-  });
-</script>
+  <script src="./assets/app.js"></script>
 </body>
 </html>

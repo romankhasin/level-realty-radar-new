@@ -1,18 +1,21 @@
-# LEVEL Realty Radar — Clean Start
+# LEVEL Realty Radar — GitHub v1.0
 
-Чистая версия проекта для нового GitHub-репозитория.
+Чистая версия проекта для GitHub Pages.
 
-## Файлы
-- `index.html` — интерфейс;
-- `news.json` — данные;
-- `collector.py` — ежедневный сбор;
+## Структура
+
+- `index.html` — страница;
+- `assets/styles.css` — оформление;
+- `assets/app.js` — логика интерфейса;
+- `news.json` — база новостей;
+- `collector.py` — сбор новостей;
 - `queries.json` — поисковые запросы;
 - `competitors.json` — справочник конкурентов;
-- `requirements.txt` — Python-зависимости;
-- `.github/workflows/daily-update.yml` — ежедневная автоматизация.
+- `.github/workflows/daily-update.yml` — ежедневный запуск.
 
-## Публикация
-1. Загрузите содержимое проекта в корень нового репозитория.
-2. Settings → Pages → Deploy from a branch.
-3. Branch: main, folder: /(root).
-4. Actions → Daily Realty News Update → Run workflow.
+## Запуск
+
+1. Загрузите проект в корень репозитория.
+2. Включите GitHub Pages из ветки `main`, папка `/root`.
+3. Откройте `Actions`.
+4. Запустите `Daily Realty News Update`.

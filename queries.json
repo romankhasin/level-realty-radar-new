@@ -65,24 +65,20 @@
       "query": "site:cossa.ru недвижимость девелопер маркетинг"
     },
     {
+      "name": "AdPass",
+      "query": "site:adpass.ru недвижимость маркетинг девелопер"
+    },
+    {
       "name": "РБК Недвижимость",
       "query": "site:realty.rbc.ru девелопер рынок недвижимость"
     },
     {
       "name": "Движение.ру",
-      "query": "site:dvizhenie.ru девелопер рынок маркетинг"
+      "query": "site:dvizhenie.ru девелопер рынок недвижимость"
     },
     {
       "name": "ЕРЗ.РФ",
       "query": "site:erzrf.ru девелопер продажи рынок"
-    },
-    {
-      "name": "AdPass",
-      "query": "site:adpass.ru недвижимость маркетинг девелопер"
-    },
-    {
-      "name": "VC.ru",
-      "query": "site:vc.ru недвижимость маркетинг девелопер"
     },
     {
       "name": "Домклик",
@@ -111,6 +107,10 @@
     {
       "name": "Коммерсантъ",
       "query": "site:kommersant.ru недвижимость девелопер рынок"
+    },
+    {
+      "name": "VC.ru",
+      "query": "site:vc.ru недвижимость маркетинг девелопер"
     }
   ]
 }
