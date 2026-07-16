@@ -15,7 +15,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 6
 
     steps:
       - name: Checkout repository
@@ -31,8 +31,8 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Collect and analyse news
-        run: python collector.py
-        timeout-minutes: 12
+        run: python -u collector.py
+        timeout-minutes: 4
 
       - name: Commit news.json
         run: |
