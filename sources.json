@@ -1,0 +1,186 @@
+{
+  "retention_days": 180,
+  "max_items": 500,
+  "google_news_fallback": false,
+  "sources": [
+    {
+      "name": "Sostav",
+      "homepage": "https://www.sostav.ru/",
+      "feed_candidates": [
+        "https://www.sostav.ru/rss",
+        "https://www.sostav.ru/rss.xml",
+        "https://www.sostav.ru/news/rss"
+      ],
+      "listing_pages": [
+        "https://www.sostav.ru/news",
+        "https://www.sostav.ru/publication/"
+      ],
+      "article_pattern": "/(publication|blogs)/",
+      "kind": "marketing"
+    },
+    {
+      "name": "AdIndex",
+      "homepage": "https://adindex.ru/",
+      "feed_candidates": [
+        "https://adindex.ru/rss/",
+        "https://adindex.ru/rss.xml",
+        "https://adindex.ru/news/rss/"
+      ],
+      "listing_pages": [
+        "https://adindex.ru/news/all.phtml",
+        "https://adindex.ru/case/"
+      ],
+      "article_pattern": "/(news|case|publication)/",
+      "kind": "marketing"
+    },
+    {
+      "name": "Cossa",
+      "homepage": "https://www.cossa.ru/",
+      "feed_candidates": [
+        "https://www.cossa.ru/rss/",
+        "https://www.cossa.ru/rss.xml",
+        "https://www.cossa.ru/feed/"
+      ],
+      "listing_pages": [
+        "https://www.cossa.ru/news/",
+        "https://www.cossa.ru/trends/",
+        "https://www.cossa.ru/special/realty/"
+      ],
+      "article_pattern": "/(news|trends|cases|special|articles)/",
+      "kind": "marketing"
+    },
+    {
+      "name": "AdPass",
+      "homepage": "https://adpass.ru/",
+      "feed_candidates": [
+        "https://adpass.ru/feed/",
+        "https://adpass.ru/rss/"
+      ],
+      "listing_pages": [
+        "https://adpass.ru/"
+      ],
+      "article_pattern": "/[^/]+/$",
+      "kind": "marketing"
+    },
+    {
+      "name": "РБК Недвижимость",
+      "homepage": "https://realty.rbc.ru/",
+      "feed_candidates": [
+        "https://realty.rbc.ru/rss/",
+        "https://realty.rbc.ru/rss.xml"
+      ],
+      "listing_pages": [
+        "https://realty.rbc.ru/",
+        "https://realty.rbc.ru/housing/"
+      ],
+      "article_pattern": "/news/",
+      "kind": "realty"
+    },
+    {
+      "name": "Движение.ру",
+      "homepage": "https://dvizhenie.ru/",
+      "feed_candidates": [
+        "https://dvizhenie.ru/rss",
+        "https://dvizhenie.ru/rss.xml",
+        "https://dvizhenie.ru/feed"
+      ],
+      "listing_pages": [
+        "https://dvizhenie.ru/media"
+      ],
+      "article_pattern": "/media/",
+      "kind": "realty"
+    },
+    {
+      "name": "ЕРЗ.РФ",
+      "homepage": "https://erzrf.ru/",
+      "feed_candidates": [
+        "https://erzrf.ru/rss",
+        "https://erzrf.ru/rss.xml"
+      ],
+      "listing_pages": [
+        "https://erzrf.ru/news"
+      ],
+      "article_pattern": "/news/",
+      "kind": "realty"
+    },
+    {
+      "name": "Домклик",
+      "homepage": "https://blog.domclick.ru/",
+      "feed_candidates": [
+        "https://blog.domclick.ru/feed/",
+        "https://blog.domclick.ru/rss/"
+      ],
+      "listing_pages": [
+        "https://blog.domclick.ru/"
+      ],
+      "article_pattern": "/post/",
+      "kind": "realty"
+    },
+    {
+      "name": "ЦИАН Журнал",
+      "homepage": "https://www.cian.ru/stati/",
+      "feed_candidates": [
+        "https://www.cian.ru/stati/rss/",
+        "https://www.cian.ru/rss/"
+      ],
+      "listing_pages": [
+        "https://www.cian.ru/stati/"
+      ],
+      "article_pattern": "/stati-",
+      "kind": "realty"
+    },
+    {
+      "name": "IRN",
+      "homepage": "https://www.irn.ru/",
+      "feed_candidates": [
+        "https://www.irn.ru/rss/",
+        "https://www.irn.ru/rss.xml"
+      ],
+      "listing_pages": [
+        "https://www.irn.ru/news/"
+      ],
+      "article_pattern": "/news/",
+      "kind": "realty"
+    },
+    {
+      "name": "Новострой-М",
+      "homepage": "https://www.novostroy-m.ru/",
+      "feed_candidates": [
+        "https://www.novostroy-m.ru/rss",
+        "https://www.novostroy-m.ru/rss.xml"
+      ],
+      "listing_pages": [
+        "https://www.novostroy-m.ru/novosti",
+        "https://www.novostroy-m.ru/analitika"
+      ],
+      "article_pattern": "/(novosti|analitika)/",
+      "kind": "realty"
+    },
+    {
+      "name": "Арендатор.ру",
+      "homepage": "https://www.arendator.ru/",
+      "feed_candidates": [
+        "https://www.arendator.ru/rss/",
+        "https://www.arendator.ru/rss.xml"
+      ],
+      "listing_pages": [
+        "https://www.arendator.ru/news/"
+      ],
+      "article_pattern": "/news/",
+      "kind": "realty"
+    },
+    {
+      "name": "Строительная газета",
+      "homepage": "https://stroygaz.ru/",
+      "feed_candidates": [
+        "https://stroygaz.ru/rss/",
+        "https://stroygaz.ru/rss.xml"
+      ],
+      "listing_pages": [
+        "https://stroygaz.ru/news/"
+      ],
+      "article_pattern": "/news/",
+      "kind": "realty"
+    }
+  ]
+}

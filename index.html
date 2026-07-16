@@ -4,65 +4,34 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#111b24">
-
   <title>LEVEL / Realty Radar</title>
-
   <link rel="stylesheet" href="./assets/styles.css">
 </head>
 <body>
   <header>
     <div class="brand">LEVEL<b>/</b>REALTY RADAR</div>
-    <div class="sub">Ежедневный агрегатор рынка недвижимости и рекламы</div>
+    <div class="sub">Новости, рыночные сигналы и рекомендации для Level Group</div>
   </header>
 
   <main>
     <h1>Новости рынка недвижимости</h1>
-
     <div class="lead">
-      Актуальные материалы о девелоперах, маркетинге, спросе,
-      digital, наружной рекламе и действиях конкурентов.
+      Актуальные материалы о девелоперах, рекламе и рынке — с автоматическим
+      объяснением, почему это важно и какие действия можно рассмотреть для Level.
     </div>
 
     <div class="stats">
-      <div class="stat">
-        <b id="total">—</b>
-        <span>материалов</span>
-      </div>
-
-      <div class="stat">
-        <b id="week">—</b>
-        <span>за последние 7 дней</span>
-      </div>
-
-      <div class="stat">
-        <b id="sourcesCount">—</b>
-        <span>источников</span>
-      </div>
-
-      <div class="stat">
-        <b id="competitorsCount">—</b>
-        <span>с конкурентами</span>
-      </div>
+      <div class="stat"><b id="total">—</b><span>материалов</span></div>
+      <div class="stat"><b id="week">—</b><span>за последние 7 дней</span></div>
+      <div class="stat"><b id="sourcesCount">—</b><span>источников</span></div>
+      <div class="stat"><b id="competitorsCount">—</b><span>с конкурентами</span></div>
     </div>
 
     <div class="toolbar">
-      <input
-        id="searchInput"
-        placeholder="Поиск по заголовкам и описаниям…"
-        oninput="render()"
-      >
-
-      <select id="sourceFilter" onchange="render()">
-        <option value="">Все источники</option>
-      </select>
-
-      <select id="topicFilter" onchange="render()">
-        <option value="">Все темы</option>
-      </select>
-
-      <select id="competitorFilter" onchange="render()">
-        <option value="">Все конкуренты</option>
-      </select>
+      <input id="searchInput" placeholder="Поиск по новостям и рекомендациям…" oninput="render()">
+      <select id="sourceFilter" onchange="render()"><option value="">Все источники</option></select>
+      <select id="topicFilter" onchange="render()"><option value="">Все темы</option></select>
+      <select id="competitorFilter" onchange="render()"><option value="">Все конкуренты</option></select>
     </div>
 
     <div id="status" class="status">Загрузка news.json…</div>
