@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-17T11:55:39+03:00",
+  "updated_at": "2026-07-17T14:08:56+03:00",
   "stats": {
     "sources_ok": 8,
     "sources_warning": 19,
@@ -8,31 +8,31 @@
   "source_status": {
     "Домклик": "warning · html fallback · 0",
     "Cossa": "ok · rss · 3",
+    "Sostav": "ok · rss · 1",
     "ЕРЗ.РФ": "warning · html fallback · 0",
     "AdIndex": "ok · html fallback · 1",
     "Движение.ру": "warning · html fallback · 0",
-    "Sostav": "ok · rss · 1",
-    "Mediascope": "warning · html fallback · 0",
-    "АКАР": "warning · rss · 0",
-    "ЦИАН Журнал": "warning · html fallback · 0",
     "Calltouch": "ok · rss · 2",
+    "АКАР": "warning · rss · 0",
+    "Mediascope": "warning · html fallback · 0",
+    "ЦИАН Журнал": "warning · html fallback · 0",
     "РБК Недвижимость": "warning · html fallback · 0",
-    "eLama": "ok · rss · 3",
+    "eLama": "ok · rss · 2",
     "Яндекс Реклама": "ok · rss · 2",
     "CORE.XP": "warning · html fallback · 0",
-    "АЛЛЕ Недвижимость": "ok · rss · 6",
+    "NF Group": "warning · html fallback · 0",
     "New Retail": "warning · rss · 0",
     "Rusability": "warning · html fallback · 0",
-    "NF Group": "warning · html fallback · 0",
-    "Roistat": "ok · rss · 7",
-    "Mindbox": "warning · rss · 0",
     "Urban Awards": "warning · html fallback · 0",
     "Retail.ru": "warning · html fallback · 0",
-    "VK Реклама": "warning · html fallback · 0",
+    "Roistat": "ok · rss · 7",
     "CMWP": "warning · html fallback · 0",
+    "Mindbox": "warning · rss · 0",
     "Novostroy-M": "warning · html fallback · 0",
-    "ДОМ.РФ": "warning · html fallback · 0",
-    "Realty.ru": "warning · html fallback · 0"
+    "VK Реклама": "warning · html fallback · 0",
+    "АЛЛЕ Недвижимость": "ok · rss · 6",
+    "Realty.ru": "warning · html fallback · 0",
+    "ДОМ.РФ": "warning · html fallback · 0"
   },
   "items": [
     {
@@ -102,6 +102,30 @@
         "Стратегия",
         "Аналитика",
         "Бренд"
+      ],
+      "level_value": "Материал находится на стыке недвижимости и маркетинга и может дать практический ориентир для кампаний Level.",
+      "recommendations": [
+        "Сопоставить механику с текущими кампаниями.",
+        "Проверить применимость к конкретному проекту Level.",
+        "Запустить ограниченный тест с заранее заданным KPI."
+      ]
+    },
+    {
+      "id": "420dc381c38fb940",
+      "date": "2026-07-17",
+      "source": "АЛЛЕ Недвижимость",
+      "title": "Что такое коттеджный поселок: особенности управления, плюсы и минусы",
+      "url": "https://allestate.pro/news/17.07.2026/chto-takoe-kottedzhnyy-poselok-osobennosti-upravleniya-plyusy-i-minusy",
+      "summary": "Жители коттеджных поселков наслаждаются уединением загородной жизни и удобствами инфраструктуры. Эти жилые комплексы состоят из частных домов и прилегающих земельных участков, часто расположены за городом в природной среде. Хотя термин “коттеджный поселок” отсутствует в российском законодательстве, он широко используется в рекламе. В законопроекте “О малоэтажных жилых комплексах” предусмотрено введение понятия “малоэтажный жилой комплекс”, который объединяет индивидуальные дома и общее имущество. Важное отличие коттеджных поселков от многоквартирных домов заключается в том, что здесь жильцы участвуют в управлении общими территориями через упр",
+      "topic": "Новости",
+      "stream": "Недвижимость × маркетинг",
+      "competitors": [],
+      "importance": 49,
+      "relevance_score": 49,
+      "urgency": "Средняя",
+      "team": [
+        "Стратегия",
+        "Медиапланирование"
       ],
       "level_value": "Материал находится на стыке недвижимости и маркетинга и может дать практический ориентир для кампаний Level.",
       "recommendations": [
