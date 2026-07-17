@@ -28,6 +28,7 @@ function renderTopCard(item,index){
 function renderCard(item){
   const date=new Date(item.date+'T12:00:00').toLocaleDateString('ru-RU');
   const comps=(item.competitors||[]).map(v=>`<span class="tag">${escapeHtml(v)}</span>`).join('');
+  const luxuryBadge=item.luxury?`<span class="tag luxury-tag">Luxury</span>`:'';
   const teams=(item.team||[]).map(v=>`<span class="tag team">${escapeHtml(v)}</span>`).join('');
   const recs=(item.recommendations||[]).map(v=>`<li>${escapeHtml(v)}</li>`).join('');
 
@@ -39,6 +40,7 @@ function renderCard(item){
       <span class="tag">${escapeHtml(item.stream||'Сигнал')}</span>
       <span class="tag">${escapeHtml(item.topic||'Новости')}</span>
       <span class="tag ${urgencyClass(item)}">${escapeHtml(item.urgency||'Средняя')}</span>
+      ${luxuryBadge}
       ${comps}
     </div>
     <div class="analysis">
@@ -87,7 +89,7 @@ function render(){
 
   const rows=database.items.filter(item=>{
     const haystack=normalize([
-      item.title,item.summary,item.source,item.topic,item.stream,item.level_value,
+      item.title,item.summary,item.source,item.topic,item.stream,item.level_value,...(item.luxury_brands||[]),
       ...(item.competitors||[]),...(item.recommendations||[]),...(item.team||[])
     ].join(' '));
     return (!text||haystack.includes(text))

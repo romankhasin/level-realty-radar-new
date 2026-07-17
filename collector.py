@@ -67,6 +67,40 @@ RESEARCH_WORDS = [
     "данные аудитории", "поведение аудитории", "мобильная аудитория"
 ]
 
+
+LUXURY_WORDS = [
+    "luxury", "premium", "премиум", "премиальный", "люкс", "роскошь",
+    "высокий доход", "состоятельная аудитория", "wealth", "wealthy",
+    "high-net-worth", "hnwi", "ultra-high-net-worth", "uhnwi",
+    "private banking", "private bank", "vip", "vip-клиент",
+    "эксклюзивный", "эксклюзив", "закрытый клуб", "клиентский клуб",
+    "персональный сервис", "консьерж", "concierge", "boutique",
+    "бутик", "limited edition", "лимитированная серия", "bespoke",
+    "индивидуальный заказ", "персонализация", "персонализированный",
+    "элитный", "элитная недвижимость", "de luxe", "ultra luxury"
+]
+
+LUXURY_BRANDS = [
+    "louis vuitton", "hermes", "hermès", "chanel", "dior", "cartier",
+    "rolex", "patek philippe", "richard mille", "bentley", "rolls-royce",
+    "ferrari", "lamborghini", "aston martin", "maybach", "porsche",
+    "aman", "four seasons", "mandarin oriental", "rosewood",
+    "six senses", "one&only", "tsum", "цум", "bosco", "mercury",
+    "сбер первый", "alfa only", "альфа only", "т-банк private",
+    "втб private", "газпромбанк private", "julius baer", "ubs",
+    "emaar", "damac", "omniyat", "sobha"
+]
+
+LUXURY_MARKETING_PHRASES = [
+    "закрытое мероприятие", "vip-мероприятие", "клиентское мероприятие",
+    "private event", "эксклюзивная презентация", "персональное предложение",
+    "индивидуальное предложение", "программа лояльности", "клиентский опыт",
+    "премиальный сервис", "персональный менеджер", "concierge service",
+    "бренд-амбассадор", "fashion campaign", "luxury campaign",
+    "private sale", "предварительный доступ", "ранний доступ",
+    "коллаборация с художником", "арт-проект", "бренд-пространство"
+]
+
 NOISE_WORDS = [
     "ставка по ипотеке", "выдача ипотеки", "ввод жилья",
     "разрешение на строительство", "сдан дом", "стройготовность",
@@ -282,6 +316,9 @@ def make_item(row: dict, source: dict):
     adtech = sum(1 for word in ADTECH_WORDS if word in lowered)
     cases = sum(1 for word in CASE_WORDS if word in lowered)
     research = sum(1 for word in RESEARCH_WORDS if word in lowered)
+    luxury = sum(1 for word in LUXURY_WORDS if word in lowered)
+    luxury_brands = [brand for brand in LUXURY_BRANDS if brand in lowered]
+    luxury_marketing = sum(1 for phrase in LUXURY_MARKETING_PHRASES if phrase in lowered)
     noise = sum(1 for word in NOISE_WORDS if word in lowered)
     competitors = find_competitors(combined)
 
@@ -311,6 +348,9 @@ def make_item(row: dict, source: dict):
         + min(adtech, 4) * 14
         + min(cases, 4) * 9
         + min(research, 4) * 8
+        + min(luxury, 5) * 11
+        + min(luxury_marketing, 4) * 15
+        + min(len(luxury_brands), 2) * 20
         + min(len(competitors), 2) * 18
         + (14 if direct_action else 0)
         + (8 if market_context else 0)
@@ -323,7 +363,15 @@ def make_item(row: dict, source: dict):
         score -= noise * 12
 
     # Stream classification.
-    if competitors and (marketing >= 1 or direct_action or cases >= 1):
+    luxury_signal = (
+        (luxury >= 1 and (marketing >= 1 or direct_action or cases >= 1 or research >= 1))
+        or luxury_marketing >= 1
+        or (len(luxury_brands) >= 1 and (marketing >= 1 or direct_action or cases >= 1))
+    )
+
+    if luxury_signal:
+        stream = "Luxury Marketing"
+    elif competitors and (marketing >= 1 or direct_action or cases >= 1):
         stream = "Действия конкурентов"
     elif source_kind == "adtech" and (adtech >= 1 or direct_action):
         stream = "Рекламные технологии"
@@ -348,7 +396,8 @@ def make_item(row: dict, source: dict):
         "Недвижимость × маркетинг": 42,
         "Рынок и аудитория": 44,
         "Идеи из других отраслей": 40,
-        "Маркетинговая практика": 38
+        "Маркетинговая практика": 38,
+        "Luxury Marketing": 40
     }
 
     if score < thresholds[stream]:
@@ -363,7 +412,19 @@ def make_item(row: dict, source: dict):
     importance = max(45, min(100, score))
     team = TEAM_MAP.get(topic, ["Стратегия", "Медиапланирование"])
 
-    if competitors:
+    if stream == "Luxury Marketing":
+        urgency = "Высокая" if luxury_marketing >= 1 or luxury_brands else "Средняя"
+        value = (
+            "Материал показывает, как премиальные бренды работают с состоятельной "
+            "аудиторией через сервис, персонализацию, эксклюзивность и клиентский опыт. "
+            "Подход можно адаптировать для премиальных проектов Level."
+        )
+        recs = [
+            "Выделить механику работы с премиальной аудиторией: сервис, доступ, клубность или персонализация.",
+            "Проверить применимость к премиальным ЖК и клиентским коммуникациям Level.",
+            "Сформировать тест для CRM, спецпроекта, мероприятия или персонального предложения."
+        ]
+    elif competitors:
         urgency = "Высокая"
         value = (
             f"Упоминается {', '.join(competitors[:3])}. Материал помогает сравнить "
@@ -440,6 +501,9 @@ def make_item(row: dict, source: dict):
         "topic": topic,
         "stream": stream,
         "competitors": competitors,
+        "luxury": stream == "Luxury Marketing",
+        "luxury_score": luxury * 11 + luxury_marketing * 15 + len(luxury_brands) * 20,
+        "luxury_brands": luxury_brands,
         "importance": importance,
         "relevance_score": score,
         "urgency": urgency,
