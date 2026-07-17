@@ -4,6 +4,8 @@ let selectedStream='';
 const normalize=v=>(v||'').toString().toLowerCase();
 const escapeHtml=v=>(v||'').toString().replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
 
+const byId=id=>document.getElementById(id);
+
 function urgencyClass(item){
   return item.urgency==='Высокая'?'priority-high':'priority-mid';
 }
@@ -53,7 +55,7 @@ function renderCard(item){
 }
 
 function fillSelect(id,values){
-  const el=document.getElementById(id);
+  const el=byId(id);
   if(!el)return;
   values.sort().forEach(v=>el.insertAdjacentHTML('beforeend',`<option>${escapeHtml(v)}</option>`));
 }
@@ -61,17 +63,27 @@ function fillSelect(id,values){
 function setStream(button,value){
   selectedStream=value;
   document.querySelectorAll('.stream-button').forEach(btn=>btn.classList.toggle('active',btn===button));
-  if(window.streamFilter)streamFilter.value=value;
+  const streamFilter=byId('streamFilter');
+  if(streamFilter)streamFilter.value=value;
   render();
 }
+window.setStream=setStream;
 
 function render(){
-  const text=normalize(searchInput.value);
-  const source=sourceFilter.value;
-  const topic=topicFilter.value;
-  const competitor=competitorFilter.value;
-  const dropdownStream=window.streamFilter?streamFilter.value:'';
-  const stream=dropdownStream||selectedStream;
+  const grid=byId('grid');
+  if(!grid)return;
+
+  const searchInput=byId('searchInput');
+  const sourceFilter=byId('sourceFilter');
+  const topicFilter=byId('topicFilter');
+  const competitorFilter=byId('competitorFilter');
+  const streamFilter=byId('streamFilter');
+
+  const text=normalize(searchInput?.value);
+  const source=sourceFilter?.value||'';
+  const topic=topicFilter?.value||'';
+  const competitor=competitorFilter?.value||'';
+  const stream=(streamFilter?.value||'')||selectedStream;
 
   const rows=database.items.filter(item=>{
     const haystack=normalize([
@@ -89,19 +101,36 @@ function render(){
 }
 
 function renderTop(){
-  const today=database.items.map(i=>i.date).sort().reverse()[0];
-  let candidates=database.items.filter(i=>i.date===today);
-  if(candidates.length<5)candidates=database.items;
+  const topGrid=byId('topGrid');
+  if(!topGrid)return;
+
+  const today=database.items.map(i=>i.date).filter(Boolean).sort().reverse()[0];
+  let candidates=today?database.items.filter(i=>i.date===today):[];
+  if(candidates.length<5)candidates=[...database.items];
+
   candidates=candidates
     .sort((a,b)=>(b.importance||0)-(a.importance||0)||(b.relevance_score||0)-(a.relevance_score||0))
     .slice(0,5);
-  topGrid.innerHTML=candidates.length?candidates.map(renderTopCard).join(''):'<div class="empty">После первого обновления здесь появятся главные материалы.</div>';
+
+  topGrid.innerHTML=candidates.length
+    ?candidates.map(renderTopCard).join('')
+    :'<div class="empty">После первого обновления здесь появятся главные материалы.</div>';
+}
+
+function bindFilters(){
+  ['searchInput','sourceFilter','topicFilter','streamFilter','competitorFilter'].forEach(id=>{
+    const el=byId(id);
+    if(!el)return;
+    el.addEventListener(id==='searchInput'?'input':'change',render);
+  });
 }
 
 async function loadData(){
+  const status=byId('status');
   try{
     const r=await fetch('./news.json?v='+Date.now(),{cache:'no-store'});
     if(!r.ok)throw new Error('HTTP '+r.status);
+
     const d=await r.json();
     database=Array.isArray(d)?{items:d}:d;
     database.items=database.items||[];
@@ -116,20 +145,32 @@ async function loadData(){
     fillSelect('streamFilter',streams);
     fillSelect('competitorFilter',comps);
 
-    total.textContent=database.items.length;
-    week.textContent=database.items.filter(i=>new Date(i.date)>=Date.now()-7*864e5).length;
-    sourcesCount.textContent=sources.length;
-    competitorsCount.textContent=database.items.filter(i=>(i.competitors||[]).length).length;
+    const total=byId('total');
+    const week=byId('week');
+    const sourcesCount=byId('sourcesCount');
+    const competitorsCount=byId('competitorsCount');
+
+    if(total)total.textContent=database.items.length;
+    if(week)week.textContent=database.items.filter(i=>new Date(i.date+'T12:00:00')>=Date.now()-7*864e5).length;
+    if(sourcesCount)sourcesCount.textContent=sources.length;
+    if(competitorsCount)competitorsCount.textContent=database.items.filter(i=>(i.competitors||[]).length).length;
 
     const updated=database.updated_at?new Date(database.updated_at).toLocaleString('ru-RU'):'ещё не запускался';
-    const stats=database.stats?` · источников: ${database.stats.sources_ok} успешно, ${database.stats.sources_warning} без материалов, ${database.stats.sources_failed} ошибок`:'';
-    status.textContent='Обновлено: '+updated+stats;
+    const stats=database.stats
+      ?` · источников: ${database.stats.sources_ok} успешно, ${database.stats.sources_warning} без материалов, ${database.stats.sources_failed} ошибок`
+      :'';
+
+    if(status)status.textContent='Обновлено: '+updated+stats;
 
     renderTop();
     render();
   }catch(e){
-    status.innerHTML=`<div class="error">Не удалось загрузить news.json: ${escapeHtml(e.message)}.</div>`;
+    if(status)status.innerHTML=`<div class="error">Не удалось загрузить news.json: ${escapeHtml(e.message)}.</div>`;
     console.error(e);
   }
 }
-window.addEventListener('DOMContentLoaded',loadData);
+
+window.addEventListener('DOMContentLoaded',()=>{
+  bindFilters();
+  loadData();
+});
