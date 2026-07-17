@@ -11,7 +11,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 12
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -24,7 +24,7 @@ jobs:
         run: pip install -r requirements.txt
       - name: Collect and analyse intelligence
         run: python -u collector.py
-        timeout-minutes: 6
+        timeout-minutes: 10
       - name: Commit news.json
         run: |
           git config user.name "Level Intelligence"
