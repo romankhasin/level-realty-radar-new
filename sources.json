@@ -1,6 +1,6 @@
 {
   "retention_days": 180,
-  "max_items": 300,
+  "max_items": 400,
   "google_news_fallback": false,
   "sources": [
     {
@@ -115,6 +115,142 @@
       ],
       "article_pattern": "/stati-",
       "kind": "realty"
+    },
+    {
+      "name": "eLama",
+      "homepage": "https://elama.ru/blog/",
+      "feed_candidates": [
+        "https://elama.ru/blog/rss/",
+        "https://elama.ru/blog/feed/",
+        "https://elama.ru/rss/"
+      ],
+      "listing_pages": [
+        "https://elama.ru/blog/"
+      ],
+      "article_pattern": "/blog/",
+      "kind": "marketing"
+    },
+    {
+      "name": "Calltouch",
+      "homepage": "https://www.calltouch.ru/blog/",
+      "feed_candidates": [
+        "https://www.calltouch.ru/blog/feed/",
+        "https://www.calltouch.ru/feed/"
+      ],
+      "listing_pages": [
+        "https://www.calltouch.ru/blog/category/kejsy/estate/",
+        "https://www.calltouch.ru/blog/"
+      ],
+      "article_pattern": "/blog/",
+      "kind": "marketing"
+    },
+    {
+      "name": "Mediascope",
+      "homepage": "https://mediascope.net/",
+      "feed_candidates": [
+        "https://mediascope.net/news/rss/",
+        "https://mediascope.net/rss/"
+      ],
+      "listing_pages": [
+        "https://mediascope.net/news/"
+      ],
+      "article_pattern": "/news/",
+      "kind": "marketing"
+    },
+    {
+      "name": "АКАР",
+      "homepage": "https://akarussia.ru/",
+      "feed_candidates": [
+        "https://akarussia.ru/feed/",
+        "https://akarussia.ru/rss/"
+      ],
+      "listing_pages": [
+        "https://akarussia.ru/news/"
+      ],
+      "article_pattern": "/news/",
+      "kind": "marketing"
+    },
+    {
+      "name": "Яндекс Реклама",
+      "homepage": "https://yandex.ru/adv/news",
+      "feed_candidates": [
+        "https://yandex.ru/adv/news/rss",
+        "https://yandex.ru/adv/rss"
+      ],
+      "listing_pages": [
+        "https://yandex.ru/adv/news"
+      ],
+      "article_pattern": "/adv/news/",
+      "kind": "marketing"
+    },
+    {
+      "name": "Urban Awards",
+      "homepage": "https://urbanawards.ru/",
+      "feed_candidates": [
+        "https://urbanawards.ru/feed/",
+        "https://urbanawards.ru/rss/"
+      ],
+      "listing_pages": [
+        "https://urbanawards.ru/news/"
+      ],
+      "article_pattern": "/news/",
+      "kind": "realty"
+    },
+    {
+      "name": "NF Group",
+      "homepage": "https://nfgroup.ru/",
+      "feed_candidates": [
+        "https://nfgroup.ru/feed/",
+        "https://nfgroup.ru/rss/"
+      ],
+      "listing_pages": [
+        "https://nfgroup.ru/research-and-insights/",
+        "https://nfgroup.ru/news/"
+      ],
+      "article_pattern": "/(research-and-insights|news)/",
+      "kind": "realty"
+    },
+    {
+      "name": "CORE.XP",
+      "homepage": "https://core-xp.ru/",
+      "feed_candidates": [
+        "https://core-xp.ru/feed/",
+        "https://core-xp.ru/rss/"
+      ],
+      "listing_pages": [
+        "https://core-xp.ru/publications/",
+        "https://core-xp.ru/news/"
+      ],
+      "article_pattern": "/(publications|news)/",
+      "kind": "realty"
+    },
+    {
+      "name": "CMWP",
+      "homepage": "https://cmwp.ru/",
+      "feed_candidates": [
+        "https://cmwp.ru/feed/",
+        "https://cmwp.ru/rss/"
+      ],
+      "listing_pages": [
+        "https://cmwp.ru/analytics/",
+        "https://cmwp.ru/media/"
+      ],
+      "article_pattern": "/(analytics|media)/",
+      "kind": "realty"
+    },
+    {
+      "name": "АЛЛЕ Недвижимость",
+      "homepage": "https://allestate.pro/",
+      "feed_candidates": [
+        "https://allestate.pro/rss",
+        "https://allestate.pro/feed"
+      ],
+      "listing_pages": [
+        "https://allestate.pro/news"
+      ],
+      "article_pattern": "/news/",
+      "kind": "realty"
     }
-  ]
+  ],
+  "relevance_threshold": 56
 }

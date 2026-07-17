@@ -29,7 +29,9 @@ REALTY_WORDS = [
     "недвижим", "девелоп", "застрой", "жилой комплекс", "жк ",
     "новостро", "квартир", "ипотек", "апартамент", "жиль", "дду",
     "бизнес-центр", "офисн", "складск", "коммерческ", "домклик",
-    "циан", "первичн", "вторичн"
+    "циан", "первичн", "вторичн", "покупател", "потребител",
+    "клиентский опыт", "выбор квартир", "портрет покупателя",
+    "жилой проект", "девелоперский проект", "коммерческая недвижимость"
 ]
 
 MARKETING_WORDS = [
@@ -246,33 +248,65 @@ def make_item(row: dict, source: dict):
         "бренд-платформа", "позиционирование", "рекламный бюджет",
         "маркетинговый бюджет", "cpl", "cpm", "ctr", "охватная кампания",
         "видеореклама", "olv", "dooh", "ooh", "ретаргетинг",
-        "классифайд", "авито реклама", "яндекс реклама"
+        "классифайд", "авито реклама", "яндекс реклама",
+        "медиаизмерение", "brand lift", "сквозная аналитика",
+        "коллтрекинг", "атрибуция", "клиентский путь"
     ]
-    has_strong_marketing_action = any(phrase in lowered for phrase in strong_marketing_actions)
+    research_signals = [
+        "исследование", "опрос", "аналитика", "портрет покупателя",
+        "поведение покупателей", "потребительское поведение",
+        "клиентский опыт", "выбор квартиры", "поисковый спрос",
+        "медиапотребление", "аудитория", "узнаваемость бренда"
+    ]
+    market_action_signals = [
+        "старт продаж", "вывод проекта", "запуск проекта", "новый проект",
+        "изменил позиционирование", "новая концепция", "новый бренд",
+        "редизайн", "шоурум", "офис продаж", "презентация проекта"
+    ]
 
-    # Строгое пересечение:
-    # 1) недвижимость + минимум два маркетинговых сигнала;
-    # 2) или недвижимость + явное маркетинговое действие;
-    # 3) или упомянут девелопер-конкурент + явное маркетинговое действие.
-    is_intersection = (
-        (realty_hits >= 1 and marketing_hits >= 2)
-        or (realty_hits >= 1 and has_strong_marketing_action)
-        or (bool(competitors) and has_strong_marketing_action)
+    has_strong_marketing_action = any(phrase in lowered for phrase in strong_marketing_actions)
+    has_research_signal = any(phrase in lowered for phrase in research_signals)
+    has_market_action = any(phrase in lowered for phrase in market_action_signals)
+
+    # Более широкий скоринг вместо бинарного фильтра.
+    score = 0
+    score += min(realty_hits, 4) * 16
+    score += min(marketing_hits, 5) * 11
+    score += min(len(competitors), 2) * 18
+    score += 20 if has_strong_marketing_action else 0
+    score += 13 if has_research_signal else 0
+    score += 10 if has_market_action else 0
+    score += 7 if source["kind"] == "marketing" and realty_hits >= 1 else 0
+
+    # Минимальные страховочные условия:
+    # - нужен хотя бы один сигнал недвижимости;
+    # - либо конкретный девелопер + маркетинговая/исследовательская применимость.
+    has_realty_context = realty_hits >= 1
+    competitor_marketing_context = bool(competitors) and (
+        marketing_hits >= 1 or has_strong_marketing_action
+        or has_research_signal or has_market_action
     )
 
-    if not is_intersection:
+    threshold = CONFIG.get("relevance_threshold", 56)
+    if not ((has_realty_context or competitor_marketing_context) and score >= threshold):
         return None
 
-    importance = min(
-        100,
-        48
-        + realty_hits * 8
-        + marketing_hits * 5
-        + len(competitors) * 12
-        + (10 if has_strong_marketing_action else 0)
-    )
+    importance = min(100, max(50, score))
     topic = detect_topic(combined)
     signal, priority, value, recs = analysis_for(topic, competitors, importance)
+
+    # Уточняем анализ для широких, но полезных исследований рынка.
+    if has_research_signal and marketing_hits < 2 and not competitors:
+        signal = "Исследование аудитории"
+        value = (
+            "Материал не описывает рекламную кампанию напрямую, но помогает "
+            "лучше понять спрос, путь покупателя и аргументы для коммуникации Level."
+        )
+        recs = [
+            "Проверить, подтверждаются ли выводы внутренними данными Level.",
+            "Использовать инсайт при сегментации аудиторий и разработке оферов.",
+            "Оценить влияние на креатив, контент и окна ретаргетинга."
+        ]
 
     return {
         "id": hashlib.sha1(row["url"].encode()).hexdigest()[:16],
@@ -284,15 +318,16 @@ def make_item(row: dict, source: dict):
         "topic": topic,
         "competitors": competitors,
         "importance": importance,
+        "relevance_score": score,
         "signal_type": signal,
         "priority": priority,
         "level_value": value,
         "recommendations": recs,
         "realty_score": realty_hits,
         "marketing_score": marketing_hits,
-        "intersection": True
+        "intersection": marketing_hits >= 1 or has_strong_marketing_action,
+        "broader_relevance": has_research_signal or has_market_action
     }
-
 
 def collect_source(source: dict):
     rows, method = get_feed_rows(source)
@@ -300,7 +335,7 @@ def collect_source(source: dict):
         rows, method = get_listing_rows(source)
 
     items = []
-    for row in rows[:25]:
+    for row in rows[:20]:
         item = make_item(row, source)
         if item:
             items.append(item)
@@ -321,7 +356,7 @@ def main():
     status = {}
     ok = warning = failed = 0
 
-    with ThreadPoolExecutor(max_workers=4) as executor:
+    with ThreadPoolExecutor(max_workers=6) as executor:
         futures = [executor.submit(collect_source, source) for source in CONFIG["sources"]]
         for future in as_completed(futures):
             try:
@@ -344,11 +379,9 @@ def main():
         item for item in by_url.values()
         if item.get("date", "") >= cutoff
         and (
-            item.get("intersection") is True
-            or (
-                item.get("realty_score", 0) >= 1
-                and item.get("marketing_score", 0) >= 2
-            )
+            item.get("relevance_score", 0) >= CONFIG.get("relevance_threshold", 56)
+            or item.get("intersection") is True
+            or item.get("broader_relevance") is True
         )
     ]
 
