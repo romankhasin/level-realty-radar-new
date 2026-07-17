@@ -15,7 +15,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 6
+    timeout-minutes: 8
 
     steps:
       - name: Checkout repository
@@ -32,12 +32,12 @@ jobs:
 
       - name: Collect and analyse news
         run: python -u collector.py
-        timeout-minutes: 4
+        timeout-minutes: 6
 
       - name: Commit news.json
         run: |
           git config user.name "Level Realty Radar"
           git config user.email "actions@users.noreply.github.com"
           git add news.json
-          git diff --cached --quiet || git commit -m "Update and analyse realty news"
+          git diff --cached --quiet || git commit -m "Update broader realty marketing radar"
           git push
