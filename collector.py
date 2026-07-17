@@ -53,14 +53,18 @@ ADTECH_WORDS = [
 CASE_WORDS = [
     "кейс", "спецпроект", "кампания", "активация", "бренд-платформа",
     "ребрендинг", "партнерство", "интеграция", "инфлюенсер",
-    "контентный проект", "омниканальный"
+    "контентный проект", "омниканальный", "промо", "лендинг",
+    "механика", "розыгрыш", "геймификация", "нативная реклама",
+    "брендированный контент", "коллаборация", "партнёрский проект"
 ]
 
 RESEARCH_WORDS = [
     "исследование", "опрос", "аналитика", "портрет покупателя",
     "поведение покупателей", "потребительское поведение",
     "клиентский путь", "поисковый спрос", "медиапотребление",
-    "узнаваемость бренда"
+    "узнаваемость бренда", "сегментация", "персонализация",
+    "лояльность", "удержание", "воронка", "crm", "first-party data",
+    "данные аудитории", "поведение аудитории", "мобильная аудитория"
 ]
 
 NOISE_WORDS = [
@@ -227,7 +231,7 @@ def get_feed_rows(source: dict):
             continue
 
         rows = []
-        for entry in feed.entries[:25]:
+        for entry in feed.entries[:CONFIG.get("items_per_feed", 45)]:
             link = getattr(entry, "link", "").split("#")[0]
             title = clean_text(getattr(entry, "title", ""))
             summary = clean_text(getattr(entry, "summary", "") or getattr(entry, "description", ""))
@@ -245,7 +249,7 @@ def get_feed_rows(source: dict):
 
 def get_listing_rows(source: dict):
     rows = []
-    for page in source.get("listing_pages", [])[:1]:
+    for page in source.get("listing_pages", [])[:CONFIG.get("listing_pages_per_source", 2)]:
         try:
             soup = BeautifulSoup(request(page, 6).text, "html.parser")
             for anchor in soup.select("a[href]"):
@@ -264,7 +268,7 @@ def get_listing_rows(source: dict):
                     })
         except Exception:
             pass
-    return list({r["url"]: r for r in rows}.values())[:20], "html fallback"
+    return list({r["url"]: r for r in rows}.values())[:CONFIG.get("items_per_listing", 45)], "html fallback"
 
 
 def make_item(row: dict, source: dict):
@@ -281,82 +285,137 @@ def make_item(row: dict, source: dict):
     noise = sum(1 for word in NOISE_WORDS if word in lowered)
     competitors = find_competitors(combined)
 
+    source_kind = source.get("kind", "realty")
+
+    # Strong signals that justify broader inclusion.
+    direct_action_phrases = [
+        "рекламная кампания", "маркетинговая кампания", "запустил кампанию",
+        "запустила кампанию", "новый формат", "новый инструмент",
+        "спецпроект", "ребрендинг", "позиционирование", "креативная концепция",
+        "лидогенерация", "сквозная аналитика", "brand lift", "таргетинг",
+        "рекламный кабинет", "продвижение проекта", "медиамикс",
+        "медиаплан", "охватная кампания", "ретаргетинг", "персонализация"
+    ]
+    market_context_phrases = [
+        "старт продаж", "вывод проекта", "новый жилой комплекс",
+        "офис продаж", "шоурум", "покупатели жилья", "портрет покупателя",
+        "выбор квартиры", "спрос на новостройки", "аудитория недвижимости"
+    ]
+
+    direct_action = any(p in lowered for p in direct_action_phrases)
+    market_context = any(p in lowered for p in market_context_phrases)
+
     score = (
-        realty * 15 + marketing * 11 + adtech * 14
-        + cases * 9 + research * 8
+        min(realty, 5) * 13
+        + min(marketing, 7) * 10
+        + min(adtech, 4) * 14
+        + min(cases, 4) * 9
+        + min(research, 4) * 8
         + min(len(competitors), 2) * 18
-        - noise * 22
+        + (14 if direct_action else 0)
+        + (8 if market_context else 0)
     )
 
-    kind = source.get("kind", "realty")
-    if kind == "adtech" and adtech >= 1:
-        stream = "Рекламные технологии"
-    elif kind == "cases" and cases >= 1 and marketing >= 1:
-        stream = "Идеи из других отраслей"
-    elif competitors and marketing >= 1:
+    # Noise is punished only when there is no real marketing value.
+    if noise and not (direct_action or adtech >= 1 or cases >= 1 or research >= 1 or competitors):
+        score -= noise * 32
+    elif noise:
+        score -= noise * 12
+
+    # Stream classification.
+    if competitors and (marketing >= 1 or direct_action or cases >= 1):
         stream = "Действия конкурентов"
-    elif realty >= 1 and marketing >= 1:
+    elif source_kind == "adtech" and (adtech >= 1 or direct_action):
+        stream = "Рекламные технологии"
+    elif realty >= 1 and (marketing >= 1 or direct_action):
         stream = "Недвижимость × маркетинг"
     elif realty >= 1 and research >= 1:
         stream = "Рынок и аудитория"
+    elif source_kind in {"marketing", "cases"} and adtech >= 1:
+        stream = "Рекламные технологии"
+    elif source_kind in {"marketing", "cases"} and cases >= 1 and marketing >= 1:
+        stream = "Идеи из других отраслей"
+    elif source_kind == "marketing" and research >= 1 and marketing >= 1:
+        stream = "Маркетинговая практика"
+    elif source_kind == "marketing" and marketing >= 2 and (direct_action or cases >= 1):
+        stream = "Маркетинговая практика"
     else:
         return None
 
-    eligible = (
-        (stream in {"Недвижимость × маркетинг", "Действия конкурентов"} and score >= 58)
-        or (stream == "Рекламные технологии" and score >= 45)
-        or (stream == "Идеи из других отраслей" and score >= 50)
-        or (stream == "Рынок и аудитория" and score >= 55)
-    )
-    if not eligible:
+    thresholds = {
+        "Действия конкурентов": 44,
+        "Рекламные технологии": 36,
+        "Недвижимость × маркетинг": 42,
+        "Рынок и аудитория": 44,
+        "Идеи из других отраслей": 40,
+        "Маркетинговая практика": 38
+    }
+
+    if score < thresholds[stream]:
+        return None
+
+    # Hard exclusions for pure mortgage/construction/regulation news.
+    pure_market_noise = noise >= 1 and marketing == 0 and adtech == 0 and cases == 0 and research == 0 and not competitors
+    if pure_market_noise:
         return None
 
     topic = detect_topic(combined)
-    importance = max(50, min(100, score))
+    importance = max(45, min(100, score))
     team = TEAM_MAP.get(topic, ["Стратегия", "Медиапланирование"])
 
     if competitors:
         urgency = "Высокая"
         value = (
-            f"Упоминается {', '.join(competitors[:3])}. Это позволяет сравнить "
-            "позиционирование, каналы и оферы конкурента с активностями Level."
+            f"Упоминается {', '.join(competitors[:3])}. Материал помогает сравнить "
+            "позиционирование, каналы, креатив или офер конкурента с активностями Level."
         )
         recs = [
-            "Сравнить сообщение и визуальный подход с текущими креативами Level.",
-            "Проверить медиаприсутствие и поисковый интерес конкурента.",
+            "Сопоставить сообщение и визуальный подход с текущими креативами Level.",
+            "Проверить медиаприсутствие, поисковый интерес и посадочные страницы конкурента.",
             "Оценить, можно ли адаптировать механику для релевантного ЖК."
         ]
     elif stream == "Рекламные технологии":
         urgency = "Высокая"
         value = (
-            "Материал описывает рекламный инструмент или формат, который может "
-            "изменить медиамикс и способы работы с аудиторией Level."
+            "Материал описывает рекламный формат, данные или инструмент, который "
+            "может расширить медиамикс и улучшить работу с аудиторией Level."
         )
         recs = [
-            "Проверить доступность формата у текущих площадок и партнёров.",
-            "Оценить тестовый бюджет, инвентарь и измеримость результата.",
-            "Сформировать короткий пилот с контрольной группой."
+            "Проверить доступность инструмента у текущих площадок и партнёров.",
+            "Оценить тестовый бюджет, инвентарь и метод измерения.",
+            "Сформировать пилот с контрольной группой и понятным KPI."
         ]
     elif stream == "Идеи из других отраслей":
         urgency = "Средняя"
         value = (
-            "Кейс не обязательно относится к недвижимости, но его механика "
-            "может быть адаптирована для коммуникации жилых проектов Level."
+            "Кейс относится к другой категории, но его механика, креатив или "
+            "способ вовлечения аудитории можно адаптировать для Level."
         )
         recs = [
-            "Выделить основную механику кейса без привязки к категории.",
-            "Определить подходящий ЖК и этап воронки.",
-            "Собрать простой прототип или креативный тест."
+            "Выделить механику кейса без отраслевой оболочки.",
+            "Определить подходящий ЖК, аудиторию и этап воронки.",
+            "Собрать быстрый прототип или креативный тест."
+        ]
+    elif stream == "Маркетинговая практика":
+        urgency = "Средняя"
+        value = (
+            "Практический маркетинговый материал может улучшить аналитику, CRM, "
+            "контент, персонализацию или оценку эффективности кампаний Level."
+        )
+        recs = [
+            "Сопоставить подход с текущими процессами команды.",
+            "Выбрать один применимый элемент для небольшого теста.",
+            "Заранее определить метрику успеха и период оценки."
         ]
     elif stream == "Рынок и аудитория":
         urgency = "Средняя"
         value = (
-            "Материал помогает лучше понимать аудиторию, спрос и путь покупателя, "
-            "что может повлиять на сегментацию и рекламное сообщение Level."
+            "Материал помогает понимать аудиторию, спрос и путь покупателя, "
+            "что может повлиять на сегментацию, офер и рекламное сообщение Level."
         )
         recs = [
             "Сверить выводы с CRM, Метрикой и внутренними исследованиями.",
-            "Использовать инсайт в сегментации и разработке оферов.",
+            "Использовать инсайт при сегментации и разработке оферов.",
             "Оценить влияние на контент и окна ретаргетинга."
         ]
     else:
@@ -377,7 +436,7 @@ def make_item(row: dict, source: dict):
         "source": source["name"],
         "title": title,
         "url": row["url"],
-        "summary": summary[:500] or title,
+        "summary": summary[:650] or title,
         "topic": topic,
         "stream": stream,
         "competitors": competitors,
@@ -395,7 +454,7 @@ def collect_source(source: dict):
         rows, method = get_listing_rows(source)
 
     items = []
-    for row in rows[:20]:
+    for row in rows[:CONFIG.get("items_per_listing", 45)]:
         item = make_item(row, source)
         if item:
             items.append(item)
@@ -416,7 +475,7 @@ def main():
     status = {}
     ok = warning = failed = 0
 
-    with ThreadPoolExecutor(max_workers=6) as executor:
+    with ThreadPoolExecutor(max_workers=8) as executor:
         futures = [executor.submit(collect_source, source) for source in CONFIG["sources"]]
         for future in as_completed(futures):
             try:
@@ -439,7 +498,7 @@ def main():
         item for item in by_url.values()
         if item.get("date", "") >= cutoff
         and item.get("stream")
-        and item.get("relevance_score", 0) >= 45
+        and item.get("relevance_score", 0) >= 36
     ]
 
     seen = set()

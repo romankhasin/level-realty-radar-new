@@ -1,6 +1,6 @@
 {
-  "retention_days": 180,
-  "max_items": 450,
+  "retention_days": 240,
+  "max_items": 650,
   "google_news_fallback": false,
   "sources": [
     {
@@ -289,7 +289,90 @@
       ],
       "article_pattern": "/news/",
       "kind": "cases"
+    },
+    {
+      "name": "Rusability",
+      "homepage": "https://rusability.ru/",
+      "feed_candidates": [
+        "https://rusability.ru/feed/",
+        "https://rusability.ru/rss/"
+      ],
+      "listing_pages": [
+        "https://rusability.ru/articles/",
+        "https://rusability.ru/cases/"
+      ],
+      "article_pattern": "/(articles|cases)/",
+      "kind": "marketing"
+    },
+    {
+      "name": "Roistat",
+      "homepage": "https://roistat.com/rublog/",
+      "feed_candidates": [
+        "https://roistat.com/rublog/feed/",
+        "https://roistat.com/feed/"
+      ],
+      "listing_pages": [
+        "https://roistat.com/rublog/"
+      ],
+      "article_pattern": "/rublog/",
+      "kind": "marketing"
+    },
+    {
+      "name": "Mindbox",
+      "homepage": "https://mindbox.ru/journal/",
+      "feed_candidates": [
+        "https://mindbox.ru/journal/feed/",
+        "https://mindbox.ru/feed/"
+      ],
+      "listing_pages": [
+        "https://mindbox.ru/journal/cases/",
+        "https://mindbox.ru/journal/"
+      ],
+      "article_pattern": "/journal/",
+      "kind": "marketing"
+    },
+    {
+      "name": "Novostroy-M",
+      "homepage": "https://www.novostroy-m.ru/",
+      "feed_candidates": [
+        "https://www.novostroy-m.ru/rss",
+        "https://www.novostroy-m.ru/feed/"
+      ],
+      "listing_pages": [
+        "https://www.novostroy-m.ru/novosti"
+      ],
+      "article_pattern": "/novosti/",
+      "kind": "realty"
+    },
+    {
+      "name": "Realty.ru",
+      "homepage": "https://www.realty.ru/",
+      "feed_candidates": [
+        "https://www.realty.ru/rss/",
+        "https://www.realty.ru/feed/"
+      ],
+      "listing_pages": [
+        "https://www.realty.ru/news/"
+      ],
+      "article_pattern": "/news/",
+      "kind": "realty"
+    },
+    {
+      "name": "ДОМ.РФ",
+      "homepage": "https://дом.рф/",
+      "feed_candidates": [
+        "https://дом.рф/rss/",
+        "https://дом.рф/feed/"
+      ],
+      "listing_pages": [
+        "https://дом.рф/media/news/"
+      ],
+      "article_pattern": "/media/news/",
+      "kind": "realty"
     }
   ],
-  "relevance_threshold": 56
+  "relevance_threshold": 44,
+  "items_per_feed": 45,
+  "items_per_listing": 45,
+  "listing_pages_per_source": 2
 }
