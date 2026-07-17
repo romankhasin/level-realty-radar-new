@@ -1,6 +1,6 @@
 {
   "retention_days": 180,
-  "max_items": 400,
+  "max_items": 450,
   "google_news_fallback": false,
   "sources": [
     {
@@ -250,6 +250,45 @@
       ],
       "article_pattern": "/news/",
       "kind": "realty"
+    },
+    {
+      "name": "VK Реклама",
+      "homepage": "https://ads.vk.com/help/articles/",
+      "feed_candidates": [
+        "https://ads.vk.com/help/articles/rss",
+        "https://ads.vk.com/rss"
+      ],
+      "listing_pages": [
+        "https://ads.vk.com/help/articles/"
+      ],
+      "article_pattern": "/help/articles/",
+      "kind": "adtech"
+    },
+    {
+      "name": "New Retail",
+      "homepage": "https://new-retail.ru/",
+      "feed_candidates": [
+        "https://new-retail.ru/rss/",
+        "https://new-retail.ru/feed/"
+      ],
+      "listing_pages": [
+        "https://new-retail.ru/novosti/"
+      ],
+      "article_pattern": "/novosti/",
+      "kind": "cases"
+    },
+    {
+      "name": "Retail.ru",
+      "homepage": "https://www.retail.ru/",
+      "feed_candidates": [
+        "https://www.retail.ru/rss/",
+        "https://www.retail.ru/feed/"
+      ],
+      "listing_pages": [
+        "https://www.retail.ru/news/"
+      ],
+      "article_pattern": "/news/",
+      "kind": "cases"
     }
   ],
   "relevance_threshold": 56

@@ -42,6 +42,44 @@ MARKETING_WORDS = [
     "аудитори", "охват", "конверси", "контент", "позиционирован"
 ]
 
+
+ADTECH_WORDS = [
+    "новый формат", "новый инструмент", "таргетинг", "рекламный кабинет",
+    "programmatic", "retail media", "ctv", "dooh", "telegram ads",
+    "vk реклама", "яндекс реклама", "маркетплейс реклама",
+    "медиаизмерение", "brand lift", "look-alike", "динамический креатив"
+]
+
+CASE_WORDS = [
+    "кейс", "спецпроект", "кампания", "активация", "бренд-платформа",
+    "ребрендинг", "партнерство", "интеграция", "инфлюенсер",
+    "контентный проект", "омниканальный"
+]
+
+RESEARCH_WORDS = [
+    "исследование", "опрос", "аналитика", "портрет покупателя",
+    "поведение покупателей", "потребительское поведение",
+    "клиентский путь", "поисковый спрос", "медиапотребление",
+    "узнаваемость бренда"
+]
+
+NOISE_WORDS = [
+    "ставка по ипотеке", "выдача ипотеки", "ввод жилья",
+    "разрешение на строительство", "сдан дом", "стройготовность",
+    "эскроу", "земельный участок", "реновация", "градостроительный"
+]
+
+TEAM_MAP = {
+    "Performance": ["Performance", "CRM", "Аналитика"],
+    "Digital": ["Медиапланирование", "Programmatic", "Performance"],
+    "Наружная реклама": ["Медиапланирование", "Бренд"],
+    "Бренд и креатив": ["Бренд", "Креатив", "PR"],
+    "Медиарынок": ["Медиапланирование", "Стратегия"],
+    "Исследование": ["Стратегия", "Аналитика", "Бренд"],
+    "Рынок недвижимости": ["Стратегия", "CRM", "Продукт"],
+    "AdTech": ["Programmatic", "Медиапланирование", "Аналитика"]
+}
+
 TOPICS = {
     "Performance": ["лид", "cpl", "performance", "конверси", "заявк", "продаж"],
     "Digital": ["digital", "диджитал", "programmatic", "olv", "ctv", "telegram", "яндекс", "авито", "циан"],
@@ -235,77 +273,102 @@ def make_item(row: dict, source: dict):
     combined = f"{title} {summary}"
     lowered = combined.lower()
 
-    realty_hits = sum(1 for word in REALTY_WORDS if word in lowered)
-    marketing_hits = sum(1 for word in MARKETING_WORDS if word in lowered)
+    realty = sum(1 for word in REALTY_WORDS if word in lowered)
+    marketing = sum(1 for word in MARKETING_WORDS if word in lowered)
+    adtech = sum(1 for word in ADTECH_WORDS if word in lowered)
+    cases = sum(1 for word in CASE_WORDS if word in lowered)
+    research = sum(1 for word in RESEARCH_WORDS if word in lowered)
+    noise = sum(1 for word in NOISE_WORDS if word in lowered)
     competitors = find_competitors(combined)
 
-    strong_marketing_actions = [
-        "рекламная кампания", "маркетинговая кампания", "продвижение",
-        "лидогенерация", "медиаплан", "медиамикс", "брендинг",
-        "ребрендинг", "креатив", "наружная реклама", "digital",
-        "диджитал", "performance", "таргетированная реклама",
-        "контекстная реклама", "telegram ads", "спецпроект",
-        "бренд-платформа", "позиционирование", "рекламный бюджет",
-        "маркетинговый бюджет", "cpl", "cpm", "ctr", "охватная кампания",
-        "видеореклама", "olv", "dooh", "ooh", "ретаргетинг",
-        "классифайд", "авито реклама", "яндекс реклама",
-        "медиаизмерение", "brand lift", "сквозная аналитика",
-        "коллтрекинг", "атрибуция", "клиентский путь"
-    ]
-    research_signals = [
-        "исследование", "опрос", "аналитика", "портрет покупателя",
-        "поведение покупателей", "потребительское поведение",
-        "клиентский опыт", "выбор квартиры", "поисковый спрос",
-        "медиапотребление", "аудитория", "узнаваемость бренда"
-    ]
-    market_action_signals = [
-        "старт продаж", "вывод проекта", "запуск проекта", "новый проект",
-        "изменил позиционирование", "новая концепция", "новый бренд",
-        "редизайн", "шоурум", "офис продаж", "презентация проекта"
-    ]
-
-    has_strong_marketing_action = any(phrase in lowered for phrase in strong_marketing_actions)
-    has_research_signal = any(phrase in lowered for phrase in research_signals)
-    has_market_action = any(phrase in lowered for phrase in market_action_signals)
-
-    # Более широкий скоринг вместо бинарного фильтра.
-    score = 0
-    score += min(realty_hits, 4) * 16
-    score += min(marketing_hits, 5) * 11
-    score += min(len(competitors), 2) * 18
-    score += 20 if has_strong_marketing_action else 0
-    score += 13 if has_research_signal else 0
-    score += 10 if has_market_action else 0
-    score += 7 if source["kind"] == "marketing" and realty_hits >= 1 else 0
-
-    # Минимальные страховочные условия:
-    # - нужен хотя бы один сигнал недвижимости;
-    # - либо конкретный девелопер + маркетинговая/исследовательская применимость.
-    has_realty_context = realty_hits >= 1
-    competitor_marketing_context = bool(competitors) and (
-        marketing_hits >= 1 or has_strong_marketing_action
-        or has_research_signal or has_market_action
+    score = (
+        realty * 15 + marketing * 11 + adtech * 14
+        + cases * 9 + research * 8
+        + min(len(competitors), 2) * 18
+        - noise * 22
     )
 
-    threshold = CONFIG.get("relevance_threshold", 56)
-    if not ((has_realty_context or competitor_marketing_context) and score >= threshold):
+    kind = source.get("kind", "realty")
+    if kind == "adtech" and adtech >= 1:
+        stream = "Рекламные технологии"
+    elif kind == "cases" and cases >= 1 and marketing >= 1:
+        stream = "Идеи из других отраслей"
+    elif competitors and marketing >= 1:
+        stream = "Действия конкурентов"
+    elif realty >= 1 and marketing >= 1:
+        stream = "Недвижимость × маркетинг"
+    elif realty >= 1 and research >= 1:
+        stream = "Рынок и аудитория"
+    else:
         return None
 
-    importance = min(100, max(50, score))
-    topic = detect_topic(combined)
-    signal, priority, value, recs = analysis_for(topic, competitors, importance)
+    eligible = (
+        (stream in {"Недвижимость × маркетинг", "Действия конкурентов"} and score >= 58)
+        or (stream == "Рекламные технологии" and score >= 45)
+        or (stream == "Идеи из других отраслей" and score >= 50)
+        or (stream == "Рынок и аудитория" and score >= 55)
+    )
+    if not eligible:
+        return None
 
-    # Уточняем анализ для широких, но полезных исследований рынка.
-    if has_research_signal and marketing_hits < 2 and not competitors:
-        signal = "Исследование аудитории"
+    topic = detect_topic(combined)
+    importance = max(50, min(100, score))
+    team = TEAM_MAP.get(topic, ["Стратегия", "Медиапланирование"])
+
+    if competitors:
+        urgency = "Высокая"
         value = (
-            "Материал не описывает рекламную кампанию напрямую, но помогает "
-            "лучше понять спрос, путь покупателя и аргументы для коммуникации Level."
+            f"Упоминается {', '.join(competitors[:3])}. Это позволяет сравнить "
+            "позиционирование, каналы и оферы конкурента с активностями Level."
         )
         recs = [
-            "Проверить, подтверждаются ли выводы внутренними данными Level.",
-            "Использовать инсайт при сегментации аудиторий и разработке оферов.",
-            "Оценить влияние на креатив, контент и окна ретаргетинга."
+            "Сравнить сообщение и визуальный подход с текущими креативами Level.",
+            "Проверить медиаприсутствие и поисковый интерес конкурента.",
+            "Оценить, можно ли адаптировать механику для релевантного ЖК."
+        ]
+    elif stream == "Рекламные технологии":
+        urgency = "Высокая"
+        value = (
+            "Материал описывает рекламный инструмент или формат, который может "
+            "изменить медиамикс и способы работы с аудиторией Level."
+        )
+        recs = [
+            "Проверить доступность формата у текущих площадок и партнёров.",
+            "Оценить тестовый бюджет, инвентарь и измеримость результата.",
+            "Сформировать короткий пилот с контрольной группой."
+        ]
+    elif stream == "Идеи из других отраслей":
+        urgency = "Средняя"
+        value = (
+            "Кейс не обязательно относится к недвижимости, но его механика "
+            "может быть адаптирована для коммуникации жилых проектов Level."
+        )
+        recs = [
+            "Выделить основную механику кейса без привязки к категории.",
+            "Определить подходящий ЖК и этап воронки.",
+            "Собрать простой прототип или креативный тест."
+        ]
+    elif stream == "Рынок и аудитория":
+        urgency = "Средняя"
+        value = (
+            "Материал помогает лучше понимать аудиторию, спрос и путь покупателя, "
+            "что может повлиять на сегментацию и рекламное сообщение Level."
+        )
+        recs = [
+            "Сверить выводы с CRM, Метрикой и внутренними исследованиями.",
+            "Использовать инсайт в сегментации и разработке оферов.",
+            "Оценить влияние на контент и окна ретаргетинга."
+        ]
+    else:
+        urgency = "Высокая" if topic in {"Performance", "Digital"} else "Средняя"
+        value = (
+            "Материал находится на стыке недвижимости и маркетинга и может "
+            "дать практический ориентир для кампаний Level."
+        )
+        recs = [
+            "Сопоставить механику с текущими кампаниями.",
+            "Проверить применимость к конкретному проекту Level.",
+            "Запустить ограниченный тест с заранее заданным KPI."
         ]
 
     return {
@@ -316,17 +379,14 @@ def make_item(row: dict, source: dict):
         "url": row["url"],
         "summary": summary[:500] or title,
         "topic": topic,
+        "stream": stream,
         "competitors": competitors,
         "importance": importance,
         "relevance_score": score,
-        "signal_type": signal,
-        "priority": priority,
+        "urgency": urgency,
+        "team": team,
         "level_value": value,
-        "recommendations": recs,
-        "realty_score": realty_hits,
-        "marketing_score": marketing_hits,
-        "intersection": marketing_hits >= 1 or has_strong_marketing_action,
-        "broader_relevance": has_research_signal or has_market_action
+        "recommendations": recs
     }
 
 def collect_source(source: dict):
@@ -378,11 +438,8 @@ def main():
     rows = [
         item for item in by_url.values()
         if item.get("date", "") >= cutoff
-        and (
-            item.get("relevance_score", 0) >= CONFIG.get("relevance_threshold", 56)
-            or item.get("intersection") is True
-            or item.get("broader_relevance") is True
-        )
+        and item.get("stream")
+        and item.get("relevance_score", 0) >= 45
     ]
 
     seen = set()
