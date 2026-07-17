@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-17T10:48:05+03:00",
+  "updated_at": "2026-07-17T10:53:14+03:00",
   "stats": {
     "sources_ok": 4,
     "sources_warning": 14,
@@ -8,22 +8,22 @@
   "source_status": {
     "Sostav": "warning · rss · 0",
     "Cossa": "ok · rss · 1",
+    "Домклик": "warning · html fallback · 0",
     "ЕРЗ.РФ": "warning · html fallback · 0",
     "AdIndex": "warning · html fallback · 0",
-    "Домклик": "warning · html fallback · 0",
     "Движение.ру": "warning · html fallback · 0",
     "РБК Недвижимость": "warning · html fallback · 0",
     "Mediascope": "warning · html fallback · 0",
     "АКАР": "warning · rss · 0",
+    "ЦИАН Журнал": "warning · html fallback · 0",
     "Calltouch": "ok · rss · 1",
+    "Яндекс Реклама": "warning · rss · 0",
     "eLama": "ok · rss · 1",
     "CORE.XP": "warning · html fallback · 0",
-    "Яндекс Реклама": "warning · rss · 0",
     "NF Group": "warning · html fallback · 0",
-    "ЦИАН Журнал": "warning · html fallback · 0",
+    "CMWP": "warning · html fallback · 0",
     "Urban Awards": "warning · html fallback · 0",
-    "АЛЛЕ Недвижимость": "ok · rss · 11",
-    "CMWP": "warning · html fallback · 0"
+    "АЛЛЕ Недвижимость": "ok · rss · 11"
   },
   "items": [
     {
