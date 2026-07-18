@@ -516,6 +516,29 @@ def make_item(row: dict, source: dict):
             "Запустить ограниченный тест с заранее заданным KPI."
         ]
 
+    if score >= 75 or (
+        source_tier == 1
+        and (research >= 1 or competitors or adtech >= 1 or stream == "Luxury Marketing")
+    ):
+        relevance_label = "Высокая"
+    elif score >= 50:
+        relevance_label = "Средняя"
+    else:
+        relevance_label = "Низкая"
+
+    if competitors:
+        signal_type = "Конкурент"
+    elif stream == "Luxury Marketing":
+        signal_type = "Luxury"
+    elif research >= 1:
+        signal_type = "Исследование"
+    elif adtech >= 1 or stream == "Рекламные технологии":
+        signal_type = "Рекламная технология"
+    elif cases >= 1 or stream in {"Идеи из других отраслей", "Маркетинговая практика"}:
+        signal_type = "Кейс"
+    else:
+        signal_type = "Маркетинг"
+
     return {
         "id": hashlib.sha1(row["url"].encode()).hexdigest()[:16],
         "date": row["published"].date().isoformat(),
@@ -533,6 +556,8 @@ def make_item(row: dict, source: dict):
         "luxury_brands": luxury_brands,
         "importance": importance,
         "relevance_score": score,
+        "relevance_label": relevance_label,
+        "signal_type": signal_type,
         "urgency": urgency,
         "team": team,
         "level_value": value,

@@ -62,3 +62,35 @@ input,select{border:0;background:#f0f2ef;border-radius:10px;padding:11px;color:v
   color:#755a2a;
   border:1px solid #dfc99d;
 }
+
+
+.relevance-high{
+  background:#f8dfd8 !important;
+  color:#9b3f2f !important;
+  border-color:#edb8aa !important;
+  font-weight:700;
+}
+.relevance-medium{
+  background:#e8f0f4 !important;
+  color:#356276 !important;
+  border-color:#c5d9e2 !important;
+  font-weight:600;
+}
+.relevance-low{
+  background:#f0f1f1 !important;
+  color:#70787d !important;
+  border-color:#dde0e1 !important;
+}
+.signal-tag{
+  background:#eef0f5;
+  color:#4a5469;
+}
+.footer-relevance{
+  display:inline-flex;
+  align-items:center;
+  border:1px solid transparent;
+  border-radius:999px;
+  padding:5px 9px;
+  font-size:12px;
+  line-height:1;
+}

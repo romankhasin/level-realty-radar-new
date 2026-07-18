@@ -10,6 +10,36 @@ function urgencyClass(item){
   return item.urgency==='Высокая'?'priority-high':'priority-mid';
 }
 
+function relevanceLabel(item){
+  if(item.relevance_label)return item.relevance_label;
+  const score=Number(item.relevance_score||0);
+  if(score>=75)return 'Высокая';
+  if(score>=50)return 'Средняя';
+  return 'Низкая';
+}
+
+function relevanceClass(item){
+  const label=relevanceLabel(item);
+  if(label==='Высокая')return 'relevance-high';
+  if(label==='Средняя')return 'relevance-medium';
+  return 'relevance-low';
+}
+
+function relevanceText(item){
+  const label=relevanceLabel(item);
+  return label==='Высокая'?'🔥 Высокая':label;
+}
+
+function signalType(item){
+  if(item.signal_type)return item.signal_type;
+  if((item.competitors||[]).length)return 'Конкурент';
+  if(item.luxury)return 'Luxury';
+  if(item.stream==='Рекламные технологии')return 'Рекламная технология';
+  if(item.stream==='Рынок и аудитория')return 'Исследование';
+  if(item.stream==='Идеи из других отраслей'||item.stream==='Маркетинговая практика')return 'Кейс';
+  return 'Маркетинг';
+}
+
 function renderTopCard(item,index){
   return `<article class="top-card">
     <div class="top-number">${String(index+1).padStart(2,'0')}</div>
@@ -18,7 +48,7 @@ function renderTopCard(item,index){
       <h3>${escapeHtml(item.title)}</h3>
       <p>${escapeHtml(item.level_value||'')}</p>
       <div class="foot">
-        <span class="tag ${urgencyClass(item)}">${escapeHtml(item.urgency||'Средняя')}</span>
+        <span class="tag ${relevanceClass(item)}">${escapeHtml(relevanceText(item))}</span>
         <a href="${escapeHtml(item.url)}" target="_blank" rel="noopener">Открыть →</a>
       </div>
     </div>
@@ -38,8 +68,9 @@ function renderCard(item){
     <div class="summary clamp">${escapeHtml(item.summary||'')}</div>
     <div class="tags">
       <span class="tag">${escapeHtml(item.stream||'Сигнал')}</span>
+      <span class="tag signal-tag">${escapeHtml(signalType(item))}</span>
+      <span class="tag ${relevanceClass(item)}">${escapeHtml(relevanceText(item))}</span>
       <span class="tag">${escapeHtml(item.topic||'Новости')}</span>
-      <span class="tag ${urgencyClass(item)}">${escapeHtml(item.urgency||'Средняя')}</span>
       ${luxuryBadge}
       ${comps}
     </div>
@@ -50,7 +81,7 @@ function renderCard(item){
     </div>
     <div class="tags">${teams}</div>
     <div class="foot">
-      <span>Релевантность ${Number(item.relevance_score||0)}</span>
+      <span class="footer-relevance ${relevanceClass(item)}">${escapeHtml(relevanceText(item))}</span>
       <a href="${escapeHtml(item.url)}" target="_blank" rel="noopener">Открыть →</a>
     </div>
   </article>`;
