@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-17T17:33:16+03:00",
+  "updated_at": "2026-07-18T11:31:52+03:00",
   "stats": {
     "sources_ok": 8,
     "sources_warning": 19,
@@ -8,33 +8,61 @@
   "source_status": {
     "Домклик": "warning · html fallback · 0",
     "Cossa": "ok · rss · 3",
-    "ЕРЗ.РФ": "warning · html fallback · 0",
-    "Движение.ру": "warning · html fallback · 0",
-    "AdIndex": "ok · html fallback · 1",
-    "АКАР": "warning · rss · 0",
     "Sostav": "ok · rss · 1",
-    "Mediascope": "warning · html fallback · 0",
+    "ЕРЗ.РФ": "warning · html fallback · 0",
+    "AdIndex": "ok · html fallback · 1",
+    "Движение.ру": "warning · html fallback · 0",
+    "АКАР": "warning · rss · 0",
     "Calltouch": "ok · rss · 2",
-    "РБК Недвижимость": "warning · html fallback · 0",
+    "Mediascope": "warning · html fallback · 0",
     "eLama": "ok · rss · 2",
+    "РБК Недвижимость": "warning · html fallback · 0",
     "ЦИАН Журнал": "warning · html fallback · 0",
-    "Яндекс Реклама": "ok · rss · 2",
     "CORE.XP": "warning · html fallback · 0",
+    "Яндекс Реклама": "ok · rss · 2",
     "АЛЛЕ Недвижимость": "ok · rss · 6",
     "New Retail": "warning · rss · 0",
-    "NF Group": "warning · html fallback · 0",
     "Rusability": "warning · html fallback · 0",
+    "NF Group": "warning · html fallback · 0",
+    "Urban Awards": "warning · html fallback · 0",
     "Roistat": "ok · rss · 7",
     "Mindbox": "warning · rss · 0",
     "CMWP": "warning · html fallback · 0",
-    "Urban Awards": "warning · html fallback · 0",
     "Retail.ru": "warning · html fallback · 0",
     "VK Реклама": "warning · html fallback · 0",
     "ДОМ.РФ": "warning · html fallback · 0",
-    "Realty.ru": "warning · html fallback · 0",
-    "Novostroy-M": "warning · html fallback · 0"
+    "Novostroy-M": "warning · html fallback · 0",
+    "Realty.ru": "warning · html fallback · 0"
   },
   "items": [
+    {
+      "id": "2cab5e17a8e4d53a",
+      "date": "2026-07-18",
+      "source": "AdIndex",
+      "title": "О том, как с помощью спецпроекта получить 58% конверсию из лендинга в игру, вовлеченность 77%, а также почти 4 тысячи кликов по промокодам, — в кейсе",
+      "url": "https://adindex.ru/case/2026/07/7/346953.phtml",
+      "summary": "О том, как с помощью спецпроекта получить 58% конверсию из лендинга в игру, вовлеченность 77%, а также почти 4 тысячи кликов по промокодам, — в кейсе",
+      "topic": "Performance",
+      "stream": "Идеи из других отраслей",
+      "competitors": [],
+      "luxury": false,
+      "luxury_score": 0,
+      "luxury_brands": [],
+      "importance": 60,
+      "relevance_score": 60,
+      "urgency": "Средняя",
+      "team": [
+        "Performance",
+        "CRM",
+        "Аналитика"
+      ],
+      "level_value": "Кейс относится к другой категории, но его механика, креатив или способ вовлечения аудитории можно адаптировать для Level.",
+      "recommendations": [
+        "Выделить механику кейса без отраслевой оболочки.",
+        "Определить подходящий ЖК, аудиторию и этап воронки.",
+        "Собрать быстрый прототип или креативный тест."
+      ]
+    },
     {
       "id": "ecf5394a3dff19cf",
       "date": "2026-07-17",
@@ -61,34 +89,6 @@
         "Сопоставить механику с текущими кампаниями.",
         "Проверить применимость к конкретному проекту Level.",
         "Запустить ограниченный тест с заранее заданным KPI."
-      ]
-    },
-    {
-      "id": "2cab5e17a8e4d53a",
-      "date": "2026-07-17",
-      "source": "AdIndex",
-      "title": "О том, как с помощью спецпроекта получить 58% конверсию из лендинга в игру, вовлеченность 77%, а также почти 4 тысячи кликов по промокодам, — в кейсе",
-      "url": "https://adindex.ru/case/2026/07/7/346953.phtml",
-      "summary": "О том, как с помощью спецпроекта получить 58% конверсию из лендинга в игру, вовлеченность 77%, а также почти 4 тысячи кликов по промокодам, — в кейсе",
-      "topic": "Performance",
-      "stream": "Идеи из других отраслей",
-      "competitors": [],
-      "luxury": false,
-      "luxury_score": 0,
-      "luxury_brands": [],
-      "importance": 60,
-      "relevance_score": 60,
-      "urgency": "Средняя",
-      "team": [
-        "Performance",
-        "CRM",
-        "Аналитика"
-      ],
-      "level_value": "Кейс относится к другой категории, но его механика, креатив или способ вовлечения аудитории можно адаптировать для Level.",
-      "recommendations": [
-        "Выделить механику кейса без отраслевой оболочки.",
-        "Определить подходящий ЖК, аудиторию и этап воронки.",
-        "Собрать быстрый прототип или креативный тест."
       ]
     },
     {
