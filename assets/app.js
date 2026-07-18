@@ -1,5 +1,6 @@
 let database={items:[]};
 let selectedStream='';
+let selectedRelevance='';
 
 const normalize=v=>(v||'').toString().toLowerCase();
 const escapeHtml=v=>(v||'').toString().replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
@@ -102,6 +103,12 @@ function setStream(button,value){
 }
 window.setStream=setStream;
 
+function setRelevance(button,value){
+  selectedRelevance=value;
+  document.querySelectorAll('.relevance-button').forEach(btn=>btn.classList.toggle('active',btn===button));
+  render();
+}
+
 function render(){
   const grid=byId('grid');
   if(!grid)return;
@@ -117,6 +124,7 @@ function render(){
   const topic=topicFilter?.value||'';
   const competitor=competitorFilter?.value||'';
   const stream=(streamFilter?.value||'')||selectedStream;
+  const relevance=selectedRelevance;
 
   const rows=database.items.filter(item=>{
     const haystack=normalize([
@@ -127,7 +135,8 @@ function render(){
       &&(!source||item.source===source)
       &&(!topic||item.topic===topic)
       &&(!competitor||(item.competitors||[]).includes(competitor))
-      &&(!stream||item.stream===stream);
+      &&(!stream||item.stream===stream)
+      &&(!relevance||relevanceLabel(item)===relevance);
   }).sort((a,b)=>(b.date||'').localeCompare(a.date||'')||(b.importance||0)-(a.importance||0));
 
   grid.innerHTML=rows.length?rows.map(renderCard).join(''):'<div class="empty">По выбранным фильтрам материалов нет.</div>';
@@ -205,5 +214,8 @@ async function loadData(){
 
 window.addEventListener('DOMContentLoaded',()=>{
   bindFilters();
+  document.querySelectorAll('.relevance-button').forEach(button=>{
+    button.addEventListener('click',()=>setRelevance(button,button.dataset.relevance||''));
+  });
   loadData();
 });
