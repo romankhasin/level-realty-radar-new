@@ -16,10 +16,25 @@ function relClass(label){
 function renderGlobalCard(item){
   const date=new Date(item.date+'T12:00:00').toLocaleDateString('ru-RU');
   const ideas=(item.level_applications||[]).map(v=>`<li>${esc(v)}</li>`).join('');
-  return `<article class="card global-card">
+  const titleRu=item.title_ru||item.title||item.title_original||'';
+  const summaryRu=item.summary_ru||item.summary||item.summary_original||'';
+  const titleOriginal=item.title_original||item.title||'';
+  const summaryOriginal=item.summary_original||item.summary||'';
+  const hasTranslation=titleRu!==titleOriginal||summaryRu!==summaryOriginal;
+  return `<article class="card global-card" data-card-id="${esc(item.id)}">
     <div class="meta"><span class="source">${esc(item.source)}</span><span>${date}</span></div>
-    <h2>${esc(item.title)}</h2>
-    <div class="summary clamp">${esc(item.summary||'')}</div>
+    ${hasTranslation?`<div class="language-switch" role="group" aria-label="Язык карточки">
+      <button class="language-button active" data-lang="ru">🇷🇺 Русский</button>
+      <button class="language-button" data-lang="original">Original</button>
+    </div>`:''}
+    <div class="translated-content" data-lang-content="ru">
+      <h2>${esc(titleRu)}</h2>
+      <div class="summary clamp">${esc(summaryRu)}</div>
+    </div>
+    ${hasTranslation?`<div class="translated-content is-hidden" data-lang-content="original">
+      <h2>${esc(titleOriginal)}</h2>
+      <div class="summary clamp">${esc(summaryOriginal)}</div>
+    </div>`:''}
     <div class="tags">
       <span class="tag global-category-tag">${esc(item.category||'Global')}</span>
       <span class="tag">${esc(item.region||'Global')}</span>
@@ -36,7 +51,7 @@ function renderGlobalCard(item){
     </div>
     <div class="foot">
       <span>${esc(item.signal_type||'Мировая практика')}</span>
-      <a href="${esc(item.url)}" target="_blank" rel="noopener">Открыть →</a>
+      <a href="${esc(item.url)}" target="_blank" rel="noopener">Открыть оригинал →</a>
     </div>
   </article>`;
 }
@@ -51,7 +66,7 @@ function render(){
   const potential=Number(byId('potentialFilter')?.value||0);
 
   const rows=globalDatabase.items.filter(item=>{
-    const hay=norm([item.title,item.summary,item.source,item.category,item.region,item.level_value,...(item.level_applications||[])].join(' '));
+    const hay=norm([item.title_ru,item.summary_ru,item.title_original,item.summary_original,item.title,item.summary,item.source,item.category,item.region,item.level_value,...(item.level_applications||[])].join(' '));
     return (!q||hay.includes(q))
       &&(!selectedCategory||item.category===selectedCategory)
       &&(!selectedRelevance||item.relevance_label===selectedRelevance)
@@ -97,6 +112,14 @@ window.addEventListener('DOMContentLoaded',()=>{
     document.querySelectorAll('.global-relevance').forEach(x=>x.classList.toggle('active',x===btn));
     render();
   }));
+  byId('globalGrid').addEventListener('click',event=>{
+    const button=event.target.closest('.language-button');
+    if(!button)return;
+    const card=button.closest('.global-card');
+    const lang=button.dataset.lang;
+    card.querySelectorAll('.language-button').forEach(x=>x.classList.toggle('active',x===button));
+    card.querySelectorAll('[data-lang-content]').forEach(x=>x.classList.toggle('is-hidden',x.dataset.langContent!==lang));
+  });
   ['globalSearch','regionFilter','globalSourceFilter','potentialFilter'].forEach(id=>{
     const el=byId(id);
     el.addEventListener(id==='globalSearch'?'input':'change',render);

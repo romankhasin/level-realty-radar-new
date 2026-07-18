@@ -128,3 +128,10 @@ input,select{border:0;background:#f0f2ef;border-radius:10px;padding:11px;color:v
 .potential{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding-top:12px;margin-top:4px;font-size:11px;color:#6a747a}
 .potential b{color:#96733e;font-size:15px;letter-spacing:.04em}
 @media(max-width:700px){.global-hero{align-items:flex-start;flex-direction:column}.back-link{white-space:normal}}
+
+
+/* v4.1 — Russian translation switch */
+.language-switch{display:flex;gap:4px;margin:-2px 0 10px}
+.language-button{appearance:none;border:1px solid #d7d9d6;background:#fff;color:#68747b;border-radius:999px;padding:6px 9px;font:inherit;font-size:10px;font-weight:750;cursor:pointer}
+.language-button.active{background:#25343d;color:#fff;border-color:#25343d}
+.translated-content.is-hidden{display:none}

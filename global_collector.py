@@ -6,6 +6,7 @@ from email.utils import parsedate_to_datetime
 from pathlib import Path
 import feedparser, requests
 from bs4 import BeautifulSoup
+from deep_translator import GoogleTranslator
 
 ROOT=Path(__file__).resolve().parent
 CONFIG=json.loads((ROOT/"global_sources.json").read_text(encoding="utf-8"))
@@ -50,7 +51,33 @@ def applications(category,text):
         return ["Проверить доступность технологии у российских площадок и партнёров.","Сформировать ограниченный медиатест с контрольной группой.","Измерять не только клики, но и визиты, брендовый поиск и post-view эффект."]
     return ["Выделить механику без привязки к зарубежному рынку.","Определить подходящий проект, аудиторию и этап воронки.","Собрать быстрый прототип и заранее определить KPI."]
 
-def make_item(row,source):
+TRANSLATOR = GoogleTranslator(source="auto", target="ru")
+
+def has_cyrillic(text):
+    return bool(re.search(r"[А-Яа-яЁё]", text or ""))
+
+def translate_text(text, limit=4500):
+    """Free automatic translation with safe fallback to the original text."""
+    text=clean(text)
+    if not text or has_cyrillic(text): return text
+    chunks=[]
+    while text:
+        if len(text)<=limit:
+            chunks.append(text); break
+        cut=text.rfind(". ",0,limit)
+        if cut<limit//2: cut=text.rfind(" ",0,limit)
+        if cut<1: cut=limit
+        chunks.append(text[:cut+1].strip()); text=text[cut+1:].strip()
+    out=[]
+    for chunk in chunks:
+        try:
+            out.append(TRANSLATOR.translate(chunk) or chunk)
+        except Exception as e:
+            print("translation warning:",type(e).__name__,flush=True)
+            out.append(chunk)
+    return clean(" ".join(out))
+
+def make_item(row,source,previous=None):
     title=clean(row.get("title","")); summary=clean(row.get("summary",""))
     text=(title+" "+summary).lower()
     p=count(PROPERTY,text); l=count(LUXURY,text); m=count(MARKETING,text)
@@ -81,14 +108,19 @@ def make_item(row,source):
       "id":hashlib.sha1(row["url"].encode()).hexdigest()[:16],
       "date":row["published"].date().isoformat(),
       "source":source["name"],"source_tier":source.get("tier",3),
-      "title":title,"url":row["url"],"summary":summary[:700] or title,
+      "title":title,"summary":summary[:700] or title,
+      "title_original":title,"summary_original":summary[:700] or title,
+      "title_ru":(previous or {}).get("title_ru") or translate_text(title),
+      "summary_ru":(previous or {}).get("summary_ru") or translate_text((summary[:700] or title)),
+      "translation_provider":"Google Translate",
+      "url":row["url"],
       "category":category,"region":source.get("region","Global"),
       "relevance_score":score,"relevance_label":relevance,
       "potential":potential,"signal_type":signal,
       "level_value":value,"level_applications":applications(category,text)
     }
 
-def collect(source):
+def collect(source, previous_by_url=None):
     rows=[]
     for feed_url in source.get("feeds",[]):
         try:
@@ -100,7 +132,7 @@ def collect(source):
                 if link and title: rows.append({"url":link,"title":title,"summary":summary,"published":dt(e)})
             if rows: break
         except Exception: pass
-    items=[x for x in (make_item(row,source) for row in rows) if x]
+    items=[x for x in (make_item(row,source,(previous_by_url or {}).get(row["url"])) for row in rows) if x]
     return source["name"],items
 
 def existing():
@@ -113,7 +145,7 @@ def main():
     old=existing(); by_url={i["url"]:i for i in old.get("items",[]) if i.get("url")}
     status={}; ok=warning=failed=0
     with ThreadPoolExecutor(max_workers=8) as ex:
-        futures=[ex.submit(collect,s) for s in CONFIG["sources"]]
+        futures=[ex.submit(collect,s,by_url) for s in CONFIG["sources"]]
         for f in as_completed(futures):
             try:
                 name,items=f.result()
