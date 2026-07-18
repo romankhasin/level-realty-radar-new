@@ -105,3 +105,26 @@ input,select{border:0;background:#f0f2ef;border-radius:10px;padding:11px;color:v
 .relevance-button--medium.active{background:#356276;border-color:#356276}
 .relevance-button--low.active{background:#70787d;border-color:#70787d}
 @media(max-width:720px){.relevance-navigation{align-items:flex-start;flex-direction:column;gap:8px}.relevance-buttons{width:100%}}
+
+
+/* v4.0 — optional Global Intelligence section */
+.main-navigation{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
+.main-navigation__link{display:inline-flex;align-items:center;gap:6px;padding:9px 13px;border:1px solid rgba(255,255,255,.18);border-radius:999px;color:#cbd5db;text-decoration:none;font-size:12px;font-weight:700}
+.main-navigation__link:hover{border-color:rgba(255,255,255,.42);color:#fff}
+.main-navigation__link.active{background:#fff;color:#111b24;border-color:#fff}
+.main-navigation__link--global.active{background:#d9c59d;border-color:#d9c59d}
+.global-page{background:#f3f0e9}
+.global-hero{display:flex;justify-content:space-between;align-items:flex-end;gap:25px}
+.back-link{color:#52626c;text-decoration:none;font-size:12px;font-weight:700;white-space:nowrap}
+.global-categories{display:flex;gap:8px;overflow-x:auto;margin:8px 0 16px;padding-bottom:2px;scrollbar-width:none}
+.global-categories::-webkit-scrollbar{display:none}
+.global-category,.global-relevance{appearance:none;border:1px solid #d7d9d6;background:#fff;color:#46525a;border-radius:999px;padding:10px 14px;font:inherit;font-size:13px;font-weight:650;white-space:nowrap;cursor:pointer}
+.global-category.active,.global-relevance.active{background:#6f5b39;color:#fff;border-color:#6f5b39}
+.global-card{border-color:#ded7c9}
+.global-category-tag{background:#eee5d4;color:#6e552d}
+.global-analysis{background:#f4efe5}
+.global-analysis b{color:#705a34}
+.application-title{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#705a34;margin-top:10px}
+.potential{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding-top:12px;margin-top:4px;font-size:11px;color:#6a747a}
+.potential b{color:#96733e;font-size:15px;letter-spacing:.04em}
+@media(max-width:700px){.global-hero{align-items:flex-start;flex-direction:column}.back-link{white-space:normal}}

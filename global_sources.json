@@ -1,0 +1,207 @@
+{
+  "retention_days": 365,
+  "max_items": 500,
+  "items_per_feed": 45,
+  "sources": [
+    {
+      "name": "Dezeen",
+      "homepage": "https://www.dezeen.com/",
+      "feeds": [
+        "https://www.dezeen.com/feed/"
+      ],
+      "category": "Developers",
+      "region": "Global",
+      "tier": 2
+    },
+    {
+      "name": "ArchDaily",
+      "homepage": "https://www.archdaily.com/",
+      "feeds": [
+        "https://www.archdaily.com/feed"
+      ],
+      "category": "Developers",
+      "region": "Global",
+      "tier": 2
+    },
+    {
+      "name": "Mansion Global",
+      "homepage": "https://www.mansionglobal.com/",
+      "feeds": [
+        "https://www.mansionglobal.com/rss"
+      ],
+      "category": "Luxury",
+      "region": "Global",
+      "tier": 1
+    },
+    {
+      "name": "Luxury Daily",
+      "homepage": "https://www.luxurydaily.com/",
+      "feeds": [
+        "https://www.luxurydaily.com/feed/"
+      ],
+      "category": "Luxury",
+      "region": "USA",
+      "tier": 1
+    },
+    {
+      "name": "Jing Daily",
+      "homepage": "https://jingdaily.com/",
+      "feeds": [
+        "https://jingdaily.com/feed/"
+      ],
+      "category": "Luxury",
+      "region": "Asia",
+      "tier": 1
+    },
+    {
+      "name": "Robb Report",
+      "homepage": "https://robbreport.com/",
+      "feeds": [
+        "https://robbreport.com/feed/"
+      ],
+      "category": "Luxury",
+      "region": "USA",
+      "tier": 2
+    },
+    {
+      "name": "Wallpaper",
+      "homepage": "https://www.wallpaper.com/",
+      "feeds": [
+        "https://www.wallpaper.com/feeds.xml"
+      ],
+      "category": "Luxury",
+      "region": "Global",
+      "tier": 2
+    },
+    {
+      "name": "McKinsey Insights",
+      "homepage": "https://www.mckinsey.com/featured-insights",
+      "feeds": [
+        "https://www.mckinsey.com/featured-insights/rss"
+      ],
+      "category": "Research",
+      "region": "Global",
+      "tier": 1
+    },
+    {
+      "name": "Deloitte Insights",
+      "homepage": "https://www.deloitte.com/insights",
+      "feeds": [
+        "https://www2.deloitte.com/us/en/insights/rss-feed.html"
+      ],
+      "category": "Research",
+      "region": "Global",
+      "tier": 1
+    },
+    {
+      "name": "PwC Research",
+      "homepage": "https://www.pwc.com/gx/en/issues.html",
+      "feeds": [
+        "https://www.pwc.com/gx/en/rss/research-and-insights.xml"
+      ],
+      "category": "Research",
+      "region": "Global",
+      "tier": 1
+    },
+    {
+      "name": "Think with Google",
+      "homepage": "https://www.thinkwithgoogle.com/",
+      "feeds": [
+        "https://www.thinkwithgoogle.com/rss/"
+      ],
+      "category": "Marketing",
+      "region": "Global",
+      "tier": 1
+    },
+    {
+      "name": "HubSpot Marketing",
+      "homepage": "https://blog.hubspot.com/marketing",
+      "feeds": [
+        "https://blog.hubspot.com/marketing/rss.xml"
+      ],
+      "category": "Marketing",
+      "region": "Global",
+      "tier": 2
+    },
+    {
+      "name": "Campaign",
+      "homepage": "https://www.campaignlive.com/",
+      "feeds": [
+        "https://www.campaignlive.com/rss"
+      ],
+      "category": "Marketing",
+      "region": "UK",
+      "tier": 2
+    },
+    {
+      "name": "Adweek",
+      "homepage": "https://www.adweek.com/",
+      "feeds": [
+        "https://www.adweek.com/feed/"
+      ],
+      "category": "Marketing",
+      "region": "USA",
+      "tier": 2
+    },
+    {
+      "name": "Propmodo",
+      "homepage": "https://propmodo.com/",
+      "feeds": [
+        "https://propmodo.com/feed/"
+      ],
+      "category": "PropTech",
+      "region": "USA",
+      "tier": 1
+    },
+    {
+      "name": "PlaceTech",
+      "homepage": "https://placetech.net/",
+      "feeds": [
+        "https://placetech.net/feed/"
+      ],
+      "category": "PropTech",
+      "region": "Europe",
+      "tier": 1
+    },
+    {
+      "name": "CREtech",
+      "homepage": "https://www.cretech.com/",
+      "feeds": [
+        "https://www.cretech.com/feed/"
+      ],
+      "category": "PropTech",
+      "region": "USA",
+      "tier": 1
+    },
+    {
+      "name": "The Trade Desk",
+      "homepage": "https://www.thetradedesk.com/us/news",
+      "feeds": [
+        "https://www.thetradedesk.com/us/news/rss"
+      ],
+      "category": "AdTech",
+      "region": "Global",
+      "tier": 1
+    },
+    {
+      "name": "IAB",
+      "homepage": "https://www.iab.com/",
+      "feeds": [
+        "https://www.iab.com/feed/"
+      ],
+      "category": "AdTech",
+      "region": "USA",
+      "tier": 1
+    },
+    {
+      "name": "MarTech",
+      "homepage": "https://martech.org/",
+      "feeds": [
+        "https://martech.org/feed/"
+      ],
+      "category": "AdTech",
+      "region": "Global",
+      "tier": 2
+    }
+  ]
+}

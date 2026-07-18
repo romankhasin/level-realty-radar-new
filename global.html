@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#111b24">
+  <title>LEVEL / Global Intelligence</title>
+  <link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body class="global-page">
+  <header>
+    <div class="brand">LEVEL<b>/</b>GLOBAL INTELLIGENCE</div>
+    <div class="sub">Мировые практики в недвижимости, luxury, маркетинге и работе с премиальной аудиторией</div>
+    <nav class="main-navigation" aria-label="Разделы">
+      <a class="main-navigation__link" href="./index.html">🇷🇺 Россия</a>
+      <a class="main-navigation__link main-navigation__link--global active" href="./global.html">🌍 Global Intelligence</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="global-hero">
+      <div>
+        <div class="eyebrow">ОПЦИОНАЛЬНЫЙ СТРАТЕГИЧЕСКИЙ БЛОК</div>
+        <h1>Global Intelligence</h1>
+        <div class="lead">
+          Зарубежные кейсы и исследования не смешиваются с основной лентой.
+          Здесь собраны идеи, которые потенциально можно адаптировать для Level Group.
+        </div>
+      </div>
+      <a class="back-link" href="./index.html">← Вернуться к российской ленте</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><b id="globalTotal">—</b><span>мировых материалов</span></div>
+      <div class="stat"><b id="globalWeek">—</b><span>за последние 7 дней</span></div>
+      <div class="stat"><b id="globalSources">—</b><span>зарубежных источников</span></div>
+      <div class="stat"><b id="highPotential">—</b><span>с высоким потенциалом</span></div>
+    </div>
+
+    <section class="global-categories" aria-label="Категории">
+      <button class="global-category active" data-category="">Все</button>
+      <button class="global-category" data-category="Developers">🏙 Девелоперы</button>
+      <button class="global-category" data-category="Luxury">💎 Luxury</button>
+      <button class="global-category" data-category="Research">📈 Исследования</button>
+      <button class="global-category" data-category="Marketing">🎯 Marketing</button>
+      <button class="global-category" data-category="PropTech">🏡 PropTech</button>
+      <button class="global-category" data-category="AdTech">🚀 AdTech</button>
+    </section>
+
+    <section class="relevance-navigation" aria-label="Фильтр по релевантности">
+      <span class="relevance-navigation__label">Релевантность</span>
+      <div class="relevance-buttons">
+        <button class="global-relevance active" data-relevance="">Все</button>
+        <button class="global-relevance" data-relevance="Высокая">🔥 Высокая</button>
+        <button class="global-relevance" data-relevance="Средняя">Средняя</button>
+        <button class="global-relevance" data-relevance="Низкая">Низкая</button>
+      </div>
+    </section>
+
+    <div class="toolbar">
+      <input id="globalSearch" placeholder="Поиск по мировым кейсам и идеям…">
+      <select id="regionFilter"><option value="">Все регионы</option></select>
+      <select id="globalSourceFilter"><option value="">Все источники</option></select>
+      <select id="potentialFilter">
+        <option value="">Любой потенциал</option>
+        <option value="5">★★★★★</option>
+        <option value="4">★★★★☆ и выше</option>
+        <option value="3">★★★☆☆ и выше</option>
+      </select>
+    </div>
+
+    <div id="globalStatus" class="status">Загрузка global_news.json…</div>
+    <div id="globalGrid" class="grid global-grid"></div>
+  </main>
+
+  <script src="./assets/global.js"></script>
+</body>
+</html>
