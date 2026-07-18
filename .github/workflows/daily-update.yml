@@ -22,13 +22,16 @@ jobs:
           cache: pip
       - name: Install dependencies
         run: pip install -r requirements.txt
-      - name: Collect and analyse intelligence
+      - name: Collect Russian intelligence
         run: python -u collector.py
         timeout-minutes: 10
-      - name: Commit news.json
+      - name: Collect Global intelligence
+        run: python -u global_collector.py
+        timeout-minutes: 10
+      - name: Commit intelligence data
         run: |
           git config user.name "Level Intelligence"
           git config user.email "actions@users.noreply.github.com"
-          git add news.json
-          git diff --cached --quiet || git commit -m "Update Level intelligence"
+          git add news.json global_news.json
+          git diff --cached --quiet || git commit -m "Update Level and Global intelligence"
           git push
