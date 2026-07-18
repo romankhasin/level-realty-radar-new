@@ -323,6 +323,12 @@ def make_item(row: dict, source: dict):
     competitors = find_competitors(combined)
 
     source_kind = source.get("kind", "realty")
+    source_tier = int(source.get("tier", 3))
+    source_bonus = {1: 14, 2: 8, 3: 3}.get(source_tier, 0)
+    premium_source = source_kind in {
+        "premium_realty", "private_banking", "luxury_lifestyle",
+        "luxury_retail", "luxury_hospitality", "luxury_auto", "premium_culture"
+    }
 
     # Strong signals that justify broader inclusion.
     direct_action_phrases = [
@@ -354,6 +360,7 @@ def make_item(row: dict, source: dict):
         + min(len(competitors), 2) * 18
         + (14 if direct_action else 0)
         + (8 if market_context else 0)
+        + source_bonus
     )
 
     # Noise is punished only when there is no real marketing value.
@@ -367,10 +374,28 @@ def make_item(row: dict, source: dict):
         (luxury >= 1 and (marketing >= 1 or direct_action or cases >= 1 or research >= 1))
         or luxury_marketing >= 1
         or (len(luxury_brands) >= 1 and (marketing >= 1 or direct_action or cases >= 1))
+        or (
+            premium_source
+            and (
+                marketing >= 1
+                or direct_action
+                or cases >= 1
+                or research >= 1
+                or competitors
+                or "клиентский опыт" in lowered
+                or "аудитория" in lowered
+                or "исследование" in lowered
+                or "коллаборац" in lowered
+                or "мероприят" in lowered
+                or "партнерств" in lowered
+            )
+        )
     )
 
     if luxury_signal:
         stream = "Luxury Marketing"
+    elif source_kind == "premium_realty" and research >= 1:
+        stream = "Рынок и аудитория"
     elif competitors and (marketing >= 1 or direct_action or cases >= 1):
         stream = "Действия конкурентов"
     elif source_kind == "adtech" and (adtech >= 1 or direct_action):
@@ -495,6 +520,8 @@ def make_item(row: dict, source: dict):
         "id": hashlib.sha1(row["url"].encode()).hexdigest()[:16],
         "date": row["published"].date().isoformat(),
         "source": source["name"],
+        "source_tier": source_tier,
+        "source_kind": source_kind,
         "title": title,
         "url": row["url"],
         "summary": summary[:650] or title,

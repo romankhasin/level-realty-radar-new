@@ -1,6 +1,6 @@
 {
-  "retention_days": 240,
-  "max_items": 650,
+  "retention_days": 270,
+  "max_items": 900,
   "google_news_fallback": false,
   "sources": [
     {
@@ -16,7 +16,8 @@
         "https://www.sostav.ru/publication/"
       ],
       "article_pattern": "/(publication|blogs)/",
-      "kind": "marketing"
+      "kind": "marketing",
+      "tier": 2
     },
     {
       "name": "AdIndex",
@@ -31,7 +32,8 @@
         "https://adindex.ru/case/"
       ],
       "article_pattern": "/(news|case|publication)/",
-      "kind": "marketing"
+      "kind": "marketing",
+      "tier": 2
     },
     {
       "name": "Cossa",
@@ -47,7 +49,8 @@
         "https://www.cossa.ru/special/realty/"
       ],
       "article_pattern": "/(news|trends|cases|special|articles)/",
-      "kind": "marketing"
+      "kind": "marketing",
+      "tier": 3
     },
     {
       "name": "РБК Недвижимость",
@@ -61,7 +64,8 @@
         "https://realty.rbc.ru/housing/"
       ],
       "article_pattern": "/news/",
-      "kind": "realty"
+      "kind": "realty",
+      "tier": 2
     },
     {
       "name": "Движение.ру",
@@ -75,7 +79,8 @@
         "https://dvizhenie.ru/media"
       ],
       "article_pattern": "/media/",
-      "kind": "realty"
+      "kind": "realty",
+      "tier": 3
     },
     {
       "name": "ЕРЗ.РФ",
@@ -88,7 +93,8 @@
         "https://erzrf.ru/news"
       ],
       "article_pattern": "/news/",
-      "kind": "realty"
+      "kind": "realty",
+      "tier": 3
     },
     {
       "name": "Домклик",
@@ -101,7 +107,8 @@
         "https://blog.domclick.ru/"
       ],
       "article_pattern": "/post/",
-      "kind": "realty"
+      "kind": "realty",
+      "tier": 3
     },
     {
       "name": "ЦИАН Журнал",
@@ -114,7 +121,8 @@
         "https://www.cian.ru/stati/"
       ],
       "article_pattern": "/stati-",
-      "kind": "realty"
+      "kind": "realty",
+      "tier": 3
     },
     {
       "name": "eLama",
@@ -128,7 +136,8 @@
         "https://elama.ru/blog/"
       ],
       "article_pattern": "/blog/",
-      "kind": "marketing"
+      "kind": "marketing",
+      "tier": 3
     },
     {
       "name": "Calltouch",
@@ -142,7 +151,8 @@
         "https://www.calltouch.ru/blog/"
       ],
       "article_pattern": "/blog/",
-      "kind": "marketing"
+      "kind": "marketing",
+      "tier": 3
     },
     {
       "name": "Mediascope",
@@ -155,7 +165,8 @@
         "https://mediascope.net/news/"
       ],
       "article_pattern": "/news/",
-      "kind": "marketing"
+      "kind": "marketing",
+      "tier": 3
     },
     {
       "name": "АКАР",
@@ -168,7 +179,8 @@
         "https://akarussia.ru/news/"
       ],
       "article_pattern": "/news/",
-      "kind": "marketing"
+      "kind": "marketing",
+      "tier": 3
     },
     {
       "name": "Яндекс Реклама",
@@ -181,7 +193,8 @@
         "https://yandex.ru/adv/news"
       ],
       "article_pattern": "/adv/news/",
-      "kind": "marketing"
+      "kind": "marketing",
+      "tier": 3
     },
     {
       "name": "Urban Awards",
@@ -194,7 +207,8 @@
         "https://urbanawards.ru/news/"
       ],
       "article_pattern": "/news/",
-      "kind": "realty"
+      "kind": "realty",
+      "tier": 3
     },
     {
       "name": "NF Group",
@@ -208,7 +222,8 @@
         "https://nfgroup.ru/news/"
       ],
       "article_pattern": "/(research-and-insights|news)/",
-      "kind": "realty"
+      "kind": "realty",
+      "tier": 1
     },
     {
       "name": "CORE.XP",
@@ -222,7 +237,8 @@
         "https://core-xp.ru/news/"
       ],
       "article_pattern": "/(publications|news)/",
-      "kind": "realty"
+      "kind": "realty",
+      "tier": 1
     },
     {
       "name": "CMWP",
@@ -236,7 +252,8 @@
         "https://cmwp.ru/media/"
       ],
       "article_pattern": "/(analytics|media)/",
-      "kind": "realty"
+      "kind": "realty",
+      "tier": 1
     },
     {
       "name": "АЛЛЕ Недвижимость",
@@ -249,7 +266,8 @@
         "https://allestate.pro/news"
       ],
       "article_pattern": "/news/",
-      "kind": "realty"
+      "kind": "realty",
+      "tier": 3
     },
     {
       "name": "VK Реклама",
@@ -262,7 +280,8 @@
         "https://ads.vk.com/help/articles/"
       ],
       "article_pattern": "/help/articles/",
-      "kind": "adtech"
+      "kind": "adtech",
+      "tier": 3
     },
     {
       "name": "New Retail",
@@ -275,7 +294,8 @@
         "https://new-retail.ru/novosti/"
       ],
       "article_pattern": "/novosti/",
-      "kind": "cases"
+      "kind": "cases",
+      "tier": 2
     },
     {
       "name": "Retail.ru",
@@ -288,7 +308,8 @@
         "https://www.retail.ru/news/"
       ],
       "article_pattern": "/news/",
-      "kind": "cases"
+      "kind": "cases",
+      "tier": 3
     },
     {
       "name": "Rusability",
@@ -302,7 +323,8 @@
         "https://rusability.ru/cases/"
       ],
       "article_pattern": "/(articles|cases)/",
-      "kind": "marketing"
+      "kind": "marketing",
+      "tier": 3
     },
     {
       "name": "Roistat",
@@ -315,7 +337,8 @@
         "https://roistat.com/rublog/"
       ],
       "article_pattern": "/rublog/",
-      "kind": "marketing"
+      "kind": "marketing",
+      "tier": 3
     },
     {
       "name": "Mindbox",
@@ -329,7 +352,8 @@
         "https://mindbox.ru/journal/"
       ],
       "article_pattern": "/journal/",
-      "kind": "marketing"
+      "kind": "marketing",
+      "tier": 2
     },
     {
       "name": "Novostroy-M",
@@ -342,7 +366,8 @@
         "https://www.novostroy-m.ru/novosti"
       ],
       "article_pattern": "/novosti/",
-      "kind": "realty"
+      "kind": "realty",
+      "tier": 3
     },
     {
       "name": "Realty.ru",
@@ -355,7 +380,8 @@
         "https://www.realty.ru/news/"
       ],
       "article_pattern": "/news/",
-      "kind": "realty"
+      "kind": "realty",
+      "tier": 3
     },
     {
       "name": "ДОМ.РФ",
@@ -368,11 +394,328 @@
         "https://дом.рф/media/news/"
       ],
       "article_pattern": "/media/news/",
-      "kind": "realty"
+      "kind": "realty",
+      "tier": 3
+    },
+    {
+      "name": "Nikoliers",
+      "homepage": "https://nikoliers.ru/",
+      "feed_candidates": [
+        "https://nikoliers.ru/feed/",
+        "https://nikoliers.ru/rss/"
+      ],
+      "listing_pages": [
+        "https://nikoliers.ru/research/",
+        "https://nikoliers.ru/media/"
+      ],
+      "article_pattern": "/(research|media|news|insights)/",
+      "kind": "premium_realty",
+      "tier": 1
+    },
+    {
+      "name": "Ricci",
+      "homepage": "https://ricci.ru/",
+      "feed_candidates": [
+        "https://ricci.ru/feed/",
+        "https://ricci.ru/rss/"
+      ],
+      "listing_pages": [
+        "https://ricci.ru/analytics/",
+        "https://ricci.ru/news/"
+      ],
+      "article_pattern": "/(analytics|news|research|media)/",
+      "kind": "premium_realty",
+      "tier": 1
+    },
+    {
+      "name": "Whitewill",
+      "homepage": "https://whitewill.ru/",
+      "feed_candidates": [
+        "https://whitewill.ru/feed/",
+        "https://whitewill.ru/rss/"
+      ],
+      "listing_pages": [
+        "https://whitewill.ru/blog",
+        "https://whitewill.ru/life"
+      ],
+      "article_pattern": "/(blog|life)/",
+      "kind": "premium_realty",
+      "tier": 1
+    },
+    {
+      "name": "Kalinka Ecosystem",
+      "homepage": "https://kalinka-realty.ru/",
+      "feed_candidates": [
+        "https://kalinka-realty.ru/feed/",
+        "https://kalinka-realty.ru/rss/"
+      ],
+      "listing_pages": [
+        "https://kalinka-realty.ru/news/",
+        "https://kalinka-realty.ru/analytics/"
+      ],
+      "article_pattern": "/(news|analytics|blog|research)/",
+      "kind": "premium_realty",
+      "tier": 1
+    },
+    {
+      "name": "Intermark Real Estate",
+      "homepage": "https://intermark.ru/",
+      "feed_candidates": [
+        "https://intermark.ru/feed/",
+        "https://intermark.ru/rss/"
+      ],
+      "listing_pages": [
+        "https://intermark.ru/about/news/",
+        "https://intermark.ru/analytics/"
+      ],
+      "article_pattern": "/(news|analytics|research|blog)/",
+      "kind": "premium_realty",
+      "tier": 2
+    },
+    {
+      "name": "Penny Lane Realty",
+      "homepage": "https://www.pennylane.ru/",
+      "feed_candidates": [
+        "https://www.pennylane.ru/feed/",
+        "https://www.pennylane.ru/rss/"
+      ],
+      "listing_pages": [
+        "https://www.pennylane.ru/news/",
+        "https://www.pennylane.ru/analytics/"
+      ],
+      "article_pattern": "/(news|analytics|articles|blog)/",
+      "kind": "premium_realty",
+      "tier": 2
+    },
+    {
+      "name": "Barnes Moscow",
+      "homepage": "https://barnes-moscow.com/",
+      "feed_candidates": [
+        "https://barnes-moscow.com/feed/",
+        "https://barnes-moscow.com/rss/"
+      ],
+      "listing_pages": [
+        "https://barnes-moscow.com/news/",
+        "https://barnes-moscow.com/blog/"
+      ],
+      "article_pattern": "/(news|blog|analytics|articles)/",
+      "kind": "premium_realty",
+      "tier": 2
+    },
+    {
+      "name": "Frank Media",
+      "homepage": "https://frankmedia.ru/",
+      "feed_candidates": [
+        "https://frankmedia.ru/feed/",
+        "https://frankmedia.ru/rss/"
+      ],
+      "listing_pages": [
+        "https://frankmedia.ru/news/",
+        "https://frankmedia.ru/analytics/"
+      ],
+      "article_pattern": "/(news|analytics|research|article)/",
+      "kind": "private_banking",
+      "tier": 1
+    },
+    {
+      "name": "Frank RG",
+      "homepage": "https://frankrg.com/",
+      "feed_candidates": [
+        "https://frankrg.com/feed/",
+        "https://frankrg.com/rss/"
+      ],
+      "listing_pages": [
+        "https://frankrg.com/research/",
+        "https://frankrg.com/media/"
+      ],
+      "article_pattern": "/(research|media|news|analytics)/",
+      "kind": "private_banking",
+      "tier": 1
+    },
+    {
+      "name": "Сбер Первый",
+      "homepage": "https://www.sberbank.ru/ru/person/sberfirst",
+      "feed_candidates": [],
+      "listing_pages": [
+        "https://www.sberbank.ru/ru/person/sberfirst"
+      ],
+      "article_pattern": "/(sberfirst|articles|news)/",
+      "kind": "private_banking",
+      "tier": 2
+    },
+    {
+      "name": "Alfa Only",
+      "homepage": "https://alfabank.ru/only/",
+      "feed_candidates": [],
+      "listing_pages": [
+        "https://alfabank.ru/only/"
+      ],
+      "article_pattern": "/(only|stories|articles|news)/",
+      "kind": "private_banking",
+      "tier": 2
+    },
+    {
+      "name": "Т-Банк Private",
+      "homepage": "https://www.tbank.ru/private/",
+      "feed_candidates": [],
+      "listing_pages": [
+        "https://www.tbank.ru/private/"
+      ],
+      "article_pattern": "/(private|stories|journal|news)/",
+      "kind": "private_banking",
+      "tier": 2
+    },
+    {
+      "name": "Forbes Life",
+      "homepage": "https://www.forbes.ru/forbeslife",
+      "feed_candidates": [
+        "https://www.forbes.ru/newrss.xml",
+        "https://www.forbes.ru/rss.xml"
+      ],
+      "listing_pages": [
+        "https://www.forbes.ru/forbeslife",
+        "https://www.forbes.ru/style"
+      ],
+      "article_pattern": "/(forbeslife|style|business)/",
+      "kind": "luxury_lifestyle",
+      "tier": 1
+    },
+    {
+      "name": "Robb Report Russia",
+      "homepage": "https://robb.report/",
+      "feed_candidates": [
+        "https://robb.report/feed/",
+        "https://robb.report/rss/"
+      ],
+      "listing_pages": [
+        "https://robb.report/lifestyle/",
+        "https://robb.report/style/"
+      ],
+      "article_pattern": "/(lifestyle|style|travel|cars|watches|art)/",
+      "kind": "luxury_lifestyle",
+      "tier": 1
+    },
+    {
+      "name": "The Blueprint",
+      "homepage": "https://theblueprint.ru/",
+      "feed_candidates": [
+        "https://theblueprint.ru/feed",
+        "https://theblueprint.ru/rss"
+      ],
+      "listing_pages": [
+        "https://theblueprint.ru/fashion",
+        "https://theblueprint.ru/culture"
+      ],
+      "article_pattern": "/(fashion|culture|beauty|lifestyle)/",
+      "kind": "luxury_lifestyle",
+      "tier": 2
+    },
+    {
+      "name": "ЦУМ",
+      "homepage": "https://www.tsum.ru/",
+      "feed_candidates": [],
+      "listing_pages": [
+        "https://www.tsum.ru/news/",
+        "https://www.tsum.ru/tsum-fashion/"
+      ],
+      "article_pattern": "/(news|tsum-fashion|events|stories)/",
+      "kind": "luxury_retail",
+      "tier": 2
+    },
+    {
+      "name": "Bosco",
+      "homepage": "https://bosco.ru/",
+      "feed_candidates": [
+        "https://bosco.ru/feed/",
+        "https://bosco.ru/rss/"
+      ],
+      "listing_pages": [
+        "https://bosco.ru/news/",
+        "https://bosco.ru/events/"
+      ],
+      "article_pattern": "/(news|events|stories|projects)/",
+      "kind": "luxury_retail",
+      "tier": 2
+    },
+    {
+      "name": "The Carlton Moscow",
+      "homepage": "https://www.carltonmoscow.com/",
+      "feed_candidates": [],
+      "listing_pages": [
+        "https://www.carltonmoscow.com/offers/",
+        "https://www.carltonmoscow.com/events/"
+      ],
+      "article_pattern": "/(offers|events|news|experiences)/",
+      "kind": "luxury_hospitality",
+      "tier": 2
+    },
+    {
+      "name": "Barvikha Hotel & Spa",
+      "homepage": "https://barvikhahotel.com/",
+      "feed_candidates": [],
+      "listing_pages": [
+        "https://barvikhahotel.com/news/",
+        "https://barvikhahotel.com/offers/"
+      ],
+      "article_pattern": "/(news|offers|events|experiences)/",
+      "kind": "luxury_hospitality",
+      "tier": 2
+    },
+    {
+      "name": "Porsche Россия",
+      "homepage": "https://www.porsche.com/central-eastern-europe/ru/",
+      "feed_candidates": [],
+      "listing_pages": [
+        "https://newsroom.porsche.com/ru.html"
+      ],
+      "article_pattern": "/(newsroom|stories|products|company)/",
+      "kind": "luxury_auto",
+      "tier": 2
+    },
+    {
+      "name": "Hongqi Россия",
+      "homepage": "https://hongqi-auto.ru/",
+      "feed_candidates": [],
+      "listing_pages": [
+        "https://hongqi-auto.ru/news/"
+      ],
+      "article_pattern": "/news/",
+      "kind": "luxury_auto",
+      "tier": 2
+    },
+    {
+      "name": "Cosmoscow",
+      "homepage": "https://cosmoscow.com/",
+      "feed_candidates": [
+        "https://cosmoscow.com/feed/",
+        "https://cosmoscow.com/rss/"
+      ],
+      "listing_pages": [
+        "https://cosmoscow.com/ru/news/",
+        "https://cosmoscow.com/ru/program/"
+      ],
+      "article_pattern": "/(news|program|projects|magazine)/",
+      "kind": "premium_culture",
+      "tier": 2
+    },
+    {
+      "name": "Cube.Moscow",
+      "homepage": "https://cube.moscow/",
+      "feed_candidates": [
+        "https://cube.moscow/feed/",
+        "https://cube.moscow/rss/"
+      ],
+      "listing_pages": [
+        "https://cube.moscow/news/",
+        "https://cube.moscow/events/"
+      ],
+      "article_pattern": "/(news|events|exhibitions|projects)/",
+      "kind": "premium_culture",
+      "tier": 3
     }
   ],
   "relevance_threshold": 44,
-  "items_per_feed": 45,
-  "items_per_listing": 45,
+  "items_per_feed": 55,
+  "items_per_listing": 55,
   "listing_pages_per_source": 2
 }
