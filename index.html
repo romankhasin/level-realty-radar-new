@@ -27,6 +27,17 @@
       <div class="stat"><b id="competitorsCount">—</b><span>с конкурентами</span></div>
     </div>
 
+
+    <section class="relevance-navigation" aria-label="Фильтр по релевантности">
+      <span class="relevance-navigation__label">Релевантность</span>
+      <div class="relevance-buttons">
+        <button class="relevance-button active" data-relevance="" type="button">Все</button>
+        <button class="relevance-button relevance-button--high" data-relevance="Высокая" type="button">🔥 Высокая</button>
+        <button class="relevance-button relevance-button--medium" data-relevance="Средняя" type="button">Средняя</button>
+        <button class="relevance-button relevance-button--low" data-relevance="Низкая" type="button">Низкая</button>
+      </div>
+    </section>
+
     <div class="toolbar">
       <input id="searchInput" placeholder="Поиск по новостям и рекомендациям…" oninput="render()">
       <select id="streamFilter" onchange="render()"><option value="">Все потоки</option></select><select id="sourceFilter" onchange="render()"><option value="">Все источники</option></select>
