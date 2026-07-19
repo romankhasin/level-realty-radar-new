@@ -1,29 +1,30 @@
 {
-  "last_update": null,
+  "last_update": "2026-07-19T11:16:19+03:00",
   "timezone": "Europe/Moscow",
-  "trigger": "not_started",
-  "trigger_label": "Обновление ещё не запускалось",
-  "run_number": "",
+  "trigger": "workflow_dispatch",
+  "trigger_label": "Запущено вручную",
+  "run_number": "20",
+  "run_id": "29679371021",
   "branch": "main",
-  "health": "unknown",
+  "health": "warning",
   "russian": {
-    "items": 0,
-    "sources": 0,
-    "sources_ok": 0,
-    "sources_warning": 0,
+    "items": 34,
+    "sources": 11,
+    "sources_ok": 11,
+    "sources_warning": 39,
     "sources_failed": 0
   },
   "global": {
-    "items": 0,
-    "sources": 0,
-    "sources_ok": 0,
-    "sources_warning": 0,
+    "items": 57,
+    "sources": 10,
+    "sources_ok": 10,
+    "sources_warning": 10,
     "sources_failed": 0
   },
   "totals": {
-    "items": 0,
-    "sources": 0,
-    "warnings": 0,
+    "items": 91,
+    "sources": 21,
+    "warnings": 49,
     "errors": 0
   },
   "schedule": {
