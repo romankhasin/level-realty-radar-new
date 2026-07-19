@@ -30,6 +30,39 @@
       <a class="back-link" href="./index.html">← Вернуться к российской ленте</a>
     </div>
 
+    
+    <section class="update-monitor" id="updateMonitor" aria-live="polite">
+      <div class="update-monitor__head">
+        <div>
+          <div class="eyebrow">СОСТОЯНИЕ АВТООБНОВЛЕНИЯ</div>
+          <h2>Система обновления</h2>
+        </div>
+        <span class="update-health update-health--loading" id="updateHealth">Проверяем…</span>
+      </div>
+      <div class="update-monitor__grid">
+        <div class="update-monitor__item">
+          <span>Последнее обновление</span>
+          <b id="statusLastUpdate">—</b>
+        </div>
+        <div class="update-monitor__item">
+          <span>Тип запуска</span>
+          <b id="statusTrigger">—</b>
+        </div>
+        <div class="update-monitor__item">
+          <span>Материалов в базе</span>
+          <b id="statusItems">—</b>
+        </div>
+        <div class="update-monitor__item">
+          <span>Ошибки источников</span>
+          <b id="statusErrors">—</b>
+        </div>
+      </div>
+      <div class="update-monitor__foot">
+        <span id="statusSchedule">Ежедневно около 08:30 по Москве</span>
+        <span id="statusRun"></span>
+      </div>
+    </section>
+
     <div class="stats">
       <div class="stat"><b id="globalTotal">—</b><span>мировых материалов</span></div>
       <div class="stat"><b id="globalWeek">—</b><span>за последние 7 дней</span></div>

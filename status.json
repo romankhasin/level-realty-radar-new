@@ -1,0 +1,33 @@
+{
+  "last_update": null,
+  "timezone": "Europe/Moscow",
+  "trigger": "not_started",
+  "trigger_label": "Обновление ещё не запускалось",
+  "run_number": "",
+  "branch": "main",
+  "health": "unknown",
+  "russian": {
+    "items": 0,
+    "sources": 0,
+    "sources_ok": 0,
+    "sources_warning": 0,
+    "sources_failed": 0
+  },
+  "global": {
+    "items": 0,
+    "sources": 0,
+    "sources_ok": 0,
+    "sources_warning": 0,
+    "sources_failed": 0
+  },
+  "totals": {
+    "items": 0,
+    "sources": 0,
+    "warnings": 0,
+    "errors": 0
+  },
+  "schedule": {
+    "cron": "30 5 * * *",
+    "display": "Ежедневно около 08:30 по Москве"
+  }
+}
