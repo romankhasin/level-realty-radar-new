@@ -1,10 +1,10 @@
 {
-  "last_update": "2026-07-19T11:16:19+03:00",
+  "last_update": "2026-07-19T13:52:10+03:00",
   "timezone": "Europe/Moscow",
-  "trigger": "workflow_dispatch",
-  "trigger_label": "Запущено вручную",
-  "run_number": "20",
-  "run_id": "29679371021",
+  "trigger": "schedule",
+  "trigger_label": "Автоматически по расписанию",
+  "run_number": "21",
+  "run_id": "29683945264",
   "branch": "main",
   "health": "warning",
   "russian": {
@@ -15,14 +15,14 @@
     "sources_failed": 0
   },
   "global": {
-    "items": 57,
+    "items": 59,
     "sources": 10,
     "sources_ok": 10,
     "sources_warning": 10,
     "sources_failed": 0
   },
   "totals": {
-    "items": 91,
+    "items": 93,
     "sources": 21,
     "warnings": 49,
     "errors": 0
