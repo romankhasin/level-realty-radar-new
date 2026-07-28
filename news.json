@@ -1,61 +1,61 @@
 {
-  "updated_at": "2026-07-27T17:04:32+03:00",
+  "updated_at": "2026-07-28T15:28:26+03:00",
   "stats": {
-    "sources_ok": 15,
-    "sources_warning": 35,
+    "sources_ok": 16,
+    "sources_warning": 34,
     "sources_failed": 0
   },
   "source_status": {
     "Домклик": "warning · html fallback · 0",
+    "Cossa": "ok · rss · 1",
     "Sostav": "ok · rss · 4",
-    "Cossa": "ok · rss · 3",
-    "ЕРЗ.РФ": "warning · html fallback · 0",
     "AdIndex": "ok · html fallback · 3",
-    "ЦИАН Журнал": "warning · html fallback · 0",
+    "Движение.ру": "warning · html fallback · 0",
+    "ЕРЗ.РФ": "warning · html fallback · 0",
     "АКАР": "ok · rss · 1",
     "Mediascope": "warning · html fallback · 0",
     "Calltouch": "ok · rss · 2",
-    "Яндекс Реклама": "ok · rss · 7",
-    "РБК Недвижимость": "ok · html fallback · 2",
+    "РБК Недвижимость": "ok · html fallback · 1",
     "eLama": "ok · rss · 9",
-    "Движение.ру": "warning · html fallback · 0",
+    "ЦИАН Журнал": "warning · html fallback · 0",
+    "Яндекс Реклама": "ok · rss · 7",
     "CORE.XP": "warning · html fallback · 0",
     "АЛЛЕ Недвижимость": "ok · rss · 5",
+    "New Retail": "warning · rss · 0",
     "NF Group": "warning · html fallback · 0",
     "Roistat": "ok · rss · 7",
-    "New Retail": "warning · rss · 0",
-    "Mindbox": "warning · rss · 0",
     "CMWP": "warning · html fallback · 0",
-    "Urban Awards": "warning · html fallback · 0",
-    "Rusability": "ok · html fallback · 1",
-    "VK Реклама": "warning · html fallback · 0",
+    "Mindbox": "warning · rss · 0",
     "Retail.ru": "warning · html fallback · 0",
-    "Novostroy-M": "warning · html fallback · 0",
-    "Nikoliers": "warning · html fallback · 0",
+    "Urban Awards": "warning · html fallback · 0",
+    "VK Реклама": "warning · html fallback · 0",
+    "Rusability": "ok · html fallback · 2",
     "ДОМ.РФ": "warning · html fallback · 0",
-    "Ricci": "warning · html fallback · 0",
+    "Novostroy-M": "warning · html fallback · 0",
     "Realty.ru": "warning · html fallback · 0",
+    "Nikoliers": "warning · html fallback · 0",
+    "Frank Media": "ok · rss · 1",
     "Barnes Moscow": "warning · html fallback · 0",
-    "Frank Media": "warning · rss · 0",
-    "Alfa Only": "warning · html fallback · 0",
     "Сбер Первый": "warning · html fallback · 0",
+    "Alfa Only": "warning · html fallback · 0",
+    "Ricci": "warning · html fallback · 0",
     "Intermark Real Estate": "warning · html fallback · 0",
     "Frank RG": "ok · html fallback · 2",
+    "Т-Банк Private": "warning · html fallback · 0",
     "Forbes Life": "warning · html fallback · 0",
+    "The Carlton Moscow": "warning · html fallback · 0",
+    "Robb Report Russia": "warning · html fallback · 0",
     "The Blueprint": "ok · rss · 1",
-    "Kalinka Ecosystem": "ok · html fallback · 1",
     "ЦУМ": "ok · html fallback · 1",
     "Bosco": "warning · html fallback · 0",
     "Hongqi Россия": "warning · html fallback · 0",
-    "The Carlton Moscow": "warning · html fallback · 0",
-    "Porsche Россия": "warning · html fallback · 0",
-    "Robb Report Russia": "warning · html fallback · 0",
+    "Kalinka Ecosystem": "ok · html fallback · 1",
     "Whitewill": "warning · html fallback · 0",
+    "Porsche Россия": "warning · html fallback · 0",
     "Cube.Moscow": "warning · rss · 0",
-    "Т-Банк Private": "warning · html fallback · 0",
     "Barvikha Hotel & Spa": "warning · html fallback · 0",
-    "Cosmoscow": "warning · html fallback · 0",
-    "Penny Lane Realty": "warning · html fallback · 0"
+    "Penny Lane Realty": "warning · html fallback · 0",
+    "Cosmoscow": "warning · html fallback · 0"
   },
   "items": [
     {
@@ -90,8 +90,39 @@
       ]
     },
     {
+      "id": "a916cbd3b1ea97ea",
+      "date": "2026-07-28",
+      "source": "АЛЛЕ Недвижимость",
+      "source_tier": 3,
+      "source_kind": "realty",
+      "title": "Квартира на первом этаже: плюсы, минусы и стоит ли покупать в 2026 году",
+      "url": "https://allestate.pro/news/28.07.2026/kvartira-na-pervom-etazhe-plyusy-minusy-i-stoit-li-pokupat-v-2026-godu",
+      "summary": "Выбор квартиры — это всегда баланс между бюджетом, комфортом и долгосрочными перспективами. В 2026 году рынок недвижимости в России остаётся разнородным: в одних локациях покупатели гонятся за видами с высоких этажей, в других — сознательно выбирают первый этаж, видя в нём не компромисс, а набор вполне конкретных преимуществ. При этом страхи, связанные с первым этажом, никуда не исчезли: вопросы безопасности, шума, приватности и сырости по‑прежнему волнуют людей. Разберёмся, насколько эти опасения актуальны сегодня, какие проблемы действительно стоит учитывать, а какие в современных новостройках уже решены конструктивно.",
+      "topic": "Медиарынок",
+      "stream": "Недвижимость × маркетинг",
+      "competitors": [],
+      "luxury": false,
+      "luxury_score": 0,
+      "luxury_brands": [],
+      "importance": 94,
+      "relevance_score": 94,
+      "relevance_label": "Высокая",
+      "signal_type": "Исследование",
+      "urgency": "Средняя",
+      "team": [
+        "Медиапланирование",
+        "Стратегия"
+      ],
+      "level_value": "Материал находится на стыке недвижимости и маркетинга и может дать практический ориентир для кампаний Level.",
+      "recommendations": [
+        "Сопоставить механику с текущими кампаниями.",
+        "Проверить применимость к конкретному проекту Level.",
+        "Запустить ограниченный тест с заранее заданным KPI."
+      ]
+    },
+    {
       "id": "2c5e6bc6950f5ca7",
-      "date": "2026-07-27",
+      "date": "2026-07-28",
       "source": "Frank RG",
       "source_tier": 1,
       "source_kind": "private_banking",
@@ -122,8 +153,42 @@
       ]
     },
     {
+      "id": "859d042b28ada012",
+      "date": "2026-07-28",
+      "source": "Rusability",
+      "source_tier": 3,
+      "source_kind": "marketing",
+      "title": "Маркетинг Дифференцированный CPA: как определить допустимую стоимость лида по сегментам в 2026 Дифференцированный CPA позволяет оптимизировать рекламные расходы, устанавливая разную допустимую стоимость лида для различных сегментов целевой аудитории и продуктов, исходя из их потенциальной прибыльности. Это максимизирует ROMI и общую прибыль бизнеса за счёт точного распределения бюджета. Денис Орлов · 14 мин 0 ♥",
+      "url": "https://rusability.ru/articles/differencirovannyy-cpa-kak-opredelit-dopustimuyu-stoimost-lida-po-segmentam-v-2026",
+      "summary": "Маркетинг Дифференцированный CPA: как определить допустимую стоимость лида по сегментам в 2026 Дифференцированный CPA позволяет оптимизировать рекламные расходы, устанавливая разную допустимую стоимость лида для различных сегментов целевой аудитории и продуктов, исходя из их потенциальной прибыльности. Это максимизирует ROMI и общую прибыль бизнеса за счёт точного распределения бюджета. Денис Орлов · 14 мин 0 ♥",
+      "topic": "Performance",
+      "stream": "Действия конкурентов",
+      "competitors": [
+        "ТОЧНО"
+      ],
+      "luxury": false,
+      "luxury_score": 0,
+      "luxury_brands": [],
+      "importance": 71,
+      "relevance_score": 71,
+      "relevance_label": "Средняя",
+      "signal_type": "Конкурент",
+      "urgency": "Высокая",
+      "team": [
+        "Performance",
+        "CRM",
+        "Аналитика"
+      ],
+      "level_value": "Упоминается ТОЧНО. Материал помогает сравнить позиционирование, каналы, креатив или офер конкурента с активностями Level.",
+      "recommendations": [
+        "Сопоставить сообщение и визуальный подход с текущими креативами Level.",
+        "Проверить медиаприсутствие, поисковый интерес и посадочные страницы конкурента.",
+        "Оценить, можно ли адаптировать механику для релевантного ЖК."
+      ]
+    },
+    {
       "id": "2cab5e17a8e4d53a",
-      "date": "2026-07-27",
+      "date": "2026-07-28",
       "source": "AdIndex",
       "source_tier": 2,
       "source_kind": "marketing",
@@ -151,6 +216,361 @@
         "Выделить механику кейса без отраслевой оболочки.",
         "Определить подходящий ЖК, аудиторию и этап воронки.",
         "Собрать быстрый прототип или креативный тест."
+      ]
+    },
+    {
+      "id": "96bfb25787cd1605",
+      "date": "2026-07-28",
+      "source": "The Blueprint",
+      "source_tier": 2,
+      "source_kind": "luxury_lifestyle",
+      "title": "LVMH впервые за два года зафиксировал рост продаж в модном сегменте",
+      "url": "https://theblueprint.ru/news/41018",
+      "summary": "Выручка Louis Vuitton, Dior, Celine, Loro Piana и других брендов выросла во втором квартале 2026-го на 1%.",
+      "topic": "Performance",
+      "stream": "Luxury Marketing",
+      "competitors": [],
+      "luxury": true,
+      "luxury_score": 40,
+      "luxury_brands": [
+        "louis vuitton",
+        "dior"
+      ],
+      "importance": 58,
+      "relevance_score": 58,
+      "relevance_label": "Средняя",
+      "signal_type": "Luxury",
+      "urgency": "Высокая",
+      "team": [
+        "Performance",
+        "CRM",
+        "Аналитика"
+      ],
+      "level_value": "Материал показывает, как премиальные бренды работают с состоятельной аудиторией через сервис, персонализацию, эксклюзивность и клиентский опыт. Подход можно адаптировать для премиальных проектов Level.",
+      "recommendations": [
+        "Выделить механику работы с премиальной аудиторией: сервис, доступ, клубность или персонализация.",
+        "Проверить применимость к премиальным ЖК и клиентским коммуникациям Level.",
+        "Сформировать тест для CRM, спецпроекта, мероприятия или персонального предложения."
+      ]
+    },
+    {
+      "id": "eb9c3758b158e23f",
+      "date": "2026-07-28",
+      "source": "Rusability",
+      "source_tier": 3,
+      "source_kind": "marketing",
+      "title": "SMM Как превратить подписчика в покупателя: сценарии продаж в VK и Telegram через контент Превратить подписчиков в покупателей возможно без прямых рекламных кампаний, выстраивая пошаговые сценарии продаж через контент в VK и Telegram. Ключ в системном подходе, который фокусируется на создании ценности, доверия и вовлечённости на каждом этапе воронки продаж. Дарья Милованова · 14 мин 0 ♥",
+      "url": "https://rusability.ru/articles/kak-prevratit-podpischika-v-pokupatelya-scenarii-prodazh-v-vk-i-telegram-cherez-kontent",
+      "summary": "SMM Как превратить подписчика в покупателя: сценарии продаж в VK и Telegram через контент Превратить подписчиков в покупателей возможно без прямых рекламных кампаний, выстраивая пошаговые сценарии продаж через контент в VK и Telegram. Ключ в системном подходе, который фокусируется на создании ценности, доверия и вовлечённости на каждом этапе воронки продаж. Дарья Милованова · 14 мин 0 ♥",
+      "topic": "Performance",
+      "stream": "Недвижимость × маркетинг",
+      "competitors": [],
+      "luxury": false,
+      "luxury_score": 0,
+      "luxury_brands": [],
+      "importance": 56,
+      "relevance_score": 56,
+      "relevance_label": "Средняя",
+      "signal_type": "Маркетинг",
+      "urgency": "Высокая",
+      "team": [
+        "Performance",
+        "CRM",
+        "Аналитика"
+      ],
+      "level_value": "Материал находится на стыке недвижимости и маркетинга и может дать практический ориентир для кампаний Level.",
+      "recommendations": [
+        "Сопоставить механику с текущими кампаниями.",
+        "Проверить применимость к конкретному проекту Level.",
+        "Запустить ограниченный тест с заранее заданным KPI."
+      ]
+    },
+    {
+      "id": "14e94ee8d55be466",
+      "date": "2026-07-28",
+      "source": "Sostav",
+      "source_tier": 2,
+      "source_kind": "marketing",
+      "title": "От горячего спроса до охвата: как изменился медиамикс на российском рынке",
+      "url": "https://www.sostav.ru/publication/ot-goryachego-sprosa-do-okhvata-kak-izmenilsya-mediamiks-na-rossijskom-rynke-85547.html",
+      "summary": "Как собрать рекламную стратегию в 2026 году, чтобы не переплачивать за привлечение клиентов",
+      "topic": "Рынок недвижимости",
+      "stream": "Маркетинговая практика",
+      "competitors": [],
+      "luxury": false,
+      "luxury_score": 0,
+      "luxury_brands": [],
+      "importance": 52,
+      "relevance_score": 52,
+      "relevance_label": "Средняя",
+      "signal_type": "Кейс",
+      "urgency": "Средняя",
+      "team": [
+        "Стратегия",
+        "CRM",
+        "Продукт"
+      ],
+      "level_value": "Практический маркетинговый материал может улучшить аналитику, CRM, контент, персонализацию или оценку эффективности кампаний Level.",
+      "recommendations": [
+        "Сопоставить подход с текущими процессами команды.",
+        "Выбрать один применимый элемент для небольшого теста.",
+        "Заранее определить метрику успеха и период оценки."
+      ]
+    },
+    {
+      "id": "055073051f9b4348",
+      "date": "2026-07-28",
+      "source": "ЦУМ",
+      "source_tier": 2,
+      "source_kind": "luxury_retail",
+      "title": "Мода Первая рекламная кампания Антонина Трона для Balmain",
+      "url": "https://www.tsum.ru/news/50002298.html",
+      "summary": "Мода Первая рекламная кампания Антонина Трона для Balmain",
+      "topic": "Новости",
+      "stream": "Luxury Marketing",
+      "competitors": [],
+      "luxury": true,
+      "luxury_score": 0,
+      "luxury_brands": [],
+      "importance": 51,
+      "relevance_score": 51,
+      "relevance_label": "Средняя",
+      "signal_type": "Luxury",
+      "urgency": "Средняя",
+      "team": [
+        "Стратегия",
+        "Медиапланирование"
+      ],
+      "level_value": "Материал показывает, как премиальные бренды работают с состоятельной аудиторией через сервис, персонализацию, эксклюзивность и клиентский опыт. Подход можно адаптировать для премиальных проектов Level.",
+      "recommendations": [
+        "Выделить механику работы с премиальной аудиторией: сервис, доступ, клубность или персонализация.",
+        "Проверить применимость к премиальным ЖК и клиентским коммуникациям Level.",
+        "Сформировать тест для CRM, спецпроекта, мероприятия или персонального предложения."
+      ]
+    },
+    {
+      "id": "a686421a62708f46",
+      "date": "2026-07-28",
+      "source": "Kalinka Ecosystem",
+      "source_tier": 1,
+      "source_kind": "premium_realty",
+      "title": "Студия за 30 миллионов: назван минимальный бюджет покупки в премиум-новостройках Москвы",
+      "url": "https://kalinka-realty.ru/news/studiia-za-30-millionov-nazvan-minimalnyi-biudzhet-pokupki-v-premium-novostroikakh-moskvy/",
+      "summary": "Студия за 30 миллионов: назван минимальный бюджет покупки в премиум-новостройках Москвы",
+      "topic": "Медиарынок",
+      "stream": "Luxury Marketing",
+      "competitors": [],
+      "luxury": true,
+      "luxury_score": 11,
+      "luxury_brands": [],
+      "importance": 48,
+      "relevance_score": 48,
+      "relevance_label": "Высокая",
+      "signal_type": "Luxury",
+      "urgency": "Средняя",
+      "team": [
+        "Медиапланирование",
+        "Стратегия"
+      ],
+      "level_value": "Материал показывает, как премиальные бренды работают с состоятельной аудиторией через сервис, персонализацию, эксклюзивность и клиентский опыт. Подход можно адаптировать для премиальных проектов Level.",
+      "recommendations": [
+        "Выделить механику работы с премиальной аудиторией: сервис, доступ, клубность или персонализация.",
+        "Проверить применимость к премиальным ЖК и клиентским коммуникациям Level.",
+        "Сформировать тест для CRM, спецпроекта, мероприятия или персонального предложения."
+      ]
+    },
+    {
+      "id": "f7bb4c9ee56de373",
+      "date": "2026-07-28",
+      "source": "AdIndex",
+      "source_tier": 2,
+      "source_kind": "marketing",
+      "title": "О том, как с помощью программатик-рекламы приблизиться к перформансу по стоимости действия и повысить узнаваемость бренда на 7–8%, — в кейсе",
+      "url": "https://adindex.ru/case/2026/07/2/346852.phtml?erid=2VtzqvABFS1",
+      "summary": "О том, как с помощью программатик-рекламы приблизиться к перформансу по стоимости действия и повысить узнаваемость бренда на 7–8%, — в кейсе",
+      "topic": "Бренд и креатив",
+      "stream": "Идеи из других отраслей",
+      "competitors": [],
+      "luxury": false,
+      "luxury_score": 0,
+      "luxury_brands": [],
+      "importance": 45,
+      "relevance_score": 45,
+      "relevance_label": "Низкая",
+      "signal_type": "Исследование",
+      "urgency": "Средняя",
+      "team": [
+        "Бренд",
+        "Креатив",
+        "PR"
+      ],
+      "level_value": "Кейс относится к другой категории, но его механика, креатив или способ вовлечения аудитории можно адаптировать для Level.",
+      "recommendations": [
+        "Выделить механику кейса без отраслевой оболочки.",
+        "Определить подходящий ЖК, аудиторию и этап воронки.",
+        "Собрать быстрый прототип или креативный тест."
+      ]
+    },
+    {
+      "id": "0b9656985dadaa17",
+      "date": "2026-07-28",
+      "source": "Frank RG",
+      "source_tier": 1,
+      "source_kind": "private_banking",
+      "title": "Private Banking 2026 Ежегодное исследование банковских услуг для клиентов с капиталом от $1 млн. 26 июня 2026 года",
+      "url": "https://frankrg.com/research/private-banking-2026",
+      "summary": "Private Banking 2026 Ежегодное исследование банковских услуг для клиентов с капиталом от $1 млн. 26 июня 2026 года",
+      "topic": "Исследование",
+      "stream": "Luxury Marketing",
+      "competitors": [],
+      "luxury": true,
+      "luxury_score": 22,
+      "luxury_brands": [],
+      "importance": 45,
+      "relevance_score": 44,
+      "relevance_label": "Высокая",
+      "signal_type": "Luxury",
+      "urgency": "Средняя",
+      "team": [
+        "Стратегия",
+        "Аналитика",
+        "Бренд"
+      ],
+      "level_value": "Материал показывает, как премиальные бренды работают с состоятельной аудиторией через сервис, персонализацию, эксклюзивность и клиентский опыт. Подход можно адаптировать для премиальных проектов Level.",
+      "recommendations": [
+        "Выделить механику работы с премиальной аудиторией: сервис, доступ, клубность или персонализация.",
+        "Проверить применимость к премиальным ЖК и клиентским коммуникациям Level.",
+        "Сформировать тест для CRM, спецпроекта, мероприятия или персонального предложения."
+      ]
+    },
+    {
+      "id": "eb5a17cdf3f7f51b",
+      "date": "2026-07-28",
+      "source": "AdIndex",
+      "source_tier": 2,
+      "source_kind": "marketing",
+      "title": "О том, как медийная реклама позволила бренду повысить узнаваемость бренда и увеличить количество транзакций, — в кейсе",
+      "url": "https://adindex.ru/case/2026/07/20/347358.phtml",
+      "summary": "О том, как медийная реклама позволила бренду повысить узнаваемость бренда и увеличить количество транзакций, — в кейсе",
+      "topic": "Бренд и креатив",
+      "stream": "Идеи из других отраслей",
+      "competitors": [],
+      "luxury": false,
+      "luxury_score": 0,
+      "luxury_brands": [],
+      "importance": 45,
+      "relevance_score": 45,
+      "relevance_label": "Низкая",
+      "signal_type": "Исследование",
+      "urgency": "Средняя",
+      "team": [
+        "Бренд",
+        "Креатив",
+        "PR"
+      ],
+      "level_value": "Кейс относится к другой категории, но его механика, креатив или способ вовлечения аудитории можно адаптировать для Level.",
+      "recommendations": [
+        "Выделить механику кейса без отраслевой оболочки.",
+        "Определить подходящий ЖК, аудиторию и этап воронки.",
+        "Собрать быстрый прототип или креативный тест."
+      ]
+    },
+    {
+      "id": "1af21c511936d119",
+      "date": "2026-07-28",
+      "source": "РБК Недвижимость",
+      "source_tier": 2,
+      "source_kind": "realty",
+      "title": "Названы районы Москвы — лидеры по росту высотности новостроек за год Эксклюзив",
+      "url": "https://realty.rbc.ru/news/6a4d5cb79a79474f415e57e9",
+      "summary": "Названы районы Москвы — лидеры по росту высотности новостроек за год Эксклюзив",
+      "topic": "Performance",
+      "stream": "Luxury Marketing",
+      "competitors": [],
+      "luxury": true,
+      "luxury_score": 11,
+      "luxury_brands": [],
+      "importance": 45,
+      "relevance_score": 42,
+      "relevance_label": "Низкая",
+      "signal_type": "Luxury",
+      "urgency": "Средняя",
+      "team": [
+        "Performance",
+        "CRM",
+        "Аналитика"
+      ],
+      "level_value": "Материал показывает, как премиальные бренды работают с состоятельной аудиторией через сервис, персонализацию, эксклюзивность и клиентский опыт. Подход можно адаптировать для премиальных проектов Level.",
+      "recommendations": [
+        "Выделить механику работы с премиальной аудиторией: сервис, доступ, клубность или персонализация.",
+        "Проверить применимость к премиальным ЖК и клиентским коммуникациям Level.",
+        "Сформировать тест для CRM, спецпроекта, мероприятия или персонального предложения."
+      ]
+    },
+    {
+      "id": "747ff89930de1944",
+      "date": "2026-07-28",
+      "source": "Sostav",
+      "source_tier": 2,
+      "source_kind": "marketing",
+      "title": "Глава Cracker Barrel покинет пост после неудачного ребрендинга",
+      "url": "https://www.sostav.ru/publication/glava-cracker-barrel-pokinet-post-posle-neudachnogo-rebrendinga-85617.html",
+      "summary": "Отказ от культового логотипа завершился отставкой CEO",
+      "topic": "Бренд и креатив",
+      "stream": "Идеи из других отраслей",
+      "competitors": [],
+      "luxury": false,
+      "luxury_score": 0,
+      "luxury_brands": [],
+      "importance": 45,
+      "relevance_score": 41,
+      "relevance_label": "Низкая",
+      "signal_type": "Кейс",
+      "urgency": "Средняя",
+      "team": [
+        "Бренд",
+        "Креатив",
+        "PR"
+      ],
+      "level_value": "Кейс относится к другой категории, но его механика, креатив или способ вовлечения аудитории можно адаптировать для Level.",
+      "recommendations": [
+        "Выделить механику кейса без отраслевой оболочки.",
+        "Определить подходящий ЖК, аудиторию и этап воронки.",
+        "Собрать быстрый прототип или креативный тест."
+      ]
+    },
+    {
+      "id": "4d927acfcb14929d",
+      "date": "2026-07-28",
+      "source": "Frank Media",
+      "source_tier": 1,
+      "source_kind": "private_banking",
+      "title": "ВТБ продал последний гостиничный актив — отель Holiday Inn в Сокольниках",
+      "url": "https://frankmedia.ru/295221",
+      "summary": "Гостиница вошла в периметр сделки по реализации «Галс-девелопмента» группе инвесторов в июне Сообщение ВТБ продал последний гостиничный актив — отель Holiday Inn в Сокольниках появилось сначала на Frank Media .",
+      "topic": "Рынок недвижимости",
+      "stream": "Luxury Marketing",
+      "competitors": [
+        "Галс-Девелопмент"
+      ],
+      "luxury": true,
+      "luxury_score": 0,
+      "luxury_brands": [],
+      "importance": 45,
+      "relevance_score": 45,
+      "relevance_label": "Высокая",
+      "signal_type": "Конкурент",
+      "urgency": "Средняя",
+      "team": [
+        "Стратегия",
+        "CRM",
+        "Продукт"
+      ],
+      "level_value": "Материал показывает, как премиальные бренды работают с состоятельной аудиторией через сервис, персонализацию, эксклюзивность и клиентский опыт. Подход можно адаптировать для премиальных проектов Level.",
+      "recommendations": [
+        "Выделить механику работы с премиальной аудиторией: сервис, доступ, клубность или персонализация.",
+        "Проверить применимость к премиальным ЖК и клиентским коммуникациям Level.",
+        "Сформировать тест для CRM, спецпроекта, мероприятия или персонального предложения."
       ]
     },
     {
@@ -218,68 +638,6 @@
       ]
     },
     {
-      "id": "055073051f9b4348",
-      "date": "2026-07-27",
-      "source": "ЦУМ",
-      "source_tier": 2,
-      "source_kind": "luxury_retail",
-      "title": "Мода Первая рекламная кампания Антонина Трона для Balmain",
-      "url": "https://www.tsum.ru/news/50002298.html",
-      "summary": "Мода Первая рекламная кампания Антонина Трона для Balmain",
-      "topic": "Новости",
-      "stream": "Luxury Marketing",
-      "competitors": [],
-      "luxury": true,
-      "luxury_score": 0,
-      "luxury_brands": [],
-      "importance": 51,
-      "relevance_score": 51,
-      "relevance_label": "Средняя",
-      "signal_type": "Luxury",
-      "urgency": "Средняя",
-      "team": [
-        "Стратегия",
-        "Медиапланирование"
-      ],
-      "level_value": "Материал показывает, как премиальные бренды работают с состоятельной аудиторией через сервис, персонализацию, эксклюзивность и клиентский опыт. Подход можно адаптировать для премиальных проектов Level.",
-      "recommendations": [
-        "Выделить механику работы с премиальной аудиторией: сервис, доступ, клубность или персонализация.",
-        "Проверить применимость к премиальным ЖК и клиентским коммуникациям Level.",
-        "Сформировать тест для CRM, спецпроекта, мероприятия или персонального предложения."
-      ]
-    },
-    {
-      "id": "a686421a62708f46",
-      "date": "2026-07-27",
-      "source": "Kalinka Ecosystem",
-      "source_tier": 1,
-      "source_kind": "premium_realty",
-      "title": "Студия за 30 миллионов: назван минимальный бюджет покупки в премиум-новостройках Москвы",
-      "url": "https://kalinka-realty.ru/news/studiia-za-30-millionov-nazvan-minimalnyi-biudzhet-pokupki-v-premium-novostroikakh-moskvy/",
-      "summary": "Студия за 30 миллионов: назван минимальный бюджет покупки в премиум-новостройках Москвы",
-      "topic": "Медиарынок",
-      "stream": "Luxury Marketing",
-      "competitors": [],
-      "luxury": true,
-      "luxury_score": 11,
-      "luxury_brands": [],
-      "importance": 48,
-      "relevance_score": 48,
-      "relevance_label": "Высокая",
-      "signal_type": "Luxury",
-      "urgency": "Средняя",
-      "team": [
-        "Медиапланирование",
-        "Стратегия"
-      ],
-      "level_value": "Материал показывает, как премиальные бренды работают с состоятельной аудиторией через сервис, персонализацию, эксклюзивность и клиентский опыт. Подход можно адаптировать для премиальных проектов Level.",
-      "recommendations": [
-        "Выделить механику работы с премиальной аудиторией: сервис, доступ, клубность или персонализация.",
-        "Проверить применимость к премиальным ЖК и клиентским коммуникациям Level.",
-        "Сформировать тест для CRM, спецпроекта, мероприятия или персонального предложения."
-      ]
-    },
-    {
       "id": "d2a9b61e4622f0f8",
       "date": "2026-07-27",
       "source": "Sostav",
@@ -311,102 +669,6 @@
       ]
     },
     {
-      "id": "f7bb4c9ee56de373",
-      "date": "2026-07-27",
-      "source": "AdIndex",
-      "source_tier": 2,
-      "source_kind": "marketing",
-      "title": "О том, как с помощью программатик-рекламы приблизиться к перформансу по стоимости действия и повысить узнаваемость бренда на 7–8%, — в кейсе",
-      "url": "https://adindex.ru/case/2026/07/2/346852.phtml?erid=2VtzqvABFS1",
-      "summary": "О том, как с помощью программатик-рекламы приблизиться к перформансу по стоимости действия и повысить узнаваемость бренда на 7–8%, — в кейсе",
-      "topic": "Бренд и креатив",
-      "stream": "Идеи из других отраслей",
-      "competitors": [],
-      "luxury": false,
-      "luxury_score": 0,
-      "luxury_brands": [],
-      "importance": 45,
-      "relevance_score": 45,
-      "relevance_label": "Низкая",
-      "signal_type": "Исследование",
-      "urgency": "Средняя",
-      "team": [
-        "Бренд",
-        "Креатив",
-        "PR"
-      ],
-      "level_value": "Кейс относится к другой категории, но его механика, креатив или способ вовлечения аудитории можно адаптировать для Level.",
-      "recommendations": [
-        "Выделить механику кейса без отраслевой оболочки.",
-        "Определить подходящий ЖК, аудиторию и этап воронки.",
-        "Собрать быстрый прототип или креативный тест."
-      ]
-    },
-    {
-      "id": "0b9656985dadaa17",
-      "date": "2026-07-27",
-      "source": "Frank RG",
-      "source_tier": 1,
-      "source_kind": "private_banking",
-      "title": "Private Banking 2026 Ежегодное исследование банковских услуг для клиентов с капиталом от $1 млн. 26 июня 2026 года",
-      "url": "https://frankrg.com/research/private-banking-2026",
-      "summary": "Private Banking 2026 Ежегодное исследование банковских услуг для клиентов с капиталом от $1 млн. 26 июня 2026 года",
-      "topic": "Исследование",
-      "stream": "Luxury Marketing",
-      "competitors": [],
-      "luxury": true,
-      "luxury_score": 22,
-      "luxury_brands": [],
-      "importance": 45,
-      "relevance_score": 44,
-      "relevance_label": "Высокая",
-      "signal_type": "Luxury",
-      "urgency": "Средняя",
-      "team": [
-        "Стратегия",
-        "Аналитика",
-        "Бренд"
-      ],
-      "level_value": "Материал показывает, как премиальные бренды работают с состоятельной аудиторией через сервис, персонализацию, эксклюзивность и клиентский опыт. Подход можно адаптировать для премиальных проектов Level.",
-      "recommendations": [
-        "Выделить механику работы с премиальной аудиторией: сервис, доступ, клубность или персонализация.",
-        "Проверить применимость к премиальным ЖК и клиентским коммуникациям Level.",
-        "Сформировать тест для CRM, спецпроекта, мероприятия или персонального предложения."
-      ]
-    },
-    {
-      "id": "eb5a17cdf3f7f51b",
-      "date": "2026-07-27",
-      "source": "AdIndex",
-      "source_tier": 2,
-      "source_kind": "marketing",
-      "title": "О том, как медийная реклама позволила бренду повысить узнаваемость бренда и увеличить количество транзакций, — в кейсе",
-      "url": "https://adindex.ru/case/2026/07/20/347358.phtml",
-      "summary": "О том, как медийная реклама позволила бренду повысить узнаваемость бренда и увеличить количество транзакций, — в кейсе",
-      "topic": "Бренд и креатив",
-      "stream": "Идеи из других отраслей",
-      "competitors": [],
-      "luxury": false,
-      "luxury_score": 0,
-      "luxury_brands": [],
-      "importance": 45,
-      "relevance_score": 45,
-      "relevance_label": "Низкая",
-      "signal_type": "Исследование",
-      "urgency": "Средняя",
-      "team": [
-        "Бренд",
-        "Креатив",
-        "PR"
-      ],
-      "level_value": "Кейс относится к другой категории, но его механика, креатив или способ вовлечения аудитории можно адаптировать для Level.",
-      "recommendations": [
-        "Выделить механику кейса без отраслевой оболочки.",
-        "Определить подходящий ЖК, аудиторию и этап воронки.",
-        "Собрать быстрый прототип или креативный тест."
-      ]
-    },
-    {
       "id": "e57ebfcd7e807a0f",
       "date": "2026-07-27",
       "source": "РБК Недвижимость",
@@ -429,38 +691,6 @@
       "team": [
         "Стратегия",
         "Медиапланирование"
-      ],
-      "level_value": "Материал показывает, как премиальные бренды работают с состоятельной аудиторией через сервис, персонализацию, эксклюзивность и клиентский опыт. Подход можно адаптировать для премиальных проектов Level.",
-      "recommendations": [
-        "Выделить механику работы с премиальной аудиторией: сервис, доступ, клубность или персонализация.",
-        "Проверить применимость к премиальным ЖК и клиентским коммуникациям Level.",
-        "Сформировать тест для CRM, спецпроекта, мероприятия или персонального предложения."
-      ]
-    },
-    {
-      "id": "1af21c511936d119",
-      "date": "2026-07-27",
-      "source": "РБК Недвижимость",
-      "source_tier": 2,
-      "source_kind": "realty",
-      "title": "Названы районы Москвы — лидеры по росту высотности новостроек за год Эксклюзив",
-      "url": "https://realty.rbc.ru/news/6a4d5cb79a79474f415e57e9",
-      "summary": "Названы районы Москвы — лидеры по росту высотности новостроек за год Эксклюзив",
-      "topic": "Performance",
-      "stream": "Luxury Marketing",
-      "competitors": [],
-      "luxury": true,
-      "luxury_score": 11,
-      "luxury_brands": [],
-      "importance": 45,
-      "relevance_score": 42,
-      "relevance_label": "Низкая",
-      "signal_type": "Luxury",
-      "urgency": "Средняя",
-      "team": [
-        "Performance",
-        "CRM",
-        "Аналитика"
       ],
       "level_value": "Материал показывает, как премиальные бренды работают с состоятельной аудиторией через сервис, персонализацию, эксклюзивность и клиентский опыт. Подход можно адаптировать для премиальных проектов Level.",
       "recommendations": [
