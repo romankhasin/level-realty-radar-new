@@ -1,31 +1,31 @@
 {
-  "updated_at": "2026-08-29T14:48:05+03:00",
+  "updated_at": "2026-08-30T13:38:58+03:00",
   "stats": {
     "sources_ok": 10,
     "sources_warning": 10,
     "sources_failed": 0
   },
   "source_status": {
+    "Robb Report": "ok · 1",
+    "Luxury Daily": "ok · 4",
     "McKinsey Insights": "warning · 0",
     "Jing Daily": "warning · 0",
-    "Luxury Daily": "ok · 4",
+    "ArchDaily": "ok · 7",
     "Mansion Global": "warning · 0",
     "Deloitte Insights": "warning · 0",
-    "Dezeen": "ok · 5",
     "Adweek": "ok · 4",
-    "Wallpaper": "ok · 4",
+    "Wallpaper": "ok · 3",
+    "Think with Google": "warning · 0",
     "Propmodo": "ok · 7",
     "PwC Research": "warning · 0",
-    "Think with Google": "warning · 0",
-    "Robb Report": "ok · 2",
+    "The Trade Desk": "warning · 0",
     "PlaceTech": "warning · 0",
     "Campaign": "warning · 0",
-    "IAB": "ok · 8",
-    "The Trade Desk": "warning · 0",
-    "MarTech": "ok · 2",
-    "HubSpot Marketing": "ok · 12",
     "CREtech": "warning · 0",
-    "ArchDaily": "ok · 8"
+    "Dezeen": "ok · 5",
+    "MarTech": "ok · 2",
+    "IAB": "ok · 8",
+    "HubSpot Marketing": "ok · 12"
   },
   "items": [
     {
