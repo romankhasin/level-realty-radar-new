@@ -1,31 +1,31 @@
 {
-  "updated_at": "2026-09-05T12:16:30+03:00",
+  "updated_at": "2026-09-06T12:38:16+03:00",
   "stats": {
     "sources_ok": 9,
     "sources_warning": 11,
     "sources_failed": 0
   },
   "source_status": {
-    "Jing Daily": "warning · 0",
-    "Dezeen": "ok · 5",
+    "Luxury Daily": "ok · 8",
+    "Robb Report": "ok · 3",
     "Mansion Global": "warning · 0",
+    "ArchDaily": "ok · 5",
+    "Jing Daily": "warning · 0",
     "McKinsey Insights": "warning · 0",
-    "Think with Google": "warning · 0",
+    "Dezeen": "ok · 4",
     "Deloitte Insights": "warning · 0",
-    "PwC Research": "warning · 0",
     "Adweek": "warning · 0",
     "Propmodo": "ok · 9",
+    "Think with Google": "warning · 0",
+    "PwC Research": "warning · 0",
     "PlaceTech": "warning · 0",
-    "Campaign": "warning · 0",
     "Wallpaper": "ok · 2",
-    "HubSpot Marketing": "ok · 12",
     "CREtech": "warning · 0",
+    "Campaign": "warning · 0",
     "The Trade Desk": "warning · 0",
-    "IAB": "ok · 8",
     "MarTech": "ok · 3",
-    "Robb Report": "ok · 2",
-    "Luxury Daily": "ok · 8",
-    "ArchDaily": "ok · 6"
+    "IAB": "ok · 8",
+    "HubSpot Marketing": "ok · 12"
   },
   "items": [
     {
@@ -52,6 +52,32 @@
         "Сравнить позиционирование и презентацию продукта с проектами Level.",
         "Проверить применимость формата шоурума, контента или клиентского маршрута.",
         "Использовать находку при разработке концепции следующей кампании."
+      ]
+    },
+    {
+      "id": "376d1bdb6cbaadd6",
+      "date": "2026-09-05",
+      "source": "Robb Report",
+      "source_tier": 2,
+      "title": "Actor and Chef Emilio Vitolo on His Rare Patek Philippe, Bespoke Suits, and His Most Impressive Dish",
+      "summary": "The owner of Emilio's Ballato in N.Y.C. shares his drink of choice and definition of luxury.",
+      "title_original": "Actor and Chef Emilio Vitolo on His Rare Patek Philippe, Bespoke Suits, and His Most Impressive Dish",
+      "summary_original": "The owner of Emilio's Ballato in N.Y.C. shares his drink of choice and definition of luxury.",
+      "title_ru": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+      "summary_ru": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know.",
+      "translation_provider": "Google Translate",
+      "url": "https://robbreport.com/food-drink/dining/emilio-vitolo-interview-1238574120/",
+      "category": "Luxury",
+      "region": "USA",
+      "relevance_score": 26,
+      "relevance_label": "Низкая",
+      "potential": 2,
+      "signal_type": "Luxury-практика",
+      "level_value": "Материал показывает, как премиальные бренды и проекты работают с состоятельной аудиторией через сервис, персонализацию, эксклюзивность и клиентский опыт.",
+      "level_applications": [
+        "Выделить механику клубности, персонального сервиса или ограниченного доступа.",
+        "Адаптировать подход для премиальных проектов и CRM-коммуникаций Level.",
+        "Проверить формат закрытого события, партнёрства или concierge-сервиса."
       ]
     },
     {
@@ -13000,32 +13026,6 @@
         "Сравнить позиционирование и презентацию продукта с проектами Level.",
         "Проверить применимость формата шоурума, контента или клиентского маршрута.",
         "Использовать находку при разработке концепции следующей кампании."
-      ]
-    },
-    {
-      "id": "bf19b60feaeb3675",
-      "date": "2026-07-20",
-      "source": "Propmodo",
-      "source_tier": 1,
-      "title": "Real Estate Owners Are Using Exclusive Dining Events to Activate Unused Space and Attract New Tenants",
-      "summary": "Commercial real estate owners are transforming underused spaces into revenue-generating, exclusive dining and event venues powered by top chefs. The post Real Estate Owners Are Using Exclusive Dining Events to Activate Unused Space and Attract New Tenants appeared first on Propmodo .",
-      "title_original": "Real Estate Owners Are Using Exclusive Dining Events to Activate Unused Space and Attract New Tenants",
-      "summary_original": "Commercial real estate owners are transforming underused spaces into revenue-generating, exclusive dining and event venues powered by top chefs. The post Real Estate Owners Are Using Exclusive Dining Events to Activate Unused Space and Attract New Tenants appeared first on Propmodo .",
-      "title_ru": "Владельцы недвижимости используют эксклюзивные гастрономические мероприятия, чтобы активизировать неиспользуемые помещения и привлечь новых арендаторов",
-      "summary_ru": "Владельцы коммерческой недвижимости превращают малоиспользуемые помещения в приносящие доход эксклюзивные рестораны и площадки для проведения мероприятий, где работают лучшие шеф-повара. Публикация «Владельцы недвижимости используют эксклюзивные гастрономические мероприятия для активации неиспользуемых помещений и привлечения новых арендаторов» впервые появилась на Propmodo.",
-      "translation_provider": "Google Translate",
-      "url": "https://propmodo.com/real-estate-owners-are-using-exclusive-dining-events-to-activate-unused-space-and-attract-new-tenants/",
-      "category": "PropTech",
-      "region": "USA",
-      "relevance_score": 30,
-      "relevance_label": "Низкая",
-      "potential": 2,
-      "signal_type": "PropTech",
-      "level_value": "Технология может улучшить клиентский путь, дистанционные продажи, презентацию продукта или операционные процессы.",
-      "level_applications": [
-        "Оценить влияние технологии на путь клиента и работу отдела продаж.",
-        "Проверить возможность пилота на одном проекте или в одном офисе продаж.",
-        "Задать KPI: вовлечение, конверсия, скорость принятия решения или качество лида."
       ]
     }
   ]
