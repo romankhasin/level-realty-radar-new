@@ -1,17 +1,17 @@
 {
-  "last_update": "2026-10-02T14:17:39+03:00",
+  "last_update": "2026-10-03T13:35:59+03:00",
   "timezone": "Europe/Moscow",
   "trigger": "schedule",
   "trigger_label": "Автоматически по расписанию",
-  "run_number": "96",
-  "run_id": "36999706764",
+  "run_number": "97",
+  "run_id": "37116627434",
   "branch": "main",
   "health": "warning",
   "russian": {
     "items": 418,
     "sources": 17,
-    "sources_ok": 14,
-    "sources_warning": 36,
+    "sources_ok": 13,
+    "sources_warning": 37,
     "sources_failed": 0
   },
   "global": {
@@ -24,7 +24,7 @@
   "totals": {
     "items": 918,
     "sources": 27,
-    "warnings": 47,
+    "warnings": 48,
     "errors": 0
   },
   "schedule": {
