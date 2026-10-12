@@ -8,7 +8,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
 from pathlib import Path
-from urllib.parse import urljoin, urlparse
+from urllib.parse import parse_qsl, urlencode, urljoin, urlparse, urlunparse
 
 import feedparser
 import requests
@@ -18,6 +18,7 @@ ROOT = Path(__file__).resolve().parent
 CONFIG = json.loads((ROOT / "sources.json").read_text(encoding="utf-8"))
 COMPETITORS = json.loads((ROOT / "competitors.json").read_text(encoding="utf-8"))
 OUTPUT = ROOT / "news.json"
+SEEN_FILE = ROOT / "seen_urls.json"
 MOSCOW = timezone(timedelta(hours=3))
 
 SESSION = requests.Session()
@@ -233,15 +234,92 @@ def analysis_for(topic: str, competitors: list[str], importance: int):
     return signal, priority, value, recs
 
 
-def parse_date(entry) -> datetime:
+TRACKING_PARAMS = {"erid", "from", "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "ref", "yclid", "fbclid", "gclid"}
+
+
+def normalize_url(url: str) -> str:
+    parts = urlparse(url.split("#")[0])
+    query = [(k, v) for k, v in parse_qsl(parts.query, keep_blank_values=True) if k.lower() not in TRACKING_PARAMS]
+    return urlunparse(parts._replace(query=urlencode(query)))
+
+
+def parse_date(entry) -> datetime | None:
     for key in ("published", "updated", "created"):
         value = getattr(entry, key, None)
         if value:
             try:
-                return parsedate_to_datetime(value).astimezone(MOSCOW)
+                d = parsedate_to_datetime(value)
+                return (d if d.tzinfo else d.replace(tzinfo=MOSCOW)).astimezone(MOSCOW)
             except Exception:
                 pass
-    return datetime.now(MOSCOW)
+    return None
+
+
+def _valid_date(year: int, month: int, day: int) -> datetime | None:
+    try:
+        d = datetime(year, month, day, 12, tzinfo=MOSCOW)
+    except ValueError:
+        return None
+    if d.year < 2015 or d > datetime.now(MOSCOW) + timedelta(days=1):
+        return None
+    return d
+
+
+def date_from_url(url: str) -> datetime | None:
+    path = urlparse(url).path
+    m = re.search(r"/(20\d{2})[/-](\d{1,2})[/-](\d{1,2})(?:/|$|[^\d])", path)
+    if m:
+        return _valid_date(int(m[1]), int(m[2]), int(m[3]))
+    m = re.search(r"/(\d{1,2})\.(\d{1,2})\.(20\d{2})(?:/|$)", path)
+    if m:
+        return _valid_date(int(m[3]), int(m[2]), int(m[1]))
+    return None
+
+
+def _parse_iso(value: str) -> datetime | None:
+    value = (value or "").strip()
+    m = re.match(r"(20\d{2})-(\d{2})-(\d{2})", value)
+    if m:
+        return _valid_date(int(m[1]), int(m[2]), int(m[3]))
+    m = re.match(r"(\d{1,2})\.(\d{1,2})\.(20\d{2})", value)
+    if m:
+        return _valid_date(int(m[3]), int(m[2]), int(m[1]))
+    return None
+
+
+def date_from_page(url: str) -> datetime | None:
+    """Достаёт реальную дату публикации со страницы статьи."""
+    try:
+        soup = BeautifulSoup(request(url, 15).text, "html.parser")
+    except Exception:
+        return None
+    selectors = [
+        ('meta[property="article:published_time"]', "content"),
+        ('meta[property="og:published_time"]', "content"),
+        ('meta[itemprop="datePublished"]', "content"),
+        ('meta[name="pubdate"]', "content"),
+        ('meta[name="publish-date"]', "content"),
+        ('meta[name="date"]', "content"),
+        ('[itemprop="datePublished"]', "datetime"),
+        ("time[datetime]", "datetime"),
+    ]
+    for selector, attr in selectors:
+        node = soup.select_one(selector)
+        if node:
+            d = _parse_iso(node.get(attr, ""))
+            if d:
+                return d
+    for script in soup.select('script[type="application/ld+json"]'):
+        m = re.search(r'"datePublished"\s*:\s*"([^"]+)"', script.string or script.get_text() or "")
+        if m:
+            d = _parse_iso(m[1])
+            if d:
+                return d
+    return None
+
+
+def resolve_date(url: str) -> datetime | None:
+    return date_from_url(url) or date_from_page(url)
 
 
 def discover_feeds(homepage: str) -> list[str]:
@@ -266,7 +344,7 @@ def get_feed_rows(source: dict):
 
         rows = []
         for entry in feed.entries[:CONFIG.get("items_per_feed", 45)]:
-            link = getattr(entry, "link", "").split("#")[0]
+            link = normalize_url(getattr(entry, "link", ""))
             title = clean_text(getattr(entry, "title", ""))
             summary = clean_text(getattr(entry, "summary", "") or getattr(entry, "description", ""))
             if link and title:
@@ -287,7 +365,7 @@ def get_listing_rows(source: dict):
         try:
             soup = BeautifulSoup(request(page, 6).text, "html.parser")
             for anchor in soup.select("a[href]"):
-                url = urljoin(page, anchor.get("href", "")).split("#")[0]
+                url = normalize_url(urljoin(page, anchor.get("href", "")))
                 if urlparse(url).netloc != urlparse(source["homepage"]).netloc:
                     continue
                 if not re.search(source["article_pattern"], url):
@@ -298,7 +376,7 @@ def get_listing_rows(source: dict):
                         "url": url,
                         "title": title,
                         "summary": "",
-                        "published": datetime.now(MOSCOW)
+                        "published": None
                     })
         except Exception:
             pass
@@ -564,17 +642,42 @@ def make_item(row: dict, source: dict):
         "recommendations": recs
     }
 
-def collect_source(source: dict):
+def collect_source(source: dict, known: dict, seen: dict):
     rows, method = get_feed_rows(source)
     if not rows:
         rows, method = get_listing_rows(source)
 
+    host = urlparse(source["homepage"]).netloc
+    source_has_history = any(urlparse(url).netloc == host for url in seen)
+
     items = []
-    for row in rows[:CONFIG.get("items_per_listing", 45)]:
+    rows = rows[:CONFIG.get("items_per_listing", 45)]
+    for row in rows:
+        url = row["url"]
+        estimated = False
+        previous = known.get(url)
+        if previous and previous.get("date"):
+            # Уже известная статья: дату не трогаем, иначе старьё всплывает как новое.
+            row["published"] = datetime.fromisoformat(previous["date"]).replace(tzinfo=MOSCOW)
+            estimated = previous.get("date_estimated", False)
+        elif row["published"] is None:
+            if url in seen:
+                # Ссылку уже видели раньше — не выдаём её за новую.
+                continue
+            row["published"] = resolve_date(url)
+            if row["published"] is None:
+                if not source_has_history:
+                    # Первый сбор источника: на странице может быть архив, дату не угадать.
+                    continue
+                # Ссылка впервые появилась в ленте известного источника — значит, вышла недавно.
+                row["published"] = datetime.now(MOSCOW)
+                estimated = True
         item = make_item(row, source)
         if item:
+            if estimated:
+                item["date_estimated"] = True
             items.append(item)
-    return source["name"], items, method
+    return source["name"], items, method, [row["url"] for row in rows]
 
 
 def load_existing():
@@ -585,18 +688,37 @@ def load_existing():
         return {"items": []}
 
 
+def load_seen() -> dict:
+    try:
+        data = json.loads(SEEN_FILE.read_text(encoding="utf-8"))
+        return data if isinstance(data, dict) else {}
+    except Exception:
+        return {}
+
+
 def main():
     existing = load_existing()
-    by_url = {item.get("url"): item for item in existing.get("items", []) if item.get("url")}
+    by_url = {}
+    for item in existing.get("items", []):
+        if item.get("url"):
+            item["url"] = normalize_url(item["url"])
+            by_url.setdefault(item["url"], item)
+    seen = load_seen()
+    today = datetime.now(MOSCOW).date().isoformat()
     status = {}
     ok = warning = failed = 0
 
     with ThreadPoolExecutor(max_workers=8) as executor:
-        futures = [executor.submit(collect_source, source) for source in CONFIG["sources"]]
+        futures = [executor.submit(collect_source, source, dict(by_url), dict(seen)) for source in CONFIG["sources"]]
         for future in as_completed(futures):
             try:
-                name, items, method = future.result()
+                name, items, method, row_urls = future.result()
+                for url in row_urls:
+                    seen.setdefault(url, today)
                 for item in items:
+                    previous = by_url.get(item["url"])
+                    if previous and previous.get("date") and previous["date"] < item["date"]:
+                        item["date"] = previous["date"]
                     by_url[item["url"]] = item
                 if items:
                     status[name] = f"ok · {method} · {len(items)}"
@@ -617,13 +739,13 @@ def main():
         and item.get("relevance_score", 0) >= 36
     ]
 
-    seen = set()
+    seen_titles = set()
     dedup = []
     for item in sorted(rows, key=lambda x: (x.get("date", ""), x.get("importance", 0)), reverse=True):
         key = re.sub(r"\W+", "", item.get("title", "").lower())[:150]
-        if key in seen:
+        if key in seen_titles:
             continue
-        seen.add(key)
+        seen_titles.add(key)
         dedup.append(item)
 
     payload = {
@@ -633,6 +755,12 @@ def main():
         "items": dedup[:CONFIG.get("max_items", 300)]
     }
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    for url in by_url:
+        seen.setdefault(url, today)
+    seen_cutoff = (datetime.now(MOSCOW) - timedelta(days=CONFIG.get("retention_days", 180) + 90)).date().isoformat()
+    seen = {url: day for url, day in seen.items() if day >= seen_cutoff}
+    SEEN_FILE.write_text(json.dumps(seen, ensure_ascii=False, indent=0, sort_keys=True), encoding="utf-8")
     print("Saved", len(payload["items"]), flush=True)
 
 

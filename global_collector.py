@@ -34,7 +34,7 @@ def dt(entry):
                 d=parsedate_to_datetime(value)
                 return d.astimezone(TZ) if d.tzinfo else d.replace(tzinfo=TZ)
             except Exception: pass
-    return datetime.now(TZ)
+    return None
 
 def count(words,text): return sum(1 for w in words if w in text)
 
@@ -132,7 +132,14 @@ def collect(source, previous_by_url=None):
                 if link and title: rows.append({"url":link,"title":title,"summary":summary,"published":dt(e)})
             if rows: break
         except Exception: pass
-    items=[x for x in (make_item(row,source,(previous_by_url or {}).get(row["url"])) for row in rows) if x]
+    previous_by_url=previous_by_url or {}
+    for row in rows:
+        prev=previous_by_url.get(row["url"])
+        if prev and prev.get("date"):
+            # Уже известная статья: сохраняем исходную дату, чтобы она не всплывала как новая.
+            row["published"]=datetime.fromisoformat(prev["date"]).replace(tzinfo=TZ)
+    rows=[row for row in rows if row["published"] is not None]
+    items=[x for x in (make_item(row,source,previous_by_url.get(row["url"])) for row in rows) if x]
     return source["name"],items
 
 def existing():
@@ -145,7 +152,7 @@ def main():
     old=existing(); by_url={i["url"]:i for i in old.get("items",[]) if i.get("url")}
     status={}; ok=warning=failed=0
     with ThreadPoolExecutor(max_workers=8) as ex:
-        futures=[ex.submit(collect,s,by_url) for s in CONFIG["sources"]]
+        futures=[ex.submit(collect,s,dict(by_url)) for s in CONFIG["sources"]]
         for f in as_completed(futures):
             try:
                 name,items=f.result()
