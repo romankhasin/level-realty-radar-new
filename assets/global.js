@@ -15,8 +15,7 @@ function relClass(label){
 }
 function renderGlobalCard(item){
   const date=new Date(item.date+'T12:00:00').toLocaleDateString('ru-RU');
-  const ideas=(item.level_applications||[]).map(v=>`<li>${esc(v)}</li>`).join('');
-  const titleRu=item.title_ru||item.title||item.title_original||'';
+    const titleRu=item.title_ru||item.title||item.title_original||'';
   const summaryRu=item.summary_ru||item.summary||item.summary_original||'';
   const titleOriginal=item.title_original||item.title||'';
   const summaryOriginal=item.summary_original||item.summary||'';
@@ -29,28 +28,19 @@ function renderGlobalCard(item){
     </div>`:''}
     <div class="translated-content" data-lang-content="ru">
       <h2>${esc(titleRu)}</h2>
-      <div class="summary clamp">${esc(summaryRu)}</div>
+      <div class="summary">${esc(summaryRu)}</div>
     </div>
     ${hasTranslation?`<div class="translated-content is-hidden" data-lang-content="original">
       <h2>${esc(titleOriginal)}</h2>
-      <div class="summary clamp">${esc(summaryOriginal)}</div>
+      <div class="summary">${esc(summaryOriginal)}</div>
     </div>`:''}
     <div class="tags">
       <span class="tag global-category-tag">${esc(item.category||'Global')}</span>
       <span class="tag">${esc(item.region||'Global')}</span>
-      <span class="tag ${relClass(item.relevance_label)}">${item.relevance_label==='Высокая'?'':''}${esc(item.relevance_label||'Средняя')}</span>
-    </div>
-    <div class="analysis global-analysis">
-      <b>Почему это важно для Level</b>
-      <p>${esc(item.level_value||'Материал может содержать применимую зарубежную практику.')}</p>
-      ${ideas?`<div class="application-title">Что можно адаптировать</div><ul class="recommendations">${ideas}</ul>`:''}
-    </div>
-    <div class="potential">
-      <span>Потенциал внедрения</span>
-      <b title="${Number(item.potential||3)} из 5">${stars(item.potential)}</b>
     </div>
     <div class="foot">
-      <span>${esc(item.signal_type||'Мировая практика')}</span>
+      <span class="tag ${relClass(item.relevance_label)}">${esc(item.relevance_label||'Средняя')}</span>
+      <span class="potential-stars" title="Потенциал внедрения: ${Number(item.potential||3)} из 5">${stars(item.potential)}</span>
       <a href="${esc(item.url)}" target="_blank" rel="noopener">Открыть оригинал →</a>
     </div>
   </article>`;

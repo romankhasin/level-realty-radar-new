@@ -47,7 +47,7 @@ function renderTopCard(item,index){
     <div class="top-content">
       <div class="meta"><span class="source">${escapeHtml(item.source)}</span><span>${escapeHtml(item.stream||'')}</span></div>
       <h3>${escapeHtml(item.title)}</h3>
-      <p>${escapeHtml(item.level_value||'')}</p>
+      ${(item.summary||'').trim()&&(item.summary||'').trim().toLowerCase()!==(item.title||'').trim().toLowerCase()?`<p>${escapeHtml(item.summary)}</p>`:''}
       <div class="foot">
         <span class="tag ${relevanceClass(item)}">${escapeHtml(relevanceText(item))}</span>
         <a href="${escapeHtml(item.url)}" target="_blank" rel="noopener">Открыть →</a>
@@ -61,26 +61,22 @@ function renderCard(item){
   const comps=(item.competitors||[]).map(v=>`<span class="tag">${escapeHtml(v)}</span>`).join('');
   const luxuryBadge=item.luxury?`<span class="tag luxury-tag">Luxury</span>`:'';
   const teams=(item.team||[]).map(v=>`<span class="tag team">${escapeHtml(v)}</span>`).join('');
-  const recs=(item.recommendations||[]).map(v=>`<li>${escapeHtml(v)}</li>`).join('');
+  const title=(item.title||'').trim();
+  const summary=(item.summary||'').trim();
+  const showSummary=summary&&summary.toLowerCase()!==title.toLowerCase();
 
   return `<article class="card">
     <div class="meta"><span class="source">${escapeHtml(item.source)}</span><span>${date}</span></div>
-    <h2>${escapeHtml(item.title)}</h2>
-    <div class="summary clamp">${escapeHtml(item.summary||'')}</div>
+    <h2>${escapeHtml(title)}</h2>
+    ${showSummary?`<div class="summary">${escapeHtml(summary)}</div>`:''}
     <div class="tags">
       <span class="tag">${escapeHtml(item.stream||'Сигнал')}</span>
       <span class="tag signal-tag">${escapeHtml(signalType(item))}</span>
-      <span class="tag ${relevanceClass(item)}">${escapeHtml(relevanceText(item))}</span>
       <span class="tag">${escapeHtml(item.topic||'Новости')}</span>
       ${luxuryBadge}
       ${comps}
+      ${teams}
     </div>
-    <div class="analysis">
-      <b>Почему это важно для Level</b>
-      <p>${escapeHtml(item.level_value||'Материал требует дополнительной оценки.')}</p>
-      ${recs?`<ul class="recommendations">${recs}</ul>`:''}
-    </div>
-    <div class="tags">${teams}</div>
     <div class="foot">
       <span class="footer-relevance ${relevanceClass(item)}">${escapeHtml(relevanceText(item))}</span>
       <a href="${escapeHtml(item.url)}" target="_blank" rel="noopener">Открыть →</a>
