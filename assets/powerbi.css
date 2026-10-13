@@ -1,0 +1,99 @@
+/* Тема «Power BI» для Realty Radar. Подключается после styles.css. */
+:root{--bg:#f3f2f1;--ink:#252423;--muted:#605e5c;--line:#e1dfdd;--soft:#faf9f8;--danger:#c50f1f;--good:#107c10;--strong:#8a8886;--blue:#0f6cbd;--yellow:#f2c811}
+html body,html body *{font-family:"Segoe UI","Segoe UI Web (West European)",-apple-system,BlinkMacSystemFont,"Roboto","Helvetica Neue",Arial,sans-serif !important;letter-spacing:0 !important}
+html body,html body.global-page{background:#f3f2f1;color:var(--ink);font-size:14px}
+html body *{backdrop-filter:none !important}
+
+/* тёмная панель приложения */
+header{background:#252423;padding:0 16px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;min-height:48px}
+.brand{display:flex;align-items:center;gap:10px;color:#fff;font-size:14px;font-weight:600;text-transform:none}
+.brand::before{content:"LV";display:grid;place-items:center;width:28px;height:28px;background:var(--yellow);color:#252423;font-size:12px;font-weight:700}
+.brand b{color:#8a8886;font-weight:400}
+.sub{margin:0;color:#c8c6c4;font-size:12px;flex:1 1 280px}
+.main-navigation{margin:0 0 0 auto;gap:0}
+.main-navigation__link{position:relative;min-height:48px;padding:0 14px;border:0;border-radius:0;color:#c8c6c4;font-size:13px;font-weight:400}
+.main-navigation__link:hover{background:#3b3a39;color:#fff;border:0}
+.main-navigation__link.active,.main-navigation__link--global.active{background:transparent;color:#fff;font-weight:600;border:0}
+.main-navigation__link.active::after{content:"";position:absolute;left:14px;right:14px;bottom:0;height:3px;background:var(--yellow)}
+
+main{max-width:none;padding:16px 24px 40px}
+h1{font-size:24px;font-weight:600;line-height:1.25;margin:0 0 4px}
+.lead{max-width:900px;font-size:14px;line-height:1.45;color:var(--muted)}
+.eyebrow{margin:0 0 2px;color:var(--muted);font-size:12px;font-weight:400;text-transform:none}
+.section-head h2,.update-monitor h2{margin:0;font-size:16px;font-weight:600}
+.back-link{color:var(--blue);font-size:13px;font-weight:400}
+
+/* блок состояния автообновления */
+.update-monitor{margin:12px 0;padding:12px 16px;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:2px;background:#fff}
+.update-monitor__head{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:8px}
+.update-health{padding:2px 8px;border:1px solid var(--line);border-radius:2px;background:var(--soft);color:var(--muted);font-size:12px}
+.update-health--ok{color:var(--good);border-color:#c7e0c7;background:#f1faf1}
+.update-health--warn{color:#986f0b;border-color:#e8ddb5;background:#fffbea}
+.update-health--error{color:var(--danger);border-color:#f1bbc0;background:#fdf3f4}
+.update-monitor__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.update-monitor__item span{display:block;color:var(--muted);font-size:12px}
+.update-monitor__item b{display:block;margin-top:2px;font-size:14px;font-weight:600}
+.update-monitor__foot{display:flex;justify-content:space-between;gap:16px;margin-top:8px;padding-top:8px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+
+/* показатели */
+.stats{gap:12px;margin:12px 0}
+.stat,.stat:first-child{padding:12px 16px;border:1px solid var(--line);border-radius:2px;background:#fff}
+.stat b{font-size:28px;font-weight:600;line-height:1.15}
+.stat span{font-size:12px;color:var(--muted)}
+
+/* фильтры */
+.toolbar{top:0;padding:8px 12px;border:1px solid var(--line);border-radius:2px;background:#fff;gap:8px}
+input,select{height:32px;padding:0 10px;border:1px solid var(--strong);border-radius:2px;background:#fff;font-size:13px}
+input:focus,select:focus,button:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offset:1px}
+.relevance-navigation{margin:12px 0}
+.relevance-navigation__label{color:var(--ink);font-size:13px;font-weight:600}
+.relevance-buttons,.stream-navigation,.global-categories{gap:0}
+.relevance-button,.stream-button,.global-category,.global-relevance{min-height:32px;padding:0 14px;margin-left:-1px;border:1px solid var(--strong);border-radius:0;background:#fff;color:var(--ink);font-size:13px;font-weight:400;line-height:30px}
+.relevance-button:hover,.stream-button:hover,.global-category:hover,.global-relevance:hover{background:#f3f2f1;border-color:var(--ink);position:relative}
+.relevance-button.active,.stream-button.active,.global-category.active,.global-relevance.active,
+.relevance-button--high.active,.relevance-button--medium.active,.relevance-button--low.active{background:#deecf9;border-color:var(--blue);color:var(--ink);font-weight:600;position:relative}
+.language-button{border-radius:2px;border-color:var(--strong);font-size:12px;font-weight:400;padding:4px 10px}
+.language-button.active{background:#deecf9;color:var(--ink);border-color:var(--blue);font-weight:600}
+.stream-navigation{padding:0 0 12px}
+
+/* карточки материалов */
+.grid{gap:12px;margin-top:12px}
+.card,.global-card{border:1px solid var(--line);border-top:4px solid #118dff;border-radius:2px;background:#fff;padding:16px;min-height:0}
+.global-card{border-top-color:#12239e}
+.meta{font-size:12px}
+.source{color:var(--muted);font-weight:600;text-transform:none}
+.card h2{font-size:16px;font-weight:600;line-height:1.35}
+.summary{font-size:13px;line-height:1.5;color:var(--muted)}
+.tags{gap:4px}
+.tag,.footer-relevance,.luxury-tag,.global-category-tag,.signal-tag,.tag.team{padding:2px 8px;border:1px solid var(--line);border-radius:2px;background:var(--soft);color:var(--muted);font-size:11px;font-weight:400}
+.tag.team{border-color:#c6cbef;background:#f1f2fb;color:#12239e}
+.luxury-tag,.global-category-tag{border-color:#e8ddb5;background:#fffbea;color:#986f0b}
+.priority-high,.relevance-high{background:#fdf3f4 !important;color:#c50f1f !important;border-color:#f1bbc0 !important;font-weight:600}
+.priority-mid{background:#fffbea;color:#986f0b}
+.relevance-medium{background:#eff6fc !important;color:#0f6cbd !important;border-color:#c7e0f4 !important;font-weight:600}
+.relevance-low{background:#f3f2f1 !important;color:var(--muted) !important;border-color:var(--line) !important}
+.analysis,.global-analysis{padding:10px 12px;border:1px solid var(--line);border-left:4px solid var(--strong);border-radius:2px;background:var(--soft)}
+.analysis b,.global-analysis b{font-size:12px;font-weight:600;color:var(--ink)}
+.analysis p{font-size:13px;color:var(--ink)}
+.recommendations li{font-size:12px;color:var(--ink)}
+.application-title{color:var(--muted);font-size:12px;font-weight:600;text-transform:none}
+.foot{font-size:12px}.foot a{color:var(--blue);font-weight:600}.foot a:hover{text-decoration:underline}
+.potential{font-size:12px}.potential b{color:#986f0b;font-size:14px}
+
+/* «главные материалы дня» */
+.daily-focus{margin:16px 0 12px}
+.focus-note{font-size:12px}
+.top-grid{gap:12px}
+.top-card{min-height:0;padding:16px;border:1px solid var(--line);border-top:4px solid #f2c811;border-radius:2px;background:#fff;color:var(--ink)}
+.top-number{color:var(--muted);font-size:12px;font-weight:600}
+.top-card h3{font-size:15px;font-weight:600}
+.top-card p{font-size:13px;color:var(--muted)}
+.top-card .meta{color:var(--muted)}
+.top-card a{color:var(--blue)}
+
+.status{font-size:12px;color:var(--muted)}
+.error{border:1px solid #f1bbc0;border-left:4px solid var(--danger);border-radius:2px;background:#fff;color:var(--danger);padding:10px 14px}
+.empty{padding:40px;font-size:13px}
+
+@media(max-width:1100px){.update-monitor__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){header{padding:0 12px}main{padding:12px 12px 32px}.sub{display:none}.main-navigation{margin-left:0}.stat b{font-size:24px}.update-monitor__foot{flex-direction:column;gap:4px}}

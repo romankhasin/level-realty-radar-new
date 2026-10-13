@@ -28,7 +28,7 @@ function relevanceClass(item){
 
 function relevanceText(item){
   const label=relevanceLabel(item);
-  return label==='Высокая'?'🔥 Высокая':label;
+  return label==='Высокая'?'Высокая':label;
 }
 
 function signalType(item){

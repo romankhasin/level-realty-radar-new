@@ -24,7 +24,7 @@ function renderGlobalCard(item){
   return `<article class="card global-card" data-card-id="${esc(item.id)}">
     <div class="meta"><span class="source">${esc(item.source)}</span><span>${date}</span></div>
     ${hasTranslation?`<div class="language-switch" role="group" aria-label="Язык карточки">
-      <button class="language-button active" data-lang="ru">🇷🇺 Русский</button>
+      <button class="language-button active" data-lang="ru">Русский</button>
       <button class="language-button" data-lang="original">Original</button>
     </div>`:''}
     <div class="translated-content" data-lang-content="ru">
@@ -38,7 +38,7 @@ function renderGlobalCard(item){
     <div class="tags">
       <span class="tag global-category-tag">${esc(item.category||'Global')}</span>
       <span class="tag">${esc(item.region||'Global')}</span>
-      <span class="tag ${relClass(item.relevance_label)}">${item.relevance_label==='Высокая'?'🔥 ':''}${esc(item.relevance_label||'Средняя')}</span>
+      <span class="tag ${relClass(item.relevance_label)}">${item.relevance_label==='Высокая'?'':''}${esc(item.relevance_label||'Средняя')}</span>
     </div>
     <div class="analysis global-analysis">
       <b>Почему это важно для Level</b>
